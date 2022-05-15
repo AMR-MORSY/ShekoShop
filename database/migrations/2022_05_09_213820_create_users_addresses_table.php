@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address_line2');
             $table->string('city');
             $table->string('country');
-            $table->string('mobile');
+            $table->string('mobile')->unique();
             $table->timestamps();
         });
     }
