@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product_Catogory;
 use App\Http\Requests\StoreProduct_CatogoryRequest;
 use App\Http\Requests\UpdateProduct_CatogoryRequest;
+use Illuminate\Support\Facades\Session;
 
 class ProductCatogoryController extends Controller
 {
@@ -15,7 +16,7 @@ class ProductCatogoryController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**

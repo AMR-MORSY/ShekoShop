@@ -12,6 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+.scripts([ "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],'public/js/bootstrap.js')
+.copy('node_modules/bootstrap/dist/css/bootstrap.min.css','public/css/bootstrap.css').copy('node_modules/animate.css/animate.min.css','public/css/animation.css');
+

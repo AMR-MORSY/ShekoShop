@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*navbar section*/
+#navbar {
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: coral;
+
+
+}
+
+.form-group {
+    background-color: transparent;
+    /* width: 40%; */
+    position: relative;
+
+
+
+}
+
+.searchBtn {
+    position: absolute;
+    width: 30%;
+    margin: 0 !important;
+    top: 0;
+    right: 0;
+
+    text-align: center;
+    background-color: green;
+
+}
+
+.search {
+    width: 100%;
+
+}
+
+.menue-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.menue-btn-burger {
+    position: relative;
+    width: 25px;
+    height: 4px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menue-btn-burger::before,
+.menue-btn-burger::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 4px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menue-btn-burger::before {
+    transform: translateY(-10px);
+}
+
+.menue-btn-burger::after {
+    transform: translateY(10px);
+}
+
+.menue-btn.open .menue-btn-burger {
+    transform: translateX(-30px);
+    background-color: transparent;
+}
+
+.menue-btn.open .menue-btn-burger::before {
+    transform: rotate(45deg) translate(21px, -21px);
+}
+
+.menue-btn.open .menue-btn-burger::after {
+    transform: rotate(-45deg) translate(21px, 21px);
+}
+
+.collapse {
+    display: flex !important;
+    justify-content: center !important;
+    background-color: blue !important;
+
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.test {
+    position: relative;
+    height: 30px;
+    width: 100%;
+
+}
+
+.test2 {
+    background-color: #aaaaaa;
+    position: absolute;
+    top: 20%;
+    right: 100%;
+    display: none;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.test:hover .test2 {
+    display: block;
+}
+
+.image_container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: burlywood;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+
+}
+
+.main-ul {
+    display: flex !important;
+    justify-content: space-around !important;
+}
+
+li{
+    display: inline-block !important;
+}
+
+img {
+    display: block;
+}
