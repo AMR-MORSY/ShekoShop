@@ -1,158 +1,270 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h2,
+h6,
+button {
+  font-family: "Roboto Condensed", sans-serif;
+  color: white;
 }
 
 /*navbar section*/
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.opacity-none {
+  opacity: 0;
+}
+
+.opacity-full {
+  opacity: 1;
+}
+
+#links {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  z-index: 200;
+  background-color: white;
+  display: none;
+}
+
 #navbar {
-
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    background-color: coral;
-
-
+  /* position: fixed;
+  left: 0;
+  right: 0;
+  top: 0; */
+  position: relative;
+  width: 100%;
+  background-color: coral;
+}
+#navbar .form-group {
+  background-color: transparent;
+  /* width: 40%; */
+  position: relative;
+}
+#navbar .searchBtn {
+  position: absolute;
+  width: 30%;
+  margin: 0 !important;
+  top: 0;
+  right: 0;
+  text-align: center;
+  background-color: green;
+}
+#navbar .search {
+  width: 100%;
+}
+#navbar .menue-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+#navbar .menue-btn-burger {
+  position: relative;
+  width: 25px;
+  height: 4px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.5s ease-in-out;
+}
+#navbar .menue-btn-burger::before,
+#navbar .menue-btn-burger::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 4px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.5s ease-in-out;
+}
+#navbar .menue-btn-burger::before {
+  transform: translateY(-10px);
+}
+#navbar .menue-btn-burger::after {
+  transform: translateY(10px);
+}
+#navbar .menue-btn.open .menue-btn-burger {
+  transform: translateX(-30px);
+  background-color: transparent;
+}
+#navbar .menue-btn.open .menue-btn-burger::before {
+  transform: rotate(45deg) translate(21px, -21px);
+}
+#navbar .menue-btn.open .menue-btn-burger::after {
+  transform: rotate(-45deg) translate(21px, 21px);
+}
+#navbar .collapse {
+  display: flex !important;
+  justify-content: center !important;
+  background-color: blue !important;
+}
+#navbar .collapse .dropdown-item {
+  cursor: pointer;
+}
+#navbar .dropdown:hover .dropdown-menu {
+  display: block;
+}
+#navbar .test {
+  position: relative;
+  height: 30px;
+  width: 100%;
+}
+#navbar .test2 {
+  background-color: #aaaaaa;
+  position: absolute;
+  top: 20%;
+  right: 100%;
+  display: none;
+  border-radius: 3px;
+  z-index: 1;
+}
+#navbar .test:hover .test2 {
+  display: block;
+}
+#navbar .image_container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: burlywood;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+#navbar .main-ul {
+  display: flex !important;
+  justify-content: space-around !important;
+  padding: 0 !important;
+}
+#navbar .main-ul li {
+  display: inline-block !important;
+  background-color: antiquewhite;
+}
+#navbar .main-ul img {
+  display: block;
 }
 
-.form-group {
-    background-color: transparent;
-    /* width: 40%; */
-    position: relative;
-
-
-
+/*home section*/
+.intro-background {
+  width: 100%;
+  height: 100vh;
+  /* color: #ece2cc; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-image: url("/storage/hher-23-3.jpg");
+  background-position: center;
+  background-size: cover;
 }
-
-.searchBtn {
-    position: absolute;
-    width: 30%;
-    margin: 0 !important;
-    top: 0;
-    right: 0;
-
-    text-align: center;
-    background-color: green;
-
+.intro-background .first-caption {
+  margin-right: 4em;
+  margin-bottom: 4em;
 }
-
-.search {
-    width: 100%;
-
+.intro-background .first-caption h6 {
+  font-size: 2rem;
+  text-align: end;
 }
-
-.menue-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
+.intro-background .first-caption h6,
+.intro-background .first-caption h2 {
+  font-weight: 700;
 }
-
-.menue-btn-burger {
-    position: relative;
-    width: 25px;
-    height: 4px;
-    background-color: white;
-    border-radius: 3px;
-    transition: all 0.5s ease-in-out;
+.intro-background .first-caption h2 {
+  font-size: 4rem;
 }
-
-.menue-btn-burger::before,
-.menue-btn-burger::after {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 25px;
-    height: 4px;
-    background-color: white;
-    border-radius: 3px;
-    transition: all 0.5s ease-in-out;
+.intro-background .caption-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }
-
-.menue-btn-burger::before {
-    transform: translateY(-10px);
+.intro-background .caption-buttons button {
+  display: inline-block;
+  margin-left: 1rem;
+  width: 160px;
+  height: 50px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
 }
-
-.menue-btn-burger::after {
-    transform: translateY(10px);
+.intro-background .caption-buttons button a {
+  display: block;
+  text-decoration: none;
 }
-
-.menue-btn.open .menue-btn-burger {
-    transform: translateX(-30px);
-    background-color: transparent;
+.intro-background .caption-buttons .transparent-btn, .intro-background .caption-buttons .white-btn {
+  transition: ease-out 0.3s;
+  z-index: 1;
+  position: relative;
 }
-
-.menue-btn.open .menue-btn-burger::before {
-    transform: rotate(45deg) translate(21px, -21px);
+.intro-background .caption-buttons .transparent-btn {
+  border: white 2px solid;
+  background-color: transparent;
 }
-
-.menue-btn.open .menue-btn-burger::after {
-    transform: rotate(-45deg) translate(21px, 21px);
+.intro-background .caption-buttons .white-btn {
+  border: black 2px solid;
+  background-color: transparent;
 }
-
-.collapse {
-    display: flex !important;
-    justify-content: center !important;
-    background-color: blue !important;
-
+.intro-background .caption-buttons .white-btn a {
+  color: black;
 }
-
-.dropdown-item {
-    cursor: pointer;
+.intro-background .caption-buttons .transparent-btn a {
+  color: white;
 }
-
-.dropdown:hover .dropdown-menu {
-    display: block;
+.intro-background .caption-buttons .transparent-btn::before {
+  left: 50%;
+  right: 50%;
 }
-
-.test {
-    position: relative;
-    height: 30px;
-    width: 100%;
-
+.intro-background .caption-buttons .white-btn::before {
+  left: 0;
+  right: 0;
+  z-index: -1;
 }
-
-.test2 {
-    background-color: #aaaaaa;
-    position: absolute;
-    top: 20%;
-    right: 100%;
-    display: none;
-    border-radius: 3px;
-    z-index: 1;
+.intro-background .caption-buttons .transparent-btn::before, .intro-background .caption-buttons .white-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transition: all 0.3s ease;
 }
-
-.test:hover .test2 {
-    display: block;
+.intro-background .caption-buttons .transparent-btn::before {
+  background-color: white;
+  opacity: 0;
 }
-
-.image_container {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: burlywood;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-
+.intro-background .caption-buttons .white-btn::before {
+  background-color: white;
 }
-
-.main-ul {
-    display: flex !important;
-    justify-content: space-around !important;
+.intro-background .caption-buttons .transparent-btn:hover.transparent-btn::before, .intro-background .caption-buttons .white-btn:hover.white-btn::before {
+  transition: all 0.3s ease;
+  opacity: 1;
+  z-index: -1;
 }
-
-li{
-    display: inline-block !important;
+.intro-background .caption-buttons .transparent-btn:hover.transparent-btn::before {
+  left: 0;
+  right: 0;
 }
-
-img {
-    display: block;
+.intro-background .caption-buttons .white-btn:hover.white-btn::before {
+  left: 50%;
+  right: 50%;
+}
+.intro-background .caption-buttons .transparent-btn:hover a {
+  color: black;
+}
+.intro-background .caption-buttons .white-btn:hover a {
+  color: white;
 }
