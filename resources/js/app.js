@@ -1,60 +1,108 @@
 //   require('./bootstrap');
 
- let x=document.querySelectorAll('.nav-item');
- for(let i=0;i<x.length;i++)
- {
-     x[i].addEventListener("mouseover",function(){
-
-        X[i].
-
-         $('#links').css('display','block')
-        //   $ ('#links').addClass('display-block');
-          console.log(x[i]);
-     });
-      x[i].addEventListener("mouseout",function(){
-
-          $('#links').css('display','none')
-            // $ ('#links').addClass('display-none');
-           console.log(x[i]);
-      });
 
 
- };
 
-$('#links').on('mouseenter',function(){
-//    let op= $('#links').css('display','block');
-   $('#links').css('display','block');
-   console.log(op)});
-   $('#links').on('mouseout',function(){
-    //    let op= $('#links').css('display','block');
-       $('#links').css('display','none');
-       console.log(op)});
+
+let x = document.querySelectorAll('a');
+for (let i = 0; i < x.length; i++) {
+
+    x[i].addEventListener("mouseover", function () {
+
+        let linko = $("a").eq(i).text();
+        console.log(linko);
+        if (linko == "+ Hambozo") {
+            // $('#links').empty();
+            console.log('hi')
+            $('#links').slideDown('slow', 'linear');
+            $('#Profile').css('display', 'none');
+            $('#Hambozo').css('display', 'block');
 
 
 
 
 
-    // ($this).removeClass('display-none');
-// },function(){
-//     let op=  ($this).css('opacity',"0");
-//     console.log(op);
+        }
 
+        if (linko == "+ Profile") {
+            console.log('hello')
+            $('#Hambozo').css('display', 'none');
+            $('#links').slideDown('slow', 'linear');
+            $('#Profile').css('display', 'block');
+
+
+
+
+        }
+
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+};
+
+
+$(document).ready(function () {
+    $('.first-caption').css('display', 'block');
+    $('.first-caption').addClass('animate__slideInUp');
+     $('#intro-image').addClass('scalling-image');
+    // $('#intro-image').css('transformScaleY', '100%');
+   
+});
+
+$('#links').on('mouseleave', function () {
+
+    //     console.log('hello');
+
+    $('#links').slideUp('slow', 'linear');
+
+
+});
+// $(document).ready(function () {
+
+
+//     var options = {
+//         strings: ['<     EXTRA 20% OFF SALE       >', '< bkh >', '< hhhhh >', '< ohh >'],
+//         typeSpeed: 3000,
+//         backSpeed: 3000,
+//         smartBackspace: false,
+//         fadeOut: false,
+//         fadeOutClass: 'typed-fade-out',
+//         fadeOutDelay: 100,
+//         loop: true,
+//         loopCount: Infinity,
+//         backDelay: 0,
+//         showCursor: true,
+//         cursorChar: '|',
+//         autoInsertCss: true,
+//     }
+//     var typed = new Typed('#header-item', options);
+
+    // for (var i = 0; i < offers.length; i++) {
+    //     let time = setTimeout(addHtml, 5000)
+    //     function addHtml() {
+    //         // document.getElementById('header').innerHTML = offers[i];
+    //         console.log("hello");
+    //         $('#header').html(offers[i])
+
+    //     }
+    //     // myStopFunction();
+
+
+    //     // function myStopFunction() {
+    //     //     clearTimeout(time);
+    //     // }
+
+
+    // }
 // });
-// $ ('.links').on('mouseout',function(){
-//     ($this).removeClass('display-block');
-//     ($this).addClass('display-none');
-// })
-
-// {
-//     element.addEventListener('mouseover',function(){
-
-
-
-// }
-// x.addEventListener('mouseover',function(){
-
-//     $('.links').toggleClass('display-block');
-
-// })
-
 
