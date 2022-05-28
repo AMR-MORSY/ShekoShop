@@ -8,6 +8,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/animation.css') }}"> --}}
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,10 +23,9 @@
     @yield('content')
 
 
-     <script src="{{ asset('js/jquery.js') }}"></script> 
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
-
-    <script src="{{ asset('js/typed.js') }}"></script>
+    <script src="{{ asset('js/swiper.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 

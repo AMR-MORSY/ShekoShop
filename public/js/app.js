@@ -7,74 +7,229 @@
   \*****************************/
 /***/ (() => {
 
-//   require('./bootstrap');
-var x = document.querySelectorAll('a');
+// const { head } = require("lodash");
+// const { default: Swiper } = require("swiper");
+document.addEventListener("DOMContentLoaded", function () {
+  var swiper = new Swiper(".swiper", {
+    speed: 400,
+    breakpointsBase: "container",
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+      hiddenClass: "swiper-button-hidden",
+      hideOnClick: true
+    },
+    observer: true,
+    observeParents: true,
+    parallax: true,
+    autoHeight: true,
+    loop: false,
+    // allowSlideNext:true,
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 3
+      },
+      // when window width is >= 640px
+      767: {
+        slidesPerView: 4,
+        spaceBetween: 3
+      }
+    }
+  });
+  $(window).scroll(function () {
+    var wind = $(window).scrollTop();
+    var nice = $("#nice-girl").offset().top;
+    console.log(nice);
+    console.log(wind);
+
+    if (wind + 200 >= nice) {
+      console.log("hi");
+      $(".nice-girl-image-contianer > img").css('transform', 'Scale(1.1)');
+      $(".after").css("left", "100%");
+      $(".before").css("right", "100%");
+    } else {
+      $(".nice-girl-image-contianer > img").css('transform', 'Scale(1)');
+      $(".after").css("left", "90%");
+      $(".before").css("right", "90%");
+    }
+  });
+});
+
+function animateNiceGirlSection() {}
+
+var x = document.querySelectorAll(".nav-item");
 
 var _loop = function _loop(i) {
   x[i].addEventListener("mouseover", function () {
-    var linko = $("a").eq(i).text();
-    console.log(linko);
+    var linko = $(".nav-item > a").eq(i).text();
 
     if (linko == "+ Hambozo") {
-      // $('#links').empty();
-      console.log('hi');
-      $('#links').slideDown('slow', 'linear');
-      $('#Profile').css('display', 'none');
-      $('#Hambozo').css('display', 'block');
+      $("#links").slideDown("slow", "linear");
+      $("#Profile").css("display", "none");
+      $("#search").css("display", "none");
+      $("#Hambozo").css("display", "block");
     }
 
     if (linko == "+ Profile") {
-      console.log('hello');
-      $('#Hambozo').css('display', 'none');
-      $('#links').slideDown('slow', 'linear');
-      $('#Profile').css('display', 'block');
+      $("#Hambozo").css("display", "none");
+      $("#links").slideDown("slow", "linear");
+      $("#search").css("display", "none");
+      $("#Profile").slideDown("slow", "linear");
     }
   });
 };
 
 for (var i = 0; i < x.length; i++) {
   _loop(i);
+} //small menue button actions/////
+
+
+$(".menue-btn").on("click", function () {
+  if (!$(".menue-btn").hasClass("open")) {
+    $(".menue-btn").addClass("open");
+    $("#small-menue").slideDown("slow", "linear");
+    $(".navig-item").each(function () {
+      $(this).addClass("animate__slideInLeft");
+    });
+  } else {
+    $(".menue-btn").removeClass("open");
+    $("#small-menue").slideUp("slow", "linear");
+    $(".navig-item").each(function () {
+      $(this).removeClass("animate__slideInLeft");
+    });
+    $("#sliding-canvas").animate({
+      left: "100%"
+    }, "fast", "linear");
+    $("#sliding-canvas").animate({
+      right: "-100%"
+    }, "fast", "linear");
+    $("#sliding-convas-shop").animate({
+      left: "100%"
+    }, "slow", "linear");
+    $("#sliding-convas-shop").animate({
+      right: "-100%"
+    }, "slow", "linear");
+  }
+}); /////////////
+
+function addSlidingCanvascontent(header) {
+  $("#sliding-convas-header").text(header);
+  var blog = ["NEWS", "NOTEBOOK"];
+  var about = ["WHO WE ARE", "FAQ", "CONTACTS", "MEET THE TEAM", "FAN PAG"];
+  var collections = ["Spring/Summer", "Ready-to-Wear", "Last Chance", "View All"];
+  var sale = ["One Piece", "Tops", "bottoms", "view All"];
+  var allStyles = ["One Piece", "Dresses", "Tops", "Shirts", "Bottoms", "Skirts"];
+
+  if (header == "BLOG") {
+    for (var _i = 0; _i < blog.length; _i++) {
+      $(".sliding-convas-paragraph").eq(_i).text(blog[_i]);
+      $("#sliding-canvas").animate({
+        left: "0"
+      }, "slow", "linear");
+      $("#sliding-canvas").animate({
+        right: "0"
+      }, "slow", "linear");
+    }
+  } else if (header == "ABOUT") {
+    for (var _i2 = 0; _i2 < blog.length; _i2++) {
+      $(".sliding-convas-paragraph").eq(_i2).text(about[_i2]);
+      $("#sliding-canvas").animate({
+        left: "0"
+      }, "slow", "linear");
+      $("#sliding-canvas").animate({
+        right: "0"
+      }, "slow", "linear");
+    }
+  } else if (header == "SHOP") {
+    $("#sliding-convas-shop").animate({
+      left: "0"
+    }, "slow", "linear");
+    $("#sliding-convas-shop").animate({
+      right: "0"
+    }, "slow", "linear");
+  } else if (header == "COLLECTIONS") {
+    for (var _i3 = 0; _i3 < collections.length; _i3++) {
+      $(".sliding-convas-paragraph").eq(_i3).text(collections[_i3]);
+      $("#sliding-canvas").animate({
+        left: "0"
+      }, "slow", "linear");
+      $("#sliding-canvas").animate({
+        right: "0"
+      }, "slow", "linear");
+    }
+  } else if (header == "ALL STYLES") {
+    for (var _i4 = 0; _i4 < allStyles.length; _i4++) {
+      $(".sliding-convas-paragraph").eq(_i4).text(allStyles[_i4]);
+      $("#sliding-canvas").animate({
+        left: "0"
+      }, "slow", "linear");
+      $("#sliding-canvas").animate({
+        right: "0"
+      }, "slow", "linear");
+    }
+  } else if (header == "SALE") {
+    for (var _i5 = 0; _i5 < sale.length; _i5++) {
+      $(".sliding-convas-psaleraph").eq(_i5).text(sale[_i5]);
+      $("#sliding-canvas").animate({
+        left: "0"
+      }, "slow", "linear");
+      $("#sliding-canvas").animate({
+        right: "0"
+      }, "slow", "linear");
+    }
+  }
 }
 
-;
-$(document).ready(function () {
-  $('.first-caption').css('display', 'block');
-  $('.first-caption').addClass('animate__slideInUp');
-  $('#intro-image').addClass('scalling-image'); // $('#intro-image').css('transformScaleY', '100%');
-});
-$('#links').on('mouseleave', function () {
-  //     console.log('hello');
-  $('#links').slideUp('slow', 'linear');
-}); // $(document).ready(function () {
-//     var options = {
-//         strings: ['<     EXTRA 20% OFF SALE       >', '< bkh >', '< hhhhh >', '< ohh >'],
-//         typeSpeed: 3000,
-//         backSpeed: 3000,
-//         smartBackspace: false,
-//         fadeOut: false,
-//         fadeOutClass: 'typed-fade-out',
-//         fadeOutDelay: 100,
-//         loop: true,
-//         loopCount: Infinity,
-//         backDelay: 0,
-//         showCursor: true,
-//         cursorChar: '|',
-//         autoInsertCss: true,
-//     }
-//     var typed = new Typed('#header-item', options);
-// for (var i = 0; i < offers.length; i++) {
-//     let time = setTimeout(addHtml, 5000)
-//     function addHtml() {
-//         // document.getElementById('header').innerHTML = offers[i];
-//         console.log("hello");
-//         $('#header').html(offers[i])
-//     }
-//     // myStopFunction();
-//     // function myStopFunction() {
-//     //     clearTimeout(time);
-//     // }
+var z = document.querySelectorAll(".navig-item i");
+
+var _loop2 = function _loop2(_i6) {
+  z[_i6].addEventListener("click", function () {
+    var header = $(".navig-item > p").eq(_i6).text();
+    console.log(header);
+    addSlidingCanvascontent(header);
+  });
+};
+
+for (var _i6 = 0; _i6 < z.length; _i6++) {
+  _loop2(_i6);
+} //
+///search icon action/////////////////
+
+
+$(".search-icon").on("click", function () {
+  $("#search").slideDown("slow", "linear");
+  $("#search-caption").addClass("animate__slideInUp");
+  $("#search-input").addClass("animate__slideInUp");
+}); /////changing the landing background image/////
+//
+// function changingBackgroundImage()
+// {
+// if(window.matchMedia('(max-width: 767px)').matches)
+// {
+// $('#intro-image').attr('src',function(n,v){
+// return v="{{ asset('/storage/hher-23-5.jpg') }}";
+// })
+//
 // }
-// });
+// else
+// {
+// $('#intro-image').attr('src',function(n,v){
+// return v="{{ asset('storage/hher-23-3.jpg') }}";
+// })
+//
+// }
+// }
+
+$(document).ready(function () {
+  $(".first-caption").css("display", "block");
+  $(".first-caption").addClass("animate__slideInUp");
+  $("#intro-image").addClass("scalling-image"); // changingBackgroundImage();
+});
+$("#links").on("mouseleave", function () {
+  $("#links").slideUp("slow", "linear");
+});
 
 /***/ }),
 

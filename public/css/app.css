@@ -14354,123 +14354,105 @@ readers do not read off random characters that represent icons */
 }
 
 body {
-  overflow-x: hidden;
-}
-
-h2,
-h6,
-h5 button {
   font-family: "Roboto Condensed", sans-serif;
-  color: white;
 }
 
-/*navbar section*/
-#links {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 200;
+/*home section*/
+#intro {
+  width: 100%;
+  height: 100vh;
+  margin-bottom: 6rem;
   overflow: hidden;
-  display: none;
+  /*navbar section*/
 }
-#links #Hambozo {
-  display: none;
-}
-#links #Hambozo .img-container {
+#intro #header {
+  background-color: #261d09;
   width: 100%;
-}
-#links #Hambozo .img-container img {
-  width: 100%;
-}
-#links #Profile {
-  display: none;
-}
-
-#navbar {
-  position: relative;
-  width: 100%;
-  z-index: 5;
-}
-#navbar .nav {
-  background-color: #ffffff;
-}
-#navbar .nav .form-group {
-  background-color: transparent;
-  /* width: 40%; */
-  position: relative;
-}
-#navbar .nav .searchBtn {
-  position: absolute;
-  width: 30%;
-  margin: 0 !important;
-  top: 0;
-  right: 0;
-  text-align: center;
-  background-color: green;
-}
-#navbar .nav .search {
-  width: 100%;
-}
-#navbar .nav .menue-btn {
+  height: 40px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+#intro #header .carousel-item h6 {
+  width: 100% !important;
+  padding-top: 0.5rem;
+}
+#intro #navbar {
+  position: relative;
+  width: 100%;
+}
+#intro #navbar .nav {
+  background-color: #ffffff;
+  width: 100%;
+}
+#intro #navbar .nav .brand-image {
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+#intro #navbar .nav .brand-image img {
+  width: 100%;
+}
+#intro #navbar .nav .menue-btn {
   justify-content: center;
   align-items: center;
   width: 40px;
   height: 40px;
+  display: none;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
-#navbar .nav .menue-btn-burger {
+#intro #navbar .nav .menue-btn .menue-btn-burger {
   position: relative;
   width: 25px;
-  height: 4px;
-  background-color: white;
-  border-radius: 3px;
+  height: 1px;
+  background-color: #261d09;
   transition: all 0.5s ease-in-out;
 }
-#navbar .nav .menue-btn-burger::before,
-#navbar .nav .menue-btn-burger::after {
+#intro #navbar .nav .menue-btn .menue-btn-burger::before,
+#intro #navbar .nav .menue-btn .menue-btn-burger::after {
   position: absolute;
   content: "";
   top: 0;
   left: 0;
   width: 25px;
-  height: 4px;
-  background-color: white;
-  border-radius: 3px;
+  height: 1px;
+  background-color: #261d09;
   transition: all 0.5s ease-in-out;
 }
-#navbar .nav .menue-btn-burger::before {
+#intro #navbar .nav .menue-btn .menue-btn-burger::before {
   transform: translateY(-10px);
 }
-#navbar .nav .menue-btn-burger::after {
+#intro #navbar .nav .menue-btn .menue-btn-burger::after {
   transform: translateY(10px);
 }
-#navbar .nav .menue-btn.open .menue-btn-burger {
+#intro #navbar .nav .menue-btn.open .menue-btn-burger {
   transform: translateX(-30px);
   background-color: transparent;
 }
-#navbar .nav .menue-btn.open .menue-btn-burger::before {
+#intro #navbar .nav .menue-btn.open .menue-btn-burger::before {
   transform: rotate(45deg) translate(21px, -21px);
 }
-#navbar .nav .menue-btn.open .menue-btn-burger::after {
+#intro #navbar .nav .menue-btn.open .menue-btn-burger::after {
   transform: rotate(-45deg) translate(21px, 21px);
 }
-#navbar .nav .collapso {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding-top: 1rem;
-}
-#navbar .nav .collapso .main-ul {
+#intro #navbar .nav .collapso {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  display: flex !important;
-  justify-content: space-evenly !important;
-  align-items: center !important;
 }
-#navbar .nav .collapso .main-ul .nav-item {
+#intro #navbar .nav .collapso .main-ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#intro #navbar .nav .collapso .main-ul .nav-item {
   cursor: pointer;
   color: #261d09;
   font-size: 1.5rem;
@@ -14480,7 +14462,7 @@ h5 button {
   position: relative;
   transition: all 0.5s ease;
 }
-#navbar .nav .collapso .main-ul .nav-item::before {
+#intro #navbar .nav .collapso .main-ul .nav-item::before {
   content: "";
   position: absolute;
   transition: all 0.5s ease;
@@ -14491,136 +14473,242 @@ h5 button {
   background-color: #261d09;
   opacity: 0;
 }
-#navbar .nav .collapso .main-ul .nav-item:hover.nav-item::before {
+#intro #navbar .nav .collapso .main-ul .nav-item:hover.nav-item::before {
   left: 0;
   right: 0;
   opacity: 1;
 }
-#navbar .nav .dropdown:hover .dropdown-menu {
-  display: block;
-}
-#navbar .nav .test {
-  position: relative;
-  height: 30px;
-  width: 100%;
-}
-#navbar .nav .test2 {
-  background-color: #aaaaaa;
-  position: absolute;
-  top: 20%;
-  right: 100%;
-  display: none;
-  border-radius: 3px;
-  z-index: 1;
-}
-#navbar .nav .test:hover .test2 {
-  display: block;
-}
-#navbar .icons-container {
+#intro #navbar .nav .icons-container {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  padding-top: 1.5rem;
 }
-#navbar .icons-container .search-icon i,
-#navbar .icons-container .Cart-icon i,
-#navbar .icons-container .user-icon i {
+#intro #navbar .nav .icons-container .search-icon i,
+#intro #navbar .nav .icons-container .Cart-icon i,
+#intro #navbar .nav .icons-container .user-icon i {
   color: #261d09;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 0;
   transition: all 0.5s ease;
 }
-#navbar .icons-container .search-icon i:hover, #navbar .icons-container .Cart-icon i:hover, #navbar .icons-container .user-icon i:hover {
+#intro #navbar .nav .icons-container .search-icon i:hover,
+#intro #navbar .nav .icons-container .Cart-icon i:hover,
+#intro #navbar .nav .icons-container .user-icon i:hover {
   transform: scale(1.2);
 }
-
-#header {
-  background-color: #261d09;
+#intro #navbar #links,
+#intro #navbar #search,
+#intro #navbar #small-menue {
+  background-color: white;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  position: absolute;
+  display: none;
+}
+#intro #navbar #links #Hambozo {
+  display: none;
+}
+#intro #navbar #links #Hambozo .slide-1 {
+  --animate-duration: 0.1s;
+}
+#intro #navbar #links #Hambozo .slide-2 {
+  --animate-duration: 0.3s;
+}
+#intro #navbar #links #Hambozo .slide-3 {
+  --animate-duration: 0.5s;
+}
+#intro #navbar #links #Hambozo .slide-4 {
+  --animate-duration: 0.7s;
+}
+#intro #navbar #links #Hambozo .img-container {
   width: 100%;
-  height: 40px;
+}
+#intro #navbar #links #Hambozo .img-container img {
+  width: 100%;
+}
+#intro #navbar #links #Profile {
+  display: none;
+}
+#intro #navbar #search {
+  background-color: white;
+}
+#intro #navbar #search #search-caption {
+  margin-top: 1rem;
+}
+#intro #navbar #search #search-caption p {
+  color: #261d09;
+  font-size: 1.5rem;
+  padding: 1rem 1rem;
+}
+#intro #navbar #search #search-input {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#intro #navbar #search #search-input i {
+  position: absolute;
+  font-size: 1rem;
+  color: #261d09;
+  margin-right: 1rem;
+}
+#intro #navbar #search #search-input input {
+  width: 100%;
+  border: 2px solid #261d09;
+  border-radius: 2px;
+  padding: 1rem 1rem;
+}
+#intro #navbar #small-menue,
+#intro #navbar #sliding-convas-shop {
+  position: absolute;
+}
+#intro #navbar #small-menue .slide-1,
+#intro #navbar #sliding-convas-shop .slide-1 {
+  --animate-duration: 0.3s;
+}
+#intro #navbar #small-menue .slide-2,
+#intro #navbar #sliding-convas-shop .slide-2 {
+  --animate-duration: 0.5s;
+}
+#intro #navbar #small-menue .slide-3,
+#intro #navbar #sliding-convas-shop .slide-3 {
+  --animate-duration: 0.7s;
+}
+#intro #navbar #small-menue .slide-4,
+#intro #navbar #sliding-convas-shop .slide-4 {
+  --animate-duration: 0.9s;
+}
+#intro #navbar #small-menue .convas-header,
+#intro #navbar #sliding-convas-shop .convas-header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  overflow: hidden;
 }
-#header .carousel-item h6 {
-  width: 100% !important;
-  padding-top: 0.5rem;
-}
-#header .carousel-control-next {
-  position: fixed !important;
-  right: 35% !important;
-  width: 20px !important;
-  top: -95% !important;
-  opacity: 1;
-}
-#header .carousel-control-prev {
-  left: 35% !important;
-  width: 20px !important;
-  top: -95% !important;
-  opacity: 1 !important;
-  position: fixed !important;
-}
-
-#header-item {
+#intro #navbar #small-menue .convas-header p,
+#intro #navbar #sliding-convas-shop .convas-header p {
   text-align: center;
-  color: white;
-  font-weight: 400;
-  font-size: 1rem;
+  color: #261d09;
+  font-size: 1.5rem;
 }
-
-/*home section*/
-.intro-background {
-  width: 100%;
-  height: 100vh;
-  /* color: #ece2cc; */
+#intro #navbar #small-menue .navig-item,
+#intro #navbar #sliding-convas-shop .navig-item {
+  width: 90%;
+  margin: auto;
+  padding-right: 0.5rem;
+  border-bottom: 2px solid #f1f1f1;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  background-position: center;
-  background-size: cover;
-  overflow-y: hidden;
-  position: relative;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  justify-content: space-between;
 }
-.intro-background .intro-image {
+#intro #navbar #small-menue .navig-item p,
+#intro #navbar #sliding-convas-shop .navig-item p {
+  padding-top: 0.7rem;
+  font-size: 1.5rem;
+  color: #261d09;
+}
+#intro #navbar #small-menue .navig-item i,
+#intro #navbar #sliding-convas-shop .navig-item i {
+  font-size: 1.5rem;
+  color: #261d09;
+}
+#intro #navbar #sliding-canvas {
+  height: 100vh;
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  right: -100%;
+  z-index: 12;
+  background-color: white;
+}
+#intro #navbar #sliding-canvas .convas-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#intro #navbar #sliding-canvas .convas-header p {
+  text-align: center;
+  color: #261d09;
+  font-size: 1.5rem;
+}
+#intro #navbar #sliding-canvas .sliding-canvas-navig-item {
+  width: 90%;
+  margin: auto;
+  padding-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  justify-content: space-between;
+}
+#intro #navbar #sliding-canvas .sliding-canvas-navig-item p {
+  padding-top: 0.7rem;
+  font-size: 1.5rem;
+  color: #261d09;
+}
+#intro #navbar #sliding-canvas .sliding-canvas-navig-item i {
+  font-size: 1.5rem;
+  color: #261d09;
+}
+#intro #navbar #sliding-convas-shop {
+  z-index: 11;
+  top: 100%;
+  left: 100%;
+  right: -100%;
+  height: 100vh;
+  background-color: white;
+}
+#intro .intro-background {
   width: 100%;
   height: 100%;
+  position: relative;
+  background-color: black;
+}
+#intro .intro-background .intro-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
   overflow: hidden;
 }
-.intro-background .intro-image img {
+#intro .intro-background .intro-image img {
   width: 100%;
+  height: 100%;
   transform: scale(1.2);
   transition: all 1.5s ease;
 }
-.intro-background .intro-image .scalling-image {
+#intro .intro-background .intro-image .scalling-image {
   transform: scale(1);
 }
-.intro-background .first-caption {
+#intro .intro-background .first-caption {
   position: absolute;
-  margin-right: 4em;
-  margin-bottom: 8em;
+  margin-bottom: 1rem;
+  right: 5%;
+  bottom: 20%;
   display: none;
   z-index: 3;
 }
-.intro-background .first-caption h6 {
-  font-size: 2rem;
+#intro .intro-background .first-caption h6 {
+  font-size: 1.5rem;
   text-align: end;
 }
-.intro-background .first-caption h6,
-.intro-background .first-caption h2 {
+#intro .intro-background .first-caption h6,
+#intro .intro-background .first-caption h2 {
   font-weight: 700;
+  color: white;
 }
-.intro-background .first-caption h2 {
-  font-size: 4rem;
+#intro .intro-background .first-caption h2 {
+  font-size: 3rem;
+  text-align: end;
 }
-.intro-background .first-caption .caption-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: end;
-}
-.intro-background .first-caption .caption-buttons button {
+#intro .intro-background .first-caption .caption-buttons button {
   display: inline-block;
   margin-left: 1rem;
   width: 160px;
@@ -14628,71 +14716,420 @@ h5 button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
 }
-.intro-background .first-caption .caption-buttons button a {
+#intro .intro-background .first-caption .caption-buttons button a {
   display: block;
   text-decoration: none;
 }
-.intro-background .first-caption .caption-buttons .transparent-btn,
-.intro-background .first-caption .caption-buttons .white-btn {
+#intro .intro-background .first-caption .caption-buttons .transparent-btn,
+#intro .intro-background .first-caption .caption-buttons .white-btn {
   transition: ease-out 0.3s;
   z-index: 1;
   position: relative;
 }
-.intro-background .first-caption .caption-buttons .transparent-btn {
+#intro .intro-background .first-caption .caption-buttons .transparent-btn {
   border: white 2px solid;
   background-color: transparent;
 }
-.intro-background .first-caption .caption-buttons .white-btn {
+#intro .intro-background .first-caption .caption-buttons .white-btn {
   border: black 2px solid;
   background-color: transparent;
 }
-.intro-background .first-caption .caption-buttons .white-btn a {
+#intro .intro-background .first-caption .caption-buttons .white-btn a {
   color: black;
 }
-.intro-background .first-caption .caption-buttons .transparent-btn a {
+#intro .intro-background .first-caption .caption-buttons .transparent-btn a {
   color: white;
 }
-.intro-background .first-caption .caption-buttons .transparent-btn::before {
+#intro .intro-background .first-caption .caption-buttons .transparent-btn::before {
   left: 50%;
   right: 50%;
 }
-.intro-background .first-caption .caption-buttons .white-btn::before {
+#intro .intro-background .first-caption .caption-buttons .white-btn::before {
   left: 0;
   right: 0;
   z-index: -1;
 }
-.intro-background .first-caption .caption-buttons .transparent-btn::before,
-.intro-background .first-caption .caption-buttons .white-btn::before {
+#intro .intro-background .first-caption .caption-buttons .transparent-btn::before,
+#intro .intro-background .first-caption .caption-buttons .white-btn::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
   transition: all 0.3s ease;
 }
-.intro-background .first-caption .caption-buttons .transparent-btn::before {
+#intro .intro-background .first-caption .caption-buttons .transparent-btn::before {
   background-color: white;
   opacity: 0;
 }
-.intro-background .first-caption .caption-buttons .white-btn::before {
+#intro .intro-background .first-caption .caption-buttons .white-btn::before {
   background-color: white;
 }
-.intro-background .first-caption .caption-buttons .transparent-btn:hover.transparent-btn::before,
-.intro-background .first-caption .caption-buttons .white-btn:hover.white-btn::before {
+#intro .intro-background .first-caption .caption-buttons .transparent-btn:hover.transparent-btn::before,
+#intro .intro-background .first-caption .caption-buttons .white-btn:hover.white-btn::before {
   transition: all 0.3s ease;
   opacity: 1;
   z-index: -1;
 }
-.intro-background .first-caption .caption-buttons .transparent-btn:hover.transparent-btn::before {
+#intro .intro-background .first-caption .caption-buttons .transparent-btn:hover.transparent-btn::before {
   left: 0;
   right: 0;
 }
-.intro-background .first-caption .caption-buttons .white-btn:hover.white-btn::before {
+#intro .intro-background .first-caption .caption-buttons .white-btn:hover.white-btn::before {
   left: 50%;
   right: 50%;
 }
-.intro-background .first-caption .caption-buttons .transparent-btn:hover a {
+#intro .intro-background .first-caption .caption-buttons .transparent-btn:hover a {
   color: black;
 }
-.intro-background .first-caption .caption-buttons .white-btn:hover a {
+#intro .intro-background .first-caption .caption-buttons .white-btn:hover a {
   color: white;
+}
+
+#shop {
+  width: 100%;
+  overflow: hidden;
+}
+#shop .title {
+  width: 50%;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#shop .title .item {
+  cursor: pointer;
+  color: #bebcb6;
+  font-weight: 700;
+  font-size: 1.5rem;
+  position: relative;
+  transition: all 0.5s ease;
+  padding: 0 1rem;
+}
+#shop .title .item::before {
+  content: "";
+  position: absolute;
+  transition: all 0.5s ease;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  height: 4px;
+  background-color: #261d09;
+  opacity: 0;
+}
+#shop .title .item:hover {
+  color: #261d09;
+}
+#shop .title .item:hover.item::before {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+#shop .carosel-container {
+  width: 90%;
+  margin: auto;
+}
+#shop .carosel-container .swiper .swiper-wrapper .swiper-slide {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+#shop .carosel-container .swiper .swiper-wrapper .swiper-slide .swiper-slide-image-contianer {
+  background-color: black;
+  width: 100%;
+  height: 300px;
+}
+#shop .carosel-container .swiper .swiper-wrapper .swiper-slide .swiper-slide-image-contianer img {
+  width: 100%;
+  height: 100%;
+}
+
+#nice-girl {
+  width: 100%;
+  height: 500px;
+  margin-bottom: 3rem;
+  position: relative;
+}
+#nice-girl .nice-girl-image-contianer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-caption {
+  background-color: white;
+  padding: 2rem 4rem;
+  border-top: 4px solid #261d09;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-caption h2 {
+  color: #261d09;
+  font-size: 3rem;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-caption .sale-btn {
+  width: 160px;
+  height: 40px;
+  background-color: #261d09;
+  position: relative;
+  z-index: 1;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-caption .sale-btn a {
+  color: white;
+  transition: all 0.5s ease;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-caption .sale-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-caption .sale-btn:hover a {
+  color: #261d09;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-caption .sale-btn:hover.sale-btn::after {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-insta {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-insta .insta-icon {
+  padding-right: 1rem;
+  color: white;
+  font-size: 2.5rem;
+}
+#nice-girl .nice-girl-image-contianer .instgram-box .sale-insta h3 {
+  color: white;
+}
+#nice-girl .nice-girl-image-contianer img {
+  width: 100%;
+  height: 100%;
+  transition: all 15s ease;
+  transition-delay: 3s;
+}
+#nice-girl .before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 90%;
+  background-color: white;
+  opacity: 1;
+  z-index: 2;
+  transition: all 3s ease;
+}
+#nice-girl .after {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 90%;
+  z-index: 2;
+  background-color: white;
+  opacity: 1;
+  transition: all 3s ease;
+}
+
+@media screen and (max-width: 575px) {
+  #intro #navbar .nav .menue-btn {
+    display: flex;
+  }
+  #intro #navbar .nav .brand-image {
+    width: 90%;
+  }
+  #intro #navbar .nav .brand-image img {
+    width: 100%;
+  }
+  #intro #navbar .nav .collapso {
+    display: none;
+  }
+  #intro #navbar .icons-container .search-icon i,
+#intro #navbar .icons-container .Cart-icon i,
+#intro #navbar .icons-container .user-icon i {
+    font-size: 1rem;
+  }
+  #intro .intro-background .first-caption h6 {
+    font-size: 1rem;
+    text-align: end;
+  }
+  #intro .intro-background .first-caption h2 {
+    font-size: 2rem;
+    text-align: end;
+  }
+  #intro .intro-background .first-caption .caption-buttons .all-btn {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  #intro .intro-background .first-caption .caption-buttons button {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.5rem;
+    width: 100px;
+    height: 40px;
+    font-size: 0.75rem;
+    margin-left: unset;
+  }
+
+  #shop .title h3 {
+    font-size: 1rem;
+  }
+
+  #nice-girl {
+    height: 200px;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  #intro #navbar .nav .menue-btn {
+    display: flex;
+  }
+  #intro #navbar .nav .brand-image {
+    width: 60%;
+  }
+  #intro #navbar .nav .brand-image img {
+    width: 100%;
+  }
+  #intro #navbar .nav .collapso {
+    display: none;
+  }
+  #intro #navbar .icons-container .search-icon i,
+#intro #navbar .icons-container .Cart-icon i,
+#intro #navbar .icons-container .user-icon i {
+    font-size: 1rem;
+  }
+  #intro .intro-background .first-caption {
+    margin-right: 2em;
+  }
+  #intro .intro-background .first-caption h6 {
+    font-size: 1rem;
+    text-align: end;
+  }
+  #intro .intro-background .first-caption h2 {
+    font-size: 2rem;
+    text-align: end;
+  }
+  #intro .intro-background .first-caption .caption-buttons .all-btn {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  #intro .intro-background .first-caption .caption-buttons button {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.5rem;
+    width: 100px;
+    height: 40px;
+    font-size: 0.75rem;
+    margin-left: unset;
+  }
+
+  #nice-girl {
+    height: 300px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #navbar .nav .menue-btn {
+    display: none;
+  }
+  #navbar .nav .brand-image {
+    width: 100%;
+  }
+  #navbar .nav .brand-image img {
+    width: 100%;
+  }
+  #navbar .nav .collapso .main-ul .nav-item a {
+    font-size: 1rem;
+  }
+  #navbar .icons-container .search-icon i,
+#navbar .icons-container .Cart-icon i,
+#navbar .icons-container .user-icon i {
+    font-size: 0.75rem;
+  }
+
+  .intro-background .first-caption h6 {
+    font-size: 1.5rem;
+    text-align: end;
+  }
+  .intro-background .first-caption h2 {
+    font-size: 2rem;
+    text-align: end;
+  }
+  .intro-background .first-caption .caption-buttons button {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    width: 130px;
+    height: 45px;
+    font-size: 1rem;
+    margin-left: unset;
+  }
+
+  #nice-girl {
+    height: 400px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  #navbar .nav .menue-btn {
+    display: none;
+  }
+  #navbar .nav .brand-image {
+    width: 80%;
+  }
+  #navbar .nav .brand-image img {
+    width: 100%;
+  }
+  #navbar .nav .collapso .main-ul .nav-item a {
+    font-size: 1.2rem;
+  }
+  #navbar .icons-container .search-icon i,
+#navbar .icons-container .Cart-icon i,
+#navbar .icons-container .user-icon i {
+    font-size: 1rem;
+  }
+
+  .intro-background .first-caption {
+    margin-right: 2em;
+    margin-bottom: 2em;
+  }
+  .intro-background .first-caption h6 {
+    font-size: 1.5rem;
+    text-align: end;
+  }
+  .intro-background .first-caption h2 {
+    font-size: 2.5rem;
+    text-align: end;
+  }
+  .intro-background .first-caption .caption-buttons button {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    width: 130px;
+    height: 45px;
+    font-size: 1rem;
+    margin-left: unset;
+  }
 }
