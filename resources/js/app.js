@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
         speed: 400,
         breakpointsBase: "container",
         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
             hiddenClass: "swiper-button-hidden",
             hideOnClick: true,
         },
@@ -40,24 +40,100 @@ document.addEventListener("DOMContentLoaded", () => {
         let nice = $("#nice-girl").offset().top;
         console.log(nice);
         console.log(wind);
-        if (wind + 200 >= nice) {
+        if (wind + 100 >= nice) {
             console.log("hi");
-            $(".nice-girl-image-contianer > img").css('transform','Scale(1.1)');
+            $(".nice-girl-image-contianer > img").css(
+                "transform",
+                "Scale(1.1)"
+            );
             $(".after").css("left", "100%");
             $(".before").css("right", "100%");
         } else {
-            $(".nice-girl-image-contianer > img").css('transform','Scale(1)');
+            $(".nice-girl-image-contianer > img").css("transform", "Scale(1)");
             $(".after").css("left", "90%");
             $(".before").css("right", "90%");
-           
-          
-          
         }
+    });
+
+    let swip = new Swiper(".mySwiper", {
+        spaceBetween: 5,
+        slidesPerView: 4,
+        direction: "vertical",
+        freeMode: true,
+        observer: true,
+        observeParents: true,
+        parallax: true,
+        mousewheel: true,
+        watchSlidesProgress: true,
+        grabCursor: true,
+    });
+
+    const swiper2 = new Swiper(".mySwiper2", {
+        spaceBetween: 0,
+        loop: true,
+
+        observer: true,
+        observeParents: true,
+        parallax: true,
+
+        thumbs: {
+            swiper: swip,
+        },
     });
 });
 
-function animateNiceGirlSection() {}
+//////////////////////////////////////////////////////////////
 
+const feedbackSwiper = new Swiper(".feedback-swiper", {
+    speed: 400,
+    spaceBetween: 1,
+    breakpointsBase: "container",
+    effect: "fade",
+    navigation: {
+        nextEl: ".swiper-nex",
+        prevEl: ".swiper-pre",
+        // hiddenClass: "swiper-button-hidden",
+        // hideOnClick: true,
+    },
+    observer: true,
+    observeParents: true,
+    parallax: true,
+    autoHeight: true,
+    loop: false,
+    // allowSlideNext:true,
+    breakpoints: {
+        // when window width is >= 320px
+        320: {
+            slidesPerView: 1,
+        },
+        // when window width is >= 640px
+    },
+
+    on: {
+        setTransition: function (transition = "5000") {},
+        slideChangeTransitionStart: function () {
+            let stars = document.querySelectorAll(".bkh");
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].classList.remove("animate__slideInDown");
+               
+            }
+            console.log("swiper start");
+        },
+        slideChangeTransitionEnd: function () {
+            let stars = document.querySelectorAll(".bkh");
+            for (let i = 0; i < stars.length; i++) {
+              
+                stars[i].classList.add("animate__slideInDown");
+            }
+        },
+    },
+});
+
+//
+// feedbackSwiper.slideNext('5000',true);
+// feedbackSwiper.slidePrev('5000',true);
+
+////////////////////////////////////////////////////////////////
 let x = document.querySelectorAll(".nav-item");
 
 for (let i = 0; i < x.length; i++) {
@@ -81,6 +157,9 @@ for (let i = 0; i < x.length; i++) {
         }
     });
 }
+
+////////////////////////////////////////////////
+
 //small menue button actions/////
 $(".menue-btn").on("click", function () {
     if (!$(".menue-btn").hasClass("open")) {
@@ -177,33 +256,25 @@ $(".search-icon").on("click", function () {
     $("#search-input").addClass("animate__slideInUp");
 });
 
-/////changing the landing background image/////
-//
-// function changingBackgroundImage()
-// {
-// if(window.matchMedia('(max-width: 767px)').matches)
-// {
-// $('#intro-image').attr('src',function(n,v){
-// return v="{{ asset('/storage/hher-23-5.jpg') }}";
-// })
-//
-// }
-// else
-// {
-// $('#intro-image').attr('src',function(n,v){
-// return v="{{ asset('storage/hher-23-3.jpg') }}";
-// })
-//
-// }
-// }
-
 $(document).ready(function () {
     $(".first-caption").css("display", "block");
     $(".first-caption").addClass("animate__slideInUp");
     $("#intro-image").addClass("scalling-image");
-    // changingBackgroundImage();
 });
 
 $("#links").on("mouseleave", function () {
     $("#links").slideUp("slow", "linear");
+});
+
+let list = Array.from(document.querySelectorAll(".myswiper img"));
+list.forEach((el) => {
+    el.addEventListener("click", (e) => {
+        //code that affects the element you click on
+        el.style.boxShadow = "0 7px #261d09";
+
+        list.filter((x) => x != el).forEach((otherEl) => {
+            //code that affects the other elements you didn't click on
+            otherEl.style.boxShadow = "none";
+        });
+    });
 });

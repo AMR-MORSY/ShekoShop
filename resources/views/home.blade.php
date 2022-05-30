@@ -62,7 +62,7 @@
     </section>
 
     <section id="nice-girl">
-        <div class="container-fluid">
+        <div >
             <div class="after"></div>
             <div class="before"></div>
             <div class="nice-girl-image-contianer">
@@ -89,5 +89,29 @@
             </div>
         </div>
 
+    </section>
+
+    <section id="vertical-carosel">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="vertical-carosel-container">
+                        <x-vertical-carosel>
+                        </x-vertical-carosel>
+
+                    </div>
+                   
+                   
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section id='feebacks'>
+        <div  style="overflow:hidden;">
+            <x-feedback-carosel></x-feedback-carosel>
+        </div>
     </section>
 @endsection
