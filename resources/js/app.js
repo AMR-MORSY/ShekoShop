@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let nice = $("#nice-girl").offset().top;
         console.log(nice);
         console.log(wind);
-        if (wind + 100 >= nice) {
+        if (wind+250 >= nice) {
             console.log("hi");
             $(".nice-girl-image-contianer > img").css(
                 "transform",

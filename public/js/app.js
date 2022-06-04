@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(nice);
     console.log(wind);
 
-    if (wind + 100 >= nice) {
+    if (wind + 250 >= nice) {
       console.log("hi");
       $(".nice-girl-image-contianer > img").css("transform", "Scale(1.1)");
       $(".after").css("left", "100%");

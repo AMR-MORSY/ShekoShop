@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  
+  
+   
 </head>
 
 <body>
@@ -21,6 +21,8 @@
 
 
     @yield('content')
+
+    <x-footer></x-footer>
 
 
     <script src="{{ asset('js/jquery.js') }}"></script>

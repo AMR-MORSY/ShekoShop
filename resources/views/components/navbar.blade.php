@@ -265,13 +265,19 @@
                 <div class="col-4 col-md-2 col-lg-2  d-flex  justify-content-center align-items-center ">
                     <div class="icons-container ">
                         <div class="search-icon">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                          
+                            <span class="material-symbols-outlined">
+                                search
+                                </span>
                         </div>
                         <div class="user-icon">
                             <i class="fa-regular fa-user"></i>
                         </div>
                         <div class="cart-icon">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                           
+                            <span class="material-symbols-outlined">
+                                shopping_cart
+                                </span>
                         </div>
                     </div>
 
