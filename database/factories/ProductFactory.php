@@ -26,8 +26,7 @@ class ProductFactory extends Factory
             'product_cartDesc'=>$this->faker->text($maxNbChars),
             'product_shortDesc'=>$this->faker->text($maxNbChars),
             'product_longDesc'=>$this->faker->text($maxNbChars),
-            'product_img'=>$this->faker->imageUrl($width, $height ),
-            'product_category_id'=>$this->faker->numberBetween($min = 1, $max = 3),
+            'category_id'=>$this->faker->numberBetween($min = 1, $max = 3),
             'product_stock'=>$this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 8),
             'product_live'=>$this->faker->boolean($chanceOfGettingTrue)
 

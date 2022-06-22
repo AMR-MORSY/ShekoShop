@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
     <section id="intro">
-        <x-navbar>
-        </x-navbar>
+
+
         <div class="intro-background ">
             <div class="intro-image">
                 <picture>
@@ -62,13 +62,13 @@
     </section>
 
     <section id="nice-girl">
-        <div >
+        <div class="container-fluid">
             <div class="after"></div>
             <div class="before"></div>
             <div class="nice-girl-image-contianer">
-              
-              
-              
+
+
+
                 <div class="instgram-box">
 
                     <div class="sale-caption">
@@ -81,11 +81,11 @@
                         </div>
                         <h3>SEE IT STYLED ON INSTA</h3>
                     </div>
-                   
-                   
+
+
 
                 </div>
-                <img src="{{asset('storage/hher-25_ec93b05e-d9c6-410d-bc0d-a33949ae237f (1).jpg')}}" alt="">
+                <img src="{{ asset('storage/hher-25_ec93b05e-d9c6-410d-bc0d-a33949ae237f (1).jpg') }}" alt="">
             </div>
         </div>
 
@@ -100,8 +100,8 @@
                         </x-vertical-carosel>
 
                     </div>
-                   
-                   
+
+
                 </div>
             </div>
         </div>
@@ -110,8 +110,153 @@
 
 
     <section id='feebacks'>
-        <div  style="overflow:hidden;">
+        <div class="container-fluid" style="overflow:hidden;">
+            <div class="feedback-caption">
+                <h5>DIRECT FROM THE CUSTOMERS</h5>
+                <h2>5 STAR FEEDBACK</h2>
+            </div>
             <x-feedback-carosel></x-feedback-carosel>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const swiper = new Swiper(".swiper", {
+                speed: 400,
+                breakpointsBase: "container",
+                navigation: {
+                    nextEl: ".swiper-next",
+                    prevEl: ".swiper-prev",
+                    hiddenClass: "swiper-button-hidden",
+                    hideOnClick: true,
+                },
+                observer: true,
+                observeParents: true,
+                parallax: true,
+
+                autoHeight: true,
+                loop: false,
+                // allowSlideNext:true,
+
+                breakpoints: {
+                    // when window width is >= 320px
+                    320: {
+                        slidesPerView: 2,
+                        spaceBetween: 3,
+                    },
+
+                    // when window width is >= 640px
+                    767: {
+                        slidesPerView: 4,
+                        spaceBetween: 3,
+                    },
+                },
+            });
+
+            $(window).scroll(function() {
+                let wind = $(window).scrollTop();
+
+                let nice = $("#shop").offset().top;
+                console.log(nice);
+                console.log(wind);
+                if (wind >= nice) {
+                    console.log("hi");
+                    $(".nice-girl-image-contianer > img").css(
+                        "transform",
+                        "Scale(1.1)"
+                    );
+                    $(".after").css("left", "100%");
+                    $(".before").css("right", "100%");
+                } else {
+                    $(".nice-girl-image-contianer > img").css("transform", "Scale(1)");
+                    $(".after").css("left", "90%");
+                    $(".before").css("right", "90%");
+                }
+            });
+
+            let swip = new Swiper(".mySwiper", {
+                spaceBetween: 5,
+                slidesPerView: 4,
+                direction: "vertical",
+                freeMode: true,
+                observer: true,
+                observeParents: true,
+                parallax: true,
+                mousewheel: true,
+                watchSlidesProgress: true,
+                grabCursor: true,
+            });
+
+            const swiper2 = new Swiper(".mySwiper2", {
+                spaceBetween: 0,
+                loop: true,
+
+                observer: true,
+                observeParents: true,
+                parallax: true,
+
+                thumbs: {
+                    swiper: swip,
+                },
+            });
+            const feedbackSwiper = new Swiper(".feedback-swiper", {
+                speed: 400,
+                spaceBetween: 1,
+                breakpointsBase: "container",
+                effect: "fade",
+                navigation: {
+                    nextEl: ".swiper-nex",
+                    prevEl: ".swiper-pre",
+                    // hiddenClass: "swiper-button-hidden",
+                    // hideOnClick: true,
+                },
+                observer: true,
+                observeParents: true,
+                parallax: true,
+                autoHeight: true,
+                loop: false,
+                // allowSlideNext:true,
+                breakpoints: {
+                    // when window width is >= 320px
+                    320: {
+                        slidesPerView: 1,
+                    },
+                    // when window width is >= 640px
+                },
+                on: {
+                    setTransition: function(transition = "5000") {},
+                    slideChangeTransitionStart: function() {
+                        let stars = document.querySelectorAll(".bkh");
+                        for (let i = 0; i < stars.length; i++) {
+                            stars[i].classList.remove("animate__slideInDown");
+                        }
+                        console.log("swiper start");
+                    },
+                    slideChangeTransitionEnd: function() {
+                        let stars = document.querySelectorAll(".bkh");
+                        for (let i = 0; i < stars.length; i++) {
+                            stars[i].classList.add("animate__slideInDown");
+                        }
+                    },
+                },
+            });
+        });
+        let list = Array.from(document.querySelectorAll(".myswiper img"));
+        list.forEach((el) => {
+            el.addEventListener("click", (e) => {
+                //code that affects the element you click on
+                el.style.boxShadow = "0 7px #261d09";
+                list.filter((x) => x != el).forEach((otherEl) => {
+                    //code that affects the other elements you didn't click on
+                    otherEl.style.boxShadow = "none";
+                });
+            });
+        });
+
+     
+     
+     
+    </script>
 @endsection

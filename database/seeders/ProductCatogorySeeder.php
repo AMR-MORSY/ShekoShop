@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Catogory;
+
 use Illuminate\Database\Seeder;
-use App\Models\Product_Catogory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ProductCatogorySeeder extends Seeder
@@ -18,7 +20,7 @@ class ProductCatogorySeeder extends Seeder
         $options=array ('cloth','furniture','kitchen');
         for ($i=0; $i<3;$i++)
         {
-            $op=new Product_Catogory();
+            $op=new Category();
             $op->category_name=$options[$i];
             $op->save();
         }

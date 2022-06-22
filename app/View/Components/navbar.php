@@ -24,7 +24,7 @@ class navbar extends Component
      */
     public function render()
     {
-        $items=Session('item');
-        return view('components.navbar',["item"=>$items]);
+       
+        return view('components.navbar');
     }
 }

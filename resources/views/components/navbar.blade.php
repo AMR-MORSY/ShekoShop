@@ -9,7 +9,7 @@
             </div>
 
         </div>
-     
+
     </div>
 
 </div>
@@ -24,26 +24,30 @@
             <div class="container-fluid p-0">
                 <div class="row g-0">
                     <div class="col-md-3">
-                        <div style="position:relative;display:flex; justify-content:center; align-items:center" class="img-container slide-1 animate__animated animate__slideInUp ">
+                        <div style="position:relative;display:flex; justify-content:center; align-items:center"
+                            class="img-container slide-1 animate__animated animate__slideInUp ">
                             <img style="height: 350px" src="storage/Look3.png" alt="">
                             <h3 style="position: absolute; color:white;font-weight:700">hello</h3>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div style="position:relative;display:flex; justify-content:center; align-items:center" class="img-container slide-2 animate__animated animate__slideInUp  ">
+                        <div style="position:relative;display:flex; justify-content:center; align-items:center"
+                            class="img-container slide-2 animate__animated animate__slideInUp  ">
                             <img style="height: 350px" src="storage/lb--6.png" alt="">
                             <h3 style="position: absolute;color:white;font-weight:700">hello</h3>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div style="position:relative; display:flex; justify-content:center; align-items:center" class="img-container slide-3 animate__animated animate__slideInUp  ">
+                        <div style="position:relative; display:flex; justify-content:center; align-items:center"
+                            class="img-container slide-3 animate__animated animate__slideInUp  ">
                             <img style="height: 350px " src="storage/product-image3.png" alt="">
                             <h3 style="position: absolute; color:white;font-weight:700">hello</h3>
                         </div>
                     </div>
 
                     <div class="col-md-3">
-                        <div style="position:relative;display:flex; justify-content:center; align-items:center" class="img-container slide-4 animate__animated animate__slideInUp ">
+                        <div style="position:relative;display:flex; justify-content:center; align-items:center"
+                            class="img-container slide-4 animate__animated animate__slideInUp ">
                             <img style="height: 350px ;" src="storage/6.png" alt="">
                             <h3 style="position: absolute;color:white;font-weight:700">hello</h3>
                         </div>
@@ -59,24 +63,6 @@
             </div>
         </div>
 
-    </div>
-
-    <div id="search">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-1">
-                    <div id="search-caption" class=" animate__animated ">
-                        <p>Search</p>
-                    </div>
-                </div>
-                <div class="col-lg-11 ">
-                    <div id="search-input" class=" animate__animated ">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" autofocus placeholder="What are you looking for?">
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div id="small-menue">
@@ -199,7 +185,6 @@
     </div>
 
 
-
     <nav class="nav">
 
         <div class="container-fluid">
@@ -230,7 +215,7 @@
                     <div class="collapso">
                         <div class="main-ul">
                             <div class="nav-item">
-                                <a>+ Home </a>
+                                <a href="{{route('home')}}">+ Home </a>
                             </div>
 
                             <div class="nav-item">
@@ -263,17 +248,49 @@
                 </div>
 
                 <div class="col-4 col-md-2 col-lg-2  d-flex  justify-content-center align-items-center ">
-                    <div class="icons-container ">
-                        <div class="search-icon">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                    @if (auth()->user())
+                        <div class="user_name">
+                            <h6>{{ auth()->user()->user_name }}</h6>
                         </div>
-                        <div class="user-icon">
-                            <i class="fa-regular fa-user"></i>
+                        <div class="logout">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+
                         </div>
-                        <div class="cart-icon">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                        @role('admin')
+                            <div class="dashboard {{(request()->is('dashboard'))?'display_none':''}} ">
+                                <a href="{{ route('dashboard') }}">Dashboard</a>
+                            </div>
+                        @endrole
+                    @else
+                        <div class="icons-container ">
+                            <div class="search-icon">
+
+                                <span class="material-symbols-outlined">
+                                    search
+                                </span>
+                            </div>
+
+                            <div class="user-icon">
+                                <a href="{{ route('login') }}"> <i class="fa-regular fa-user"></i></a>
+                            </div>
+
+
+                            <div class="cart-icon">
+
+                                <span class="material-symbols-outlined">
+                                    shopping_cart
+                                </span>
+                            </div>
                         </div>
-                    </div>
+                    @endIf
+
+
 
                 </div>
 
@@ -282,4 +299,21 @@
             </div>
         </div>
     </nav>
+    <div id="search">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1">
+                    <div id="search-caption" class=" animate__animated ">
+                        <p>Search</p>
+                    </div>
+                </div>
+                <div class="col-lg-11 ">
+                    <div id="search-input" class=" animate__animated ">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" autofocus placeholder="What are you looking for?">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

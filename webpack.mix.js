@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-const { bindAll } = require('lodash');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,12 +11,11 @@ const { bindAll } = require('lodash');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css/app.css')
-    // .sass('node_modules/swiper/swiper-vars.scss', 'public/css/app.css')
-    // .sass('node_modules/swiper/swiper.scss', 'public/css/app.css')
-    .scripts(["node_modules/bootstrap/dist/js/bootstrap.bundle.js"], 'public/js/bootstrap.js')
-    .scripts(["node_modules/jquery/dist/jquery.js"], 'public/js/jquery.js')
-    .scripts(["node_modules/swiper/swiper-bundle.min.js"], 'public/js/swiper.js')
-    .copy('node_modules/bootstrap/dist/css/bootstrap.css', 'public/css/bootstrap.css').copy('node_modules/swiper/swiper-bundle.css', 'public/css/swiper.css');
-// .copy('node_modules/@fortawesome/fontawesome-free/css/All.css','public/css/fontawsem.css');
+mix.js('resources/js/app.js','public/js')
+// .postCss('resources/css/app.css', 'public/css/tailwind.css', [
+    // require('tailwindcss'), require('autoprefixer'),
+// ])
+.sass('resources/sass/app.scss','public/css/app.css');
+   
+   
+

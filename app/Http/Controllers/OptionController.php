@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Options\OptionRequest;
 use App\Models\Option;
+use App\Models\OptionGroup;
 use Illuminate\Http\Request;
 
 class OptionController extends Controller
@@ -44,9 +46,13 @@ class OptionController extends Controller
      * @param  \App\Models\Option  $option
      * @return \Illuminate\Http\Response
      */
-    public function show(Option $option)
+    public function show(OptionRequest $request)
     {
-        //
+        $option_group_id = $request->validated();
+        $options=OptionGroup::find($option_group_id)->options;
+        return view('dashboard',['options'=>$options]);
+
+        
     }
 
     /**

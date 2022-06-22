@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProductCatogoryController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +18,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+// 
+// Route::get('/dashboard', function () {
+    // return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+// 
 
-// Route::get('/product',[ProductCatogoryController::class,'index'])->name('product');
+Route::get('details/{product_id}',[ProductController::class,'show'])->name('product_details');
 
-// Route::resource('user',UserController::class);
+Route::middleware(['auth','role:admin'])->group(function () {
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+
+    Route::post('/addProduct',[ProductController::class,'store'] )->name('addProduct');
+
+});
+
+
+
+require __DIR__ . '/auth.php';
