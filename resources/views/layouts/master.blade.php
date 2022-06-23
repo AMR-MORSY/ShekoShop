@@ -10,12 +10,18 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<<<<<<< HEAD
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet"> --}}
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     @livewireStyles
+=======
+  
+  
+   
+>>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
 </head>
 
 <body>
@@ -25,7 +31,12 @@
     @yield('content')
 
     <x-footer></x-footer>
+<<<<<<< HEAD
     @livewireScripts
+=======
+
+
+>>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/swiper.js') }}"></script>

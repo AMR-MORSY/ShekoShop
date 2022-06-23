@@ -1,4 +1,139 @@
 
+<<<<<<< HEAD
+=======
+// const { default: Swiper } = require("swiper");
+document.addEventListener("DOMContentLoaded", () => {
+    const swiper = new Swiper(".swiper", {
+        speed: 400,
+        breakpointsBase: "container",
+        navigation: {
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+            hiddenClass: "swiper-button-hidden",
+            hideOnClick: true,
+        },
+        observer: true,
+        observeParents: true,
+        parallax: true,
+
+        autoHeight: true,
+        loop: false,
+        // allowSlideNext:true,
+
+        breakpoints: {
+            // when window width is >= 320px
+            320: {
+                slidesPerView: 2,
+                spaceBetween: 3,
+            },
+
+            // when window width is >= 640px
+            767: {
+                slidesPerView: 4,
+                spaceBetween: 3,
+            },
+        },
+    });
+
+    $(window).scroll(function () {
+        let wind = $(window).scrollTop();
+
+        let nice = $("#nice-girl").offset().top;
+        console.log(nice);
+        console.log(wind);
+        if (wind+250 >= nice) {
+            console.log("hi");
+            $(".nice-girl-image-contianer > img").css(
+                "transform",
+                "Scale(1.1)"
+            );
+            $(".after").css("left", "100%");
+            $(".before").css("right", "100%");
+        } else {
+            $(".nice-girl-image-contianer > img").css("transform", "Scale(1)");
+            $(".after").css("left", "90%");
+            $(".before").css("right", "90%");
+        }
+    });
+
+    let swip = new Swiper(".mySwiper", {
+        spaceBetween: 5,
+        slidesPerView: 4,
+        direction: "vertical",
+        freeMode: true,
+        observer: true,
+        observeParents: true,
+        parallax: true,
+        mousewheel: true,
+        watchSlidesProgress: true,
+        grabCursor: true,
+    });
+
+    const swiper2 = new Swiper(".mySwiper2", {
+        spaceBetween: 0,
+        loop: true,
+
+        observer: true,
+        observeParents: true,
+        parallax: true,
+
+        thumbs: {
+            swiper: swip,
+        },
+    });
+});
+
+//////////////////////////////////////////////////////////////
+
+const feedbackSwiper = new Swiper(".feedback-swiper", {
+    speed: 400,
+    spaceBetween: 1,
+    breakpointsBase: "container",
+    effect: "fade",
+    navigation: {
+        nextEl: ".swiper-nex",
+        prevEl: ".swiper-pre",
+        // hiddenClass: "swiper-button-hidden",
+        // hideOnClick: true,
+    },
+    observer: true,
+    observeParents: true,
+    parallax: true,
+    autoHeight: true,
+    loop: false,
+    // allowSlideNext:true,
+    breakpoints: {
+        // when window width is >= 320px
+        320: {
+            slidesPerView: 1,
+        },
+        // when window width is >= 640px
+    },
+
+    on: {
+        setTransition: function (transition = "5000") {},
+        slideChangeTransitionStart: function () {
+            let stars = document.querySelectorAll(".bkh");
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].classList.remove("animate__slideInDown");
+               
+            }
+            console.log("swiper start");
+        },
+        slideChangeTransitionEnd: function () {
+            let stars = document.querySelectorAll(".bkh");
+            for (let i = 0; i < stars.length; i++) {
+              
+                stars[i].classList.add("animate__slideInDown");
+            }
+        },
+    },
+});
+
+//
+// feedbackSwiper.slideNext('5000',true);
+// feedbackSwiper.slidePrev('5000',true);
+>>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
 
 ////////////////////////////////////////////////////////////////
 let x = document.querySelectorAll(".nav-item");
