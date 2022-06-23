@@ -3,16 +3,11 @@
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 @import "animate.css/animate.css";
-<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,-25");
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,0");
-=======
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,-25');
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,0");
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0");
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
+
 * {
     margin: 0;
     padding: 0;
@@ -50,15 +45,14 @@ body {
         }
     }
 }
-#navbar{
+#navbar {
     position: relative;
     width: 100%;
     background-color: transparent;
-    border-bottom: 1px solid rgba($color: #000000, $alpha:0.5);
+    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.5);
     .nav {
-      
         width: 100%;
-       
+
         .brand-image {
             width: 70%;
             justify-content: center;
@@ -122,7 +116,7 @@ body {
             .main-ul {
                 width: 100%;
                 display: flex;
-<<<<<<< HEAD
+
                 justify-content: space-evenly;
                 align-items: center;
                 .nav-item {
@@ -134,9 +128,10 @@ body {
                     display: inline-block !important;
                     position: relative;
                     transition: all 0.5s ease;
-=======
-                justify-content: center;
-                align-items: center;
+
+                    justify-content: center;
+                    align-items: center;
+                }
                 .search-icon,
                 .Cart-icon,
                 .user-icon {
@@ -147,10 +142,9 @@ body {
                         font-weight: 0;
                         transition: all 0.5s ease;
                     }
-                    span{
+                    span {
                         color: #261d09;
                         transition: all 0.5s ease;
-
                     }
                 }
                 .search-icon span:hover,
@@ -185,7 +179,6 @@ body {
                 }
                 .slide-3 {
                     --animate-duration: 0.5s;
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
                 }
                 .nav-item::before {
                     content: "";
@@ -234,8 +227,10 @@ body {
             }
         }
     }
-  
-    #links,#search,#small-menue {
+
+    #links,
+    #search,
+    #small-menue {
         top: 100%;
         left: 0;
         right: 0;
@@ -271,9 +266,7 @@ body {
         }
     }
     #search {
-       
         #search-caption {
-        
             margin-top: 1rem;
             p {
                 color: #261d09;
@@ -409,31 +402,24 @@ body {
     }
 }
 
-.display_none{
+.display_none {
     display: none;
 }
 
 #add-products {
-
     padding-bottom: 3rem;
     width: 100%;
-    .input-group{
+    .input-group {
         display: flex;
         align-items: center;
         justify-content: center;
-        label{
+        label {
             font-size: 1rem;
-            padding-right:0.5rem 0.5rem;
-           
+            padding-right: 0.5rem 0.5rem;
+
             text-align: left;
         }
-       
-       
-       
-      
-
     }
-
 }
 #intro,
 #guest {
@@ -721,24 +707,14 @@ body {
                             height: 100%;
                         }
                     }
-<<<<<<< HEAD
+
                     .swiper-slide-caption {
                         .decription,
                         .price {
-=======
-                    .swiper-slide-caption{
-                        .decription,.price{
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
                             font-size: 1rem;
                             color: #261d09;
                             font-weight: 400;
                         }
-<<<<<<< HEAD
-=======
-                        
-                        
-                        
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
                     }
                 }
             }
@@ -1008,14 +984,12 @@ body {
 
                 .material-symbols-outlined {
                     // font-variation-settings: "FILL" 200, "wght" 400, "GRAD" 0,
-<<<<<<< HEAD
+
                     // "opsz" 48;
                     color: #261d09;
-=======
-                        // "opsz" 48;
-                        color: #261d09;
-                       
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
+
+                    // "opsz" 48;
+                    color: #261d09;
                 }
             }
             .stars-container.bkh {
@@ -1043,62 +1017,47 @@ body {
     }
 }
 
-<<<<<<< HEAD
 #footer {
     background-color: #261d09;
     .right-side,
     .middle-side,
     .left-side {
-=======
-#footer{
-    background-color: #261D09;
-    .right-side,.middle-side,.left-side{
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
         padding-top: 3rem;
         padding-bottom: 3rem;
         display: flex;
         align-items: center;
         flex-direction: column;
         justify-content: space-between;
-<<<<<<< HEAD
+
         .caption {
-=======
-        .caption{
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             margin-bottom: 3rem;
-<<<<<<< HEAD
+
             h4,
             p {
-=======
-            h4,p{
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
                 margin: 0.5rem 0;
                 text-align: center;
                 color: white;
             }
-<<<<<<< HEAD
+
             h4 {
                 font-weight: 700;
             }
         }
         .icons-container {
-=======
-            h4{
+            h4 {
                 font-weight: 700;
             }
-
         }
-        .icons-container{
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
+        .icons-container {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 3rem;
-<<<<<<< HEAD
+
             .image-container {
                 width: 40px;
                 height: 35px;
@@ -1170,44 +1129,31 @@ body {
                 color: white;
                 width: 100%;
                 text-align: center;
-=======
-            .image-container{
+            }
+
+            .image-container {
                 width: 40px;
                 height: 35px;
                 margin: 0 0.5rem;
-              
-                img{
+
+                img {
                     width: 100%;
                     height: 100%;
                 }
             }
-
         }
-     
-     
-     
-     
-     
-     
-     
-     
-  
-     
-     
     }
-    .left-side{
-        .copyRight{
-           padding-top: 5rem;
-            .copyRight-container{
+    .left-side {
+        .copyRight {
+            padding-top: 5rem;
+            .copyRight-container {
                 margin-top: 3rem;
-                p{
+                p {
                     color: white;
                 }
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
             }
         }
     }
-
 }
 
 ////////////////media query//////////////////////////////////////

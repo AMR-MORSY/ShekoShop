@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class vertical-carosel extends Component
+class verticalcarosel extends Component
 {
     /**
      * Create a new component instance.

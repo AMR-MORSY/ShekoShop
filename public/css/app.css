@@ -1,17 +1,14 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,-25);
 @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,0);
-<<<<<<< HEAD
-=======
 @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0);
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
-@charset "UTF-8";/*!
- * animate.css - https://animate.style/
- * Version - 4.1.1
- * Licensed under the MIT license - http://opensource.org/licenses/MIT
- *
- * Copyright (c) 2020 Animate.css
- */
+
+
+
+
+
+
+
 :root {
   --animate-duration: 1s;
   --animate-delay: 1s;
@@ -14468,8 +14465,57 @@ body {
   display: inline-block !important;
   position: relative;
   transition: all 0.5s ease;
+  justify-content: center;
+  align-items: center;
 }
-#navbar .nav .collapso .main-ul .nav-item::before {
+#navbar .nav .collapso .main-ul .search-icon,
+#navbar .nav .collapso .main-ul .Cart-icon,
+#navbar .nav .collapso .main-ul .user-icon {
+  margin: 0 0.5rem;
+}
+#navbar .nav .collapso .main-ul .search-icon i,
+#navbar .nav .collapso .main-ul .Cart-icon i,
+#navbar .nav .collapso .main-ul .user-icon i {
+  color: #261d09;
+  font-size: 1.2rem;
+  font-weight: 0;
+  transition: all 0.5s ease;
+}
+#navbar .nav .collapso .main-ul .search-icon span,
+#navbar .nav .collapso .main-ul .Cart-icon span,
+#navbar .nav .collapso .main-ul .user-icon span {
+  color: #261d09;
+  transition: all 0.5s ease;
+}
+#navbar .nav .collapso .main-ul .search-icon span:hover,
+#navbar .nav .collapso .main-ul .Cart-icon span:hover,
+#navbar .nav .collapso .main-ul .user-icon i:hover {
+  transform: scale(1.2);
+}
+#navbar .nav #links,
+#navbar .nav #search,
+#navbar .nav #small-menue {
+  background-color: white;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  position: absolute;
+  display: none;
+}
+#navbar .nav #links #Hambozo {
+  display: none;
+}
+#navbar .nav #links #Hambozo .slide-1 {
+  --animate-duration: 0.1s;
+}
+#navbar .nav #links #Hambozo .slide-2 {
+  --animate-duration: 0.3s;
+}
+#navbar .nav #links #Hambozo .slide-3 {
+  --animate-duration: 0.5s;
+}
+#navbar .nav #links #Hambozo .nav-item::before {
   content: "";
   position: absolute;
   transition: all 0.5s ease;
@@ -14480,7 +14526,7 @@ body {
   background-color: #261d09;
   opacity: 0;
 }
-#navbar .nav .collapso .main-ul .nav-item:hover.nav-item::before {
+#navbar .nav #links #Hambozo .nav-item:hover.nav-item::before {
   left: 0;
   right: 0;
   opacity: 1;
@@ -14491,7 +14537,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-<<<<<<< HEAD
 #navbar .nav .icons-container .search-icon,
 #navbar .nav .icons-container .Cart-icon,
 #navbar .nav .icons-container .user-icon {
@@ -14500,16 +14545,6 @@ body {
 #navbar .nav .icons-container .search-icon i,
 #navbar .nav .icons-container .Cart-icon i,
 #navbar .nav .icons-container .user-icon i {
-=======
-#intro #navbar .nav .icons-container .search-icon,
-#intro #navbar .nav .icons-container .Cart-icon,
-#intro #navbar .nav .icons-container .user-icon {
-  margin: 0 0.5rem;
-}
-#intro #navbar .nav .icons-container .search-icon i,
-#intro #navbar .nav .icons-container .Cart-icon i,
-#intro #navbar .nav .icons-container .user-icon i {
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
   color: #261d09;
   font-size: 1.2rem;
   font-weight: 0;
@@ -14523,24 +14558,14 @@ body {
   transition: all 0.5s ease;
   cursor: pointer;
 }
-<<<<<<< HEAD
 #navbar .nav .icons-container .search-icon span:hover,
 #navbar .nav .icons-container .Cart-icon span:hover,
 #navbar .nav .icons-container .user-icon i:hover {
-=======
-#intro #navbar .nav .icons-container .search-icon span,
-#intro #navbar .nav .icons-container .Cart-icon span,
-#intro #navbar .nav .icons-container .user-icon span {
-  color: #261d09;
-  transition: all 0.5s ease;
-}
-#intro #navbar .nav .icons-container .search-icon span:hover,
-#intro #navbar .nav .icons-container .Cart-icon span:hover,
-#intro #navbar .nav .icons-container .user-icon i:hover {
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
   transform: scale(1.2);
 }
-#navbar #links, #navbar #search, #navbar #small-menue {
+#navbar #links,
+#navbar #search,
+#navbar #small-menue {
   top: 100%;
   left: 0;
   right: 0;
@@ -14999,12 +15024,8 @@ body {
   width: 100%;
   height: 100%;
 }
-<<<<<<< HEAD
 #shop .carosel-container .swiper .swiper-wrapper .swiper-slide .swiper-slide-caption .decription,
 #shop .carosel-container .swiper .swiper-wrapper .swiper-slide .swiper-slide-caption .price {
-=======
-#shop .carosel-container .swiper .swiper-wrapper .swiper-slide .swiper-slide-caption .decription, #shop .carosel-container .swiper .swiper-wrapper .swiper-slide .swiper-slide-caption .price {
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
   font-size: 1rem;
   color: #261d09;
   font-weight: 400;
@@ -15241,6 +15262,7 @@ body {
 }
 #feebacks .feedback-swiper .swiper-slide .stars-container .material-symbols-outlined {
   color: #261d09;
+  color: #261d09;
 }
 #feebacks .feedback-swiper .swiper-slide .stars-container.bkh {
   --animate-duration: 1.5s;
@@ -15264,17 +15286,11 @@ body {
 }
 
 #footer {
-<<<<<<< HEAD
   background-color: #261d09;
 }
 #footer .right-side,
 #footer .middle-side,
 #footer .left-side {
-=======
-  background-color: #261D09;
-}
-#footer .right-side, #footer .middle-side, #footer .left-side {
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
   padding-top: 3rem;
   padding-bottom: 3rem;
   display: flex;
@@ -15282,71 +15298,53 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-<<<<<<< HEAD
 #footer .right-side .caption,
 #footer .middle-side .caption,
 #footer .left-side .caption {
-=======
-#footer .right-side .caption, #footer .middle-side .caption, #footer .left-side .caption {
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 3rem;
 }
-<<<<<<< HEAD
 #footer .right-side .caption h4,
 #footer .right-side .caption p,
 #footer .middle-side .caption h4,
 #footer .middle-side .caption p,
 #footer .left-side .caption h4,
 #footer .left-side .caption p {
-=======
-#footer .right-side .caption h4, #footer .right-side .caption p, #footer .middle-side .caption h4, #footer .middle-side .caption p, #footer .left-side .caption h4, #footer .left-side .caption p {
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
   margin: 0.5rem 0;
   text-align: center;
   color: white;
 }
-<<<<<<< HEAD
 #footer .right-side .caption h4,
 #footer .middle-side .caption h4,
 #footer .left-side .caption h4 {
   font-weight: 700;
 }
+#footer .right-side .icons-container h4,
+#footer .middle-side .icons-container h4,
+#footer .left-side .icons-container h4 {
+  font-weight: 700;
+}
 #footer .right-side .icons-container,
 #footer .middle-side .icons-container,
 #footer .left-side .icons-container {
-=======
-#footer .right-side .caption h4, #footer .middle-side .caption h4, #footer .left-side .caption h4 {
-  font-weight: 700;
-}
-#footer .right-side .icons-container, #footer .middle-side .icons-container, #footer .left-side .icons-container {
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 3rem;
 }
-<<<<<<< HEAD
 #footer .right-side .icons-container .image-container,
 #footer .middle-side .icons-container .image-container,
 #footer .left-side .icons-container .image-container {
-=======
-#footer .right-side .icons-container .image-container, #footer .middle-side .icons-container .image-container, #footer .left-side .icons-container .image-container {
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
   width: 40px;
   height: 35px;
   margin: 0 0.5rem;
 }
-<<<<<<< HEAD
 #footer .right-side .icons-container .image-container img,
 #footer .middle-side .icons-container .image-container img,
 #footer .left-side .icons-container .image-container img {
-=======
-#footer .right-side .icons-container .image-container img, #footer .middle-side .icons-container .image-container img, #footer .left-side .icons-container .image-container img {
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
   width: 100%;
   height: 100%;
 }
@@ -15358,7 +15356,6 @@ body {
 }
 #footer .left-side .copyRight .copyRight-container p {
   color: white;
-<<<<<<< HEAD
 }
 
 #auth-card {
@@ -15407,8 +15404,24 @@ body {
   color: white;
   width: 100%;
   text-align: center;
-=======
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
+}
+#auth-card .form .button-forgot-container .image-container {
+  width: 40px;
+  height: 35px;
+  margin: 0 0.5rem;
+}
+#auth-card .form .button-forgot-container .image-container img {
+  width: 100%;
+  height: 100%;
+}
+#auth-card .left-side .copyRight {
+  padding-top: 5rem;
+}
+#auth-card .left-side .copyRight .copyRight-container {
+  margin-top: 3rem;
+}
+#auth-card .left-side .copyRight .copyRight-container p {
+  color: white;
 }
 
 @media screen and (max-width: 575px) {

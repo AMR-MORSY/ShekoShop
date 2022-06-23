@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class feedback-carosel extends Component
+class feedbackcarosel extends Component
 
 {
     /**
