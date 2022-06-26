@@ -215,7 +215,7 @@
                     <div class="collapso">
                         <div class="main-ul">
                             <div class="nav-item">
-                                <a href="{{route('home')}}">+ Home </a>
+                                <a href="{{ route('home') }}">+ Home </a>
                             </div>
 
                             <div class="nav-item">
@@ -248,62 +248,57 @@
                 </div>
 
                 <div class="col-4 col-md-2 col-lg-2  d-flex  justify-content-center align-items-center ">
-<<<<<<< HEAD
+
                     @if (auth()->user())
                         <div class="user_name">
                             <h6>{{ auth()->user()->user_name }}</h6>
-=======
-                    <div class="icons-container ">
-                        <div class="search-icon">
-                          
-                            <span class="material-symbols-outlined">
-                                search
-                                </span>
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
-                        </div>
-                        <div class="logout">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+
+                            <div class="icons-container ">
+                                <div class="search-icon">
+
+                                    <span class="material-symbols-outlined">
+                                        search
+                                    </span>
+
+                                </div>
+                                <div class="logout">
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
                                                     this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-dropdown-link>
-                            </form>
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
 
-                        </div>
-<<<<<<< HEAD
-                        @role('admin')
-                            <div class="dashboard {{(request()->is('dashboard'))?'display_none':''}} ">
-                                <a href="{{ route('dashboard') }}">Dashboard</a>
+                                </div>
+                                @role('admin')
+                                    <div class="dashboard {{ request()->is('dashboard') ? 'display_none' : '' }} ">
+                                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                                    </div>
+                                @endrole
+                            @else
+                                <div class="icons-container ">
+                                    <div class="search-icon">
+
+                                        <span class="material-symbols-outlined">
+                                            search
+                                        </span>
+                                    </div>
+
+                                    <div class="user-icon">
+                                        <a href="{{ route('login') }}"> <i class="fa-regular fa-user"></i></a>
+                                    </div>
+
+
+                                    <div class="cart-icon">
+
+                                        <span class="material-symbols-outlined">
+                                            shopping_cart
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                        @endrole
-                    @else
-                        <div class="icons-container ">
-                            <div class="search-icon">
-
-                                <span class="material-symbols-outlined">
-                                    search
-                                </span>
-                            </div>
-
-                            <div class="user-icon">
-                                <a href="{{ route('login') }}"> <i class="fa-regular fa-user"></i></a>
-                            </div>
-
-
-                            <div class="cart-icon">
-
-                                <span class="material-symbols-outlined">
-                                    shopping_cart
-                                </span>
-                            </div>
-=======
-                        <div class="cart-icon">
-                           
-                            <span class="material-symbols-outlined">
-                                shopping_cart
-                                </span>
->>>>>>> f4dda63bd762f46810329395d54a8e66995a24b9
                         </div>
                     @endIf
 

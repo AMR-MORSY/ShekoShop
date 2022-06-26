@@ -174,27 +174,40 @@ class ProductController extends Controller
 
     private function get_colors_asscociated_sizes($colors, $product_id)
     {
-        $sizes = [];
+      
+     
         $color_sizes_bag = [];
-
         foreach ($colors as $color) {
-            $color_sizes = ProductSize::where([['product_id', $product_id], ['color_id', $color->id]])->get();
+            $color_sizes = ProductSize::where('product_id', $product_id)->where('color_id', $color->id)->get();
+            
+           
             $size_names = [];
             foreach ($color_sizes as $color_size) {
-                $size_name = Size::find($color_size->id)->size_name;
+                $size = Size::find($color_size->size_id);
+              
+                {
+                    $size_name=$size->size_name;
+                    array_push($size_names, $size_name);
 
-                array_push($size_names, $size_name);
+                }
+               
+               
+               
+               
             }
+           
+            
             $color_sizes_bag[$color->color_name] = $size_names;
         }
-        array_push($sizes, $color_sizes_bag);
+      
+    
 
-        return $sizes;
+        return $color_sizes_bag;
     }
     private function get_colors_associated_images($colors, $product_id)
     {
         $color_images_bag=[];
-        $images=[];
+     
         foreach ($colors as $color) {
             $color_images = Image::where([['product_id', $product_id], ['color_id', $color->id]])->get();
             $image_urls = [];
@@ -205,9 +218,9 @@ class ProductController extends Controller
             }
             $color_images_bag[$color->color_name] = $image_urls;
         }
-        array_push($images, $color_images_bag);
+        
 
-        return $images;
+        return  $color_images_bag;
 
     }
     private function get_prod_facefront_image($product)
@@ -235,7 +248,9 @@ class ProductController extends Controller
             $colors_asscociated_sizes = $this->get_colors_asscociated_sizes($prod_assciated_colors, $product->id);
             $colors_associated_images=$this->get_colors_associated_images($prod_assciated_colors,$product->id);
 
-            dd($colors_associated_images);
+          
+
+            return view('productDetails',['images'=>$colors_associated_images,'colors'=>$prod_assciated_colors,'sizes'=>$colors_asscociated_sizes,'product'=>$product]);
         }
     }
 

@@ -71,20 +71,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        @foreach ($searched_products as $product)
+                    @foreach ($searched_products as $product)
+                        <tr>
+
                             <td class=" text-center align-middle">{{ $product->product_name }}</td>
                             <td class=" text-center align-middle">{{ $product->product_live }}</td>
-                            <td class=" text-center align-middle">{{ $product->category_id}}</td>
-                            <td class=" text-center align-middle">{{ $product->product_stock}}</td>
-                            <td class=" text-center align-middle"><a href="{{route('product_details',['product_id'=>$product->id])}}" class="btn btn-danger">Details</a></td>
-                           
-                           
-                           
-                           
-                           
-                        @endforeach
-                    </tr>
+                            <td class=" text-center align-middle">{{ $product->category_id }}</td>
+                            <td class=" text-center align-middle">{{ $product->product_stock }}</td>
+                            <td class=" text-center align-middle"><a
+                                    href="{{ route('product_details', ['product_id' => $product->id]) }}"
+                                    class="btn btn-danger">Details</a></td>
+
+
+
+
+
+
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

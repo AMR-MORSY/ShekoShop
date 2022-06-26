@@ -91,22 +91,22 @@
 
     </section>
 
-    <section id="vertical-carosel">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="vertical-carosel-container">
-                        <x-vertical-carosel>
-                        </x-vertical-carosel>
+    {{-- <section id="vertical-carosel"> --}}
+        {{-- <div class="container"> --}}
+            {{-- <div class="row"> --}}
+                {{-- <div class="col-lg-6"> --}}
+                    {{-- <div class="vertical-carosel-container"> --}}
+                        {{-- <x-vertical-carosel> --}}
+                        {{-- </x-vertical-carosel> --}}
 
-                    </div>
+                    {{-- </div> --}}
 
 
-                </div>
-            </div>
-        </div>
+                {{-- </div> --}}
+            {{-- </div> --}}
+        {{-- </div> --}}
 
-    </section>
+    {{-- </section> --}}
 
 
     <section id='feebacks'>
@@ -176,31 +176,7 @@
                 }
             });
 
-            let swip = new Swiper(".mySwiper", {
-                spaceBetween: 5,
-                slidesPerView: 4,
-                direction: "vertical",
-                freeMode: true,
-                observer: true,
-                observeParents: true,
-                parallax: true,
-                mousewheel: true,
-                watchSlidesProgress: true,
-                grabCursor: true,
-            });
-
-            const swiper2 = new Swiper(".mySwiper2", {
-                spaceBetween: 0,
-                loop: true,
-
-                observer: true,
-                observeParents: true,
-                parallax: true,
-
-                thumbs: {
-                    swiper: swip,
-                },
-            });
+           
             const feedbackSwiper = new Swiper(".feedback-swiper", {
                 speed: 400,
                 spaceBetween: 1,
@@ -243,20 +219,7 @@
                 },
             });
         });
-        let list = Array.from(document.querySelectorAll(".myswiper img"));
-        list.forEach((el) => {
-            el.addEventListener("click", (e) => {
-                //code that affects the element you click on
-                el.style.boxShadow = "0 7px #261d09";
-                list.filter((x) => x != el).forEach((otherEl) => {
-                    //code that affects the other elements you didn't click on
-                    otherEl.style.boxShadow = "none";
-                });
-            });
-        });
-
-     
-     
-     
+    
+       
     </script>
 @endsection
