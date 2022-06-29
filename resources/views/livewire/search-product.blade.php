@@ -79,7 +79,7 @@
                             <td class=" text-center align-middle">{{ $product->category_id }}</td>
                             <td class=" text-center align-middle">{{ $product->product_stock }}</td>
                             <td class=" text-center align-middle"><a
-                                    href="{{ route('product_details', ['product_id' => $product->id]) }}"
+                                    href="{{ route('product_details', ['product' => $product->id]) }}"
                                     class="btn btn-danger">Details</a></td>
 
 

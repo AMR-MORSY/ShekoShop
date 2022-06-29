@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Http\Requests\Products\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use App\Models\ColorProduct;
-use App\Models\Image;
-use App\Models\OptionGroup;
-use App\Models\ProductFacefrontImage;
-use App\Models\ProductSize;
 use App\Models\Size;
+use App\Models\Color;
+use App\Models\Image;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\OptionGroup;
+use App\Models\ProductSize;
+use App\Models\ColorProduct;
+
 use GuzzleHttp\Handler\Proxy;
+use App\Models\ProductFacefrontImage;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UpdateProductRequest;
+use App\Http\Requests\Products\StoreProductRequest;
 
 class ProductController extends Controller
 {
@@ -35,6 +38,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+
     }
     /*
      calculating product stock
@@ -161,11 +165,8 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    private function get_product($id)
-    {
-        $product = Product::find($id);
-        return $product;
-    }
+   
+   
     private function get_prod_associated_colors($product)
     {
         $colors = $product->colors;
@@ -174,54 +175,53 @@ class ProductController extends Controller
 
     private function get_colors_asscociated_sizes($colors, $product_id)
     {
-      
-     
+
+
         $color_sizes_bag = [];
         foreach ($colors as $color) {
             $color_sizes = ProductSize::where('product_id', $product_id)->where('color_id', $color->id)->get();
-            
-           
+
+
             $size_names = [];
             foreach ($color_sizes as $color_size) {
-                $size = Size::find($color_size->size_id);
-              
-                {
-                    $size_name=$size->size_name;
+                $size = Size::find($color_size->size_id); {
+                    $size_name = $size->size_name;
                     array_push($size_names, $size_name);
-
                 }
-               
-               
-               
-               
             }
-           
-            
+
+
             $color_sizes_bag[$color->color_name] = $size_names;
         }
-      
-    
+
+
 
         return $color_sizes_bag;
     }
     private function get_colors_associated_images($colors, $product_id)
     {
-        $color_images_bag=[];
-     
+        $color_images_urls_bag = [];
+        $color_images_ids_bag=[];
+        $color_images=[];
+
         foreach ($colors as $color) {
             $color_images = Image::where([['product_id', $product_id], ['color_id', $color->id]])->get();
             $image_urls = [];
+            $images_id=[];
             foreach ($color_images as $color_image) {
                 $image_url = $color_image->url;
                 $amazon_url = Storage::url($image_url);
                 array_push($image_urls, $amazon_url);
+                array_push($images_id,$color_image->id);
             }
-            $color_images_bag[$color->color_name] = $image_urls;
+            $color_images_urls_bag[$color->color_name] = $image_urls;
+            $color_images_ids_bag[$color->color_name] = $images_id;
         }
-        
+        $color_images['urls']= $color_images_urls_bag;
+        $color_images['ids']= $color_images_ids_bag;
 
-        return  $color_images_bag;
 
+        return  $color_images;
     }
     private function get_prod_facefront_image($product)
     {
@@ -230,28 +230,76 @@ class ProductController extends Controller
         $amazon_url = Storage::url($face_image_url);
         return $amazon_url;
     }
-    public function show(Request $request, $product_id)
+    public function show(Product $product)
     {
 
-        $id = ['product_id' => $product_id];
-        $validator = Validator::make($id, ['product_id' => 'required|exists:products,id']);
+        // $id = ['product_id' => $product_id];
+        // $validator = Validator::make($id, ['product_id' => 'required|exists:products,id']);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        } else {
-            $validated = $validator->validated();
-
-            $product = $this->get_product($validated['product_id']);
-            $face_front_url = $this->get_prod_facefront_image($product);
-
-            $prod_assciated_colors = $this->get_prod_associated_colors($product);
-            $colors_asscociated_sizes = $this->get_colors_asscociated_sizes($prod_assciated_colors, $product->id);
-            $colors_associated_images=$this->get_colors_associated_images($prod_assciated_colors,$product->id);
+        // if ($validator->fails()) {
+            // return back()->withErrors($validator);
+        // } else {
+            // $validated = $validator->validated();
+            if($product)
+            {
+                $face_front_url = $this->get_prod_facefront_image($product);
+                $prod_assciated_colors = $this->get_prod_associated_colors($product);
+                $colors_asscociated_sizes = $this->get_colors_asscociated_sizes($prod_assciated_colors, $product->id);
+                $colors_associated_images = $this->get_colors_associated_images($prod_assciated_colors, $product->id);
+                return view('productDetails', ['images' => $colors_associated_images['urls'], 'colors' => $prod_assciated_colors, 'sizes' => $colors_asscociated_sizes, 'product' => $product]);
+            }
+            else
+            {
+                return response('Not Found',404);
+            }
 
           
+          
 
-            return view('productDetails',['images'=>$colors_associated_images,'colors'=>$prod_assciated_colors,'sizes'=>$colors_asscociated_sizes,'product'=>$product]);
+          
+          
+          
+
+
+
+           
+        // }
+    }
+
+    public function delete_product_image($product_id,$color_id,$image_id)
+    {
+        $image = ['product_id' => $product_id,
+                  'color_id'=>$color_id,
+                'image_id'=>$image_id];
+        $validator = Validator::make($image, ['product_id' => 'required|exists:images,product_id',
+        'color_id' => 'required|exists:images,color_id',
+        'image_id' => 'required|exists:images,id']);
+        if ($validator->fails()) {
+        return back()->withErrors($validator);
+        } else {
+        $validated = $validator->validated();
+
+        $filtered_images=Image::where('product_id',$validated['product_id'])->where('color_id',$validated['color_id'])->get();
+        // dd($filtered_images->count());
+
+        if($filtered_images->count()>1)
+        {
+            $selected_image=Image::find($validated['image_id']);
+
+            Storage::disk('s3')->delete($selected_image->url);
+
+            $selected_image->delete();
+
+            return back()->with('image_delete_success','image deleted successfully');
         }
+        else
+        {
+            return back()->withErrors('last_image','color last image cannot be deleted');
+        }
+        
+       
+        }
+
     }
 
     /**
@@ -262,7 +310,30 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+
+        if($product)
+        {
+            $colors=Color::all();
+            $sizes=Size::all();
+            $product_categories=Category::all();
+           
+            $prod_assciated_colors = $this->get_prod_associated_colors($product);
+
+          
+            $colors_asscociated_sizes = $this->get_colors_asscociated_sizes($prod_assciated_colors, $product->id);
+            $colors_associated_images = $this->get_colors_associated_images($prod_assciated_colors, $product->id);
+
+           
+            
+           
+            return view('product.editProduct',['product'=>$product,'product_colors'=> $prod_assciated_colors,'colors'=>$colors,'product_sizes'=>$colors_asscociated_sizes,'sizes'=>$sizes,'product_categories'=>$product_categories,'product_images_urls'=>$colors_associated_images['urls'],'product_images_ids'=>$colors_associated_images['ids']]);
+
+        }
+        else
+        {
+            return response('Not found',404);
+        }
+       
     }
 
     /**
@@ -285,6 +356,27 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+       
+        //   
+        // $id = ['product_id' => $product];
+        // $validator = Validator::make($id, ['product_id' => 'required|exists:products,id']);
+        // if ($validator->fails()) {
+        // return back()->withErrors($validator);
+        // } else {
+        // $validated = $validator->validated();
+        // 
+        // $product = $this->get_product($validated['product_id']);
+
+
+        if ($product) {
+         
+
+            $product->delete();
+
+            return view('dashboard');
+        } else {
+            return response('Product does not exist', 404);
+        }
+        // }
     }
 }
