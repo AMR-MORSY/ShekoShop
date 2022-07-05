@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Products\AddProductColor;
 use App\Models\Size;
 use App\Models\Color;
 use App\Models\Image;
@@ -11,13 +12,15 @@ use App\Models\OptionGroup;
 use App\Models\ProductSize;
 use App\Models\ColorProduct;
 
-use GuzzleHttp\Handler\Proxy;
 use App\Models\ProductFacefrontImage;
-use Illuminate\Support\Facades\Request;
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Requests\Products\StoreProductRequest;
+use App\Http\Requests\Products\UpdateColorSize;
+use App\Http\Requests\Products\UpdateFacefrontImage;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -38,7 +41,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-
     }
     /*
      calculating product stock
@@ -56,43 +58,92 @@ class ProductController extends Controller
      * filling color-product pivot table
      * 
      */
-    private function fill_color_product_pivot($colors, $product_id)
+    private function fill_color_product_pivot($selected_color,$colors, $product_id)
     {
-        foreach ($colors as $color) {
+        if($colors!=null)
+        {
+            foreach ($colors as $color) {
+                ColorProduct::create([
+                    'color_id' => $color,
+                    'product_id' => $product_id
+                ]);
+            }
+            
+        }
+
+        if($selected_color!=null)
+        {
             ColorProduct::create([
-                'color_id' => $color,
+                'color_id' => $selected_color,
                 'product_id' => $product_id
             ]);
+
         }
+      
+      
+      
+      
+      
+      
     }
     /**
      * filling color-product-size table
      * 
      */
-    private function fill_color_prod_size_table($sizes, $colors, $product_id)
+    private function fill_color_prod_size_table($selected_color,$selected_size,$sizes, $colors, $product_id)
     {
-        for ($i = 0; $i < count($sizes); $i++) {
-            $arr = explode(',', $sizes[$i][0], 200);
+       
+    
+        if($sizes!=null && $colors!=null)
+        {
+            for ($i = 0; $i < count($sizes); $i++) {
+                $arr = explode(',', $sizes[$i], 200);
+                foreach ($arr as $arry) {
+                    ProductSize::create([
+                        'color_id' => $colors[$i],
+                        'product_id' => $product_id,
+                        'size_id' => $arry
+                    ]);
+                }
+            }
+
+        }
+
+        if($selected_size!=null && $selected_color!=null)
+        {
+            // dd($selected_size);
+            $arr = explode(',', $selected_size, 200);
             foreach ($arr as $arry) {
                 ProductSize::create([
-                    'color_id' => $colors[$i],
+                    'color_id' => $selected_color,
                     'product_id' => $product_id,
                     'size_id' => $arry
                 ]);
             }
+
         }
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
     }
     /**
      * filling color images table
      * 
      */
-    private function fill_color_images_table($images, $colors, $product_id)
+    private function fill_color_images_table($selected_image,$selected_color,$images, $colors, $product_id)
     {
-        for ($i = 0; $i < count($images); $i++) {
-            $first_array = $images[$i];
-            foreach ($first_array as $second_array) {
-                foreach ($second_array as $arry) {
-                    $path = $arry->store('Products', 's3');
+        if($images!=null && $colors!= null)
+        {
+            for ($i = 0; $i < count($images); $i++) {
+                foreach ($images[$i] as $image) {
+                    $path = $image->store('Products', 's3');
                     Image::create([
                         'url' => $path,
                         'product_id' => $product_id,
@@ -100,6 +151,87 @@ class ProductController extends Controller
                     ]);
                 }
             }
+
+        }
+        if($selected_image!=null && $selected_color!=null)
+        {
+          
+           
+                foreach ($selected_image as $image) {
+                    $path = $image->store('Products', 's3');
+                    Image::create([
+                        'url' => $path,
+                        'product_id' => $product_id,
+                        'color_id' => $selected_color,
+                    ]);
+                }
+            
+
+        }
+      
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    }
+    private function check_if_color_in_pivote_table($color, $product)
+    {
+
+        $exist_color = ColorProduct::where('color_id', $color)->where('product_id', $product)->first();
+        $color_name = null;
+        if ($exist_color) {
+            $name = Color::find($exist_color->color_id)->color_name;
+            $color_name = $name;
+        }
+        return $color_name;
+    }
+
+    public function add_product_color(AddProductColor $request)
+    {
+        $validated = $request->validated();
+
+        if (!$request->file('images')) {
+            return back()->withErrors(['images' => 'please upload images']);
+        } else {
+          
+            for($i=0;$i<count($validated['color']);$i++) {
+                $exist_color= $this->check_if_color_in_pivote_table($validated['color'][$i], $validated['product_id']);
+                if($exist_color!=null)
+                {
+                    return back()->withErrors(['exist_color' => $exist_color." color already exists"]);
+                   
+                }
+                else{
+                    // dd($validated['color'][$i]);
+                    $this->fill_color_product_pivot($validated['color'][$i],null, $validated['product_id']);
+                    $this->fill_color_prod_size_table( $validated['color'][$i],$validated['size'][$i],null,null, $validated['product_id']);
+                    $this->fill_color_images_table($validated['images'][$i], $validated['color'][$i],null,null, $validated['product_id']);
+                    session()->flash('message', 'color addedd');
+                    return back();
+                  
+
+                }
+            }
+
+
+           
+           
+           
+           
+           
+
+           
+           
+           
+           
+           
         }
     }
 
@@ -126,37 +258,56 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
+    public function update_color_size(UpdateColorSize $request)
+    {
+        $validated = $request->validated();
+
+        $arr = explode(',', $validated['size'], 200);
+
+        $sizes = ProductSize::where('product_id', $validated['product'])->where('color_id', $validated['color'])->get();
+        foreach ($sizes as $size) {
+            $size->delete();
+        }
+
+        for ($i = 0; $i < count($arr); $i++) {
+            ProductSize::create([
+                'color_id' => $validated['color'],
+                'product_id' => $validated['product'],
+                'size_id' => $arr[$i]
+            ]);
+        }
+        return back()->with('sizes_updated', 'Sizes Updated Successfully');
+    }
+
+
     public function store(StoreProductRequest $request)
     {
 
-
-
         $validated = $request->validated();
-        $product = Product::create([
-            // "product_SKU"=>$validated['product_SKU'],
-            'product_name' => $validated['product_name'],
-            'product_price' => $validated['product_price'],
-            'product_weight' => $validated['product_weight'],
-            'product_cartDesc' => $validated['product_cartDesc'],
-            'product_shortDesc' => $validated['product_shortDesc'],
-            'product_longDesc' => $validated['product_longDesc'],
-            'product_thumb' => $validated['product_thumb'],
-            'category_id' => $validated['category_id'],
-            'product_stock' => $this->calculate_product_stock($validated['size']),
-            'product_live' => $validated['product_live'],
-            'product_location' => $validated['product_location'],
 
-
-
-        ]);
-
-        $this->add_facefront_image($product->id, $validated['facefront_image']);
-        $this->fill_color_product_pivot($validated['color'], $product->id);
-        $this->fill_color_prod_size_table($validated['size'], $validated['color'], $product->id);
-        $this->fill_color_images_table($validated['images'], $validated['color'], $product->id);
-
-
-        return back()->with('product_status', 'product inserted successfully');
+        if (!$request->file('images')) {
+            return back()->withErrors(['images' => 'please upload images']);
+        } else {
+            $product = Product::create([
+                // "product_SKU"=>$validated['product_SKU'],
+                'product_name' => $validated['product_name'],
+                'product_price' => $validated['product_price'],
+                'product_weight' => $validated['product_weight'],
+                'product_cartDesc' => $validated['product_cartDesc'],
+                'product_shortDesc' => $validated['product_shortDesc'],
+                'product_longDesc' => $validated['product_longDesc'],
+                'product_thumb' => $validated['product_thumb'],
+                'category_id' => $validated['category_id'],
+                'product_stock' => $this->calculate_product_stock($validated['size']),
+                'product_live' => $validated['product_live'],
+                'product_location' => $validated['product_location'],
+            ]);
+            $this->add_facefront_image($product->id, $validated['facefront_image']);
+            $this->fill_color_product_pivot(null,$validated['color'], $product->id);
+            $this->fill_color_prod_size_table(null,null,$validated['size'], $validated['color'], $product->id);
+            $this->fill_color_images_table(null,null,$validated['images'], $validated['color'], $product->id);
+            return back()->with('product_status', 'product inserted successfully');
+        }
     }
 
     /**
@@ -165,8 +316,8 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-   
-   
+
+
     private function get_prod_associated_colors($product)
     {
         $colors = $product->colors;
@@ -201,24 +352,24 @@ class ProductController extends Controller
     private function get_colors_associated_images($colors, $product_id)
     {
         $color_images_urls_bag = [];
-        $color_images_ids_bag=[];
-        $color_images=[];
+        $color_images_ids_bag = [];
+        $color_images = [];
 
         foreach ($colors as $color) {
             $color_images = Image::where([['product_id', $product_id], ['color_id', $color->id]])->get();
             $image_urls = [];
-            $images_id=[];
+            $images_id = [];
             foreach ($color_images as $color_image) {
                 $image_url = $color_image->url;
                 $amazon_url = Storage::url($image_url);
                 array_push($image_urls, $amazon_url);
-                array_push($images_id,$color_image->id);
+                array_push($images_id, $color_image->id);
             }
             $color_images_urls_bag[$color->color_name] = $image_urls;
             $color_images_ids_bag[$color->color_name] = $images_id;
         }
-        $color_images['urls']= $color_images_urls_bag;
-        $color_images['ids']= $color_images_ids_bag;
+        $color_images['urls'] = $color_images_urls_bag;
+        $color_images['ids'] = $color_images_ids_bag;
 
 
         return  $color_images;
@@ -233,75 +384,102 @@ class ProductController extends Controller
     public function show(Product $product)
     {
 
-        // $id = ['product_id' => $product_id];
-        // $validator = Validator::make($id, ['product_id' => 'required|exists:products,id']);
 
-        // if ($validator->fails()) {
-            // return back()->withErrors($validator);
-        // } else {
-            // $validated = $validator->validated();
-            if($product)
-            {
-                $face_front_url = $this->get_prod_facefront_image($product);
-                $prod_assciated_colors = $this->get_prod_associated_colors($product);
-                $colors_asscociated_sizes = $this->get_colors_asscociated_sizes($prod_assciated_colors, $product->id);
-                $colors_associated_images = $this->get_colors_associated_images($prod_assciated_colors, $product->id);
-                return view('productDetails', ['images' => $colors_associated_images['urls'], 'colors' => $prod_assciated_colors, 'sizes' => $colors_asscociated_sizes, 'product' => $product]);
-            }
-            else
-            {
-                return response('Not Found',404);
-            }
-
-          
-          
-
-          
-          
-          
+        if ($product) {
+            $face_front_url = $this->get_prod_facefront_image($product);
+            $prod_assciated_colors = $this->get_prod_associated_colors($product);
+            $colors_asscociated_sizes = $this->get_colors_asscociated_sizes($prod_assciated_colors, $product->id);
+            $colors_associated_images = $this->get_colors_associated_images($prod_assciated_colors, $product->id);
+            return view('productDetails', ['images' => $colors_associated_images['urls'], 'colors' => $prod_assciated_colors, 'sizes' => $colors_asscociated_sizes, 'product' => $product]);
+        } else {
+            return response('Not Found', 404);
+        }
 
 
 
-           
+
+
+
+
+
+
+
+
         // }
     }
 
-    public function delete_product_image($product_id,$color_id,$image_id)
+    public function delete_product_image($product_id, $color_id, $image_id)
     {
-        $image = ['product_id' => $product_id,
-                  'color_id'=>$color_id,
-                'image_id'=>$image_id];
-        $validator = Validator::make($image, ['product_id' => 'required|exists:images,product_id',
-        'color_id' => 'required|exists:images,color_id',
-        'image_id' => 'required|exists:images,id']);
+        $image = [
+            'product_id' => $product_id,
+            'color_id' => $color_id,
+            'image_id' => $image_id
+        ];
+        $validator = Validator::make($image, [
+            'product_id' => 'required|exists:images,product_id',
+            'color_id' => 'required|exists:images,color_id',
+            'image_id' => 'required|exists:images,id'
+        ]);
         if ($validator->fails()) {
-        return back()->withErrors($validator);
+            return back()->withErrors($validator);
         } else {
-        $validated = $validator->validated();
+            $validated = $validator->validated();
 
-        $filtered_images=Image::where('product_id',$validated['product_id'])->where('color_id',$validated['color_id'])->get();
-        // dd($filtered_images->count());
+            $filtered_images = Image::where('product_id', $validated['product_id'])->where('color_id', $validated['color_id'])->get();
+            // dd($filtered_images->count());
 
-        if($filtered_images->count()>1)
-        {
-            $selected_image=Image::find($validated['image_id']);
+            if ($filtered_images->count() > 1) {
+                $selected_image = Image::find($validated['image_id']);
 
-            Storage::disk('s3')->delete($selected_image->url);
+                Storage::disk('s3')->delete($selected_image->url);
 
-            $selected_image->delete();
+                $selected_image->delete();
 
-            return back()->with('image_delete_success','image deleted successfully');
+                return back()->with('image_delete_success', 'image deleted successfully');
+            } else {
+                return back()->withErrors(['last_image' => 'color last image cannot be deleted']);
+            }
         }
-        else
-        {
-            return back()->withErrors('last_image','color last image cannot be deleted');
-        }
-        
-       
-        }
-
     }
 
+    public function delete_product_color(Product $product, Color $color)
+    {
+        if ($product && $color) {
+            $color_product = ColorProduct::where('color_id', $color->id)->where('product_id', $product->id)->first();
+            $color_product->delete();
+
+            $product_sizes = ProductSize::where('color_id', $color->id)->where('product_id', $product->id)->get();
+            foreach ($product_sizes as $size) {
+                $size->delete();
+            }
+            $images = Image::where('color_id', $color->id)->where('product_id', $product->id)->get();
+            foreach ($images as $image) {
+
+                Storage::disk('s3')->delete($image->url);
+                $image->delete();
+            }
+
+            return back()->with('delete_product_color', 'color deleted successfully');
+        } else {
+            return response('Not found', 404);
+        }
+    }
+
+    public function update_facefront_image(UpdateFacefrontImage $request)
+    {
+
+        $validated = $request->validated();
+
+        $product = Product::find($validated['product']);
+        //  
+
+        Storage::disk('s3')->delete($product->facefront_image->url);
+        $product->facefront_image->delete();
+
+        $this->add_facefront_image($product->id, $validated['facefront_image']);
+
+        return back()->with('facefront_image_update', 'Facefront image updated successfully');
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -311,29 +489,25 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
 
-        if($product)
-        {
-            $colors=Color::all();
-            $sizes=Size::all();
-            $product_categories=Category::all();
-           
-            $prod_assciated_colors = $this->get_prod_associated_colors($product);
+        if ($product) {
+            $colors = Color::all();
+            $sizes = Size::all();
+            $product_categories = Category::all();
 
-          
+            $prod_assciated_colors = $this->get_prod_associated_colors($product);
+            $face_front_url = $this->get_prod_facefront_image($product);
+
+
             $colors_asscociated_sizes = $this->get_colors_asscociated_sizes($prod_assciated_colors, $product->id);
             $colors_associated_images = $this->get_colors_associated_images($prod_assciated_colors, $product->id);
 
-           
-            
-           
-            return view('product.editProduct',['product'=>$product,'product_colors'=> $prod_assciated_colors,'colors'=>$colors,'product_sizes'=>$colors_asscociated_sizes,'sizes'=>$sizes,'product_categories'=>$product_categories,'product_images_urls'=>$colors_associated_images['urls'],'product_images_ids'=>$colors_associated_images['ids']]);
 
+
+
+            return view('product.editProduct', ['product' => $product, 'product_colors' => $prod_assciated_colors, 'colors' => $colors, 'product_sizes' => $colors_asscociated_sizes, 'sizes' => $sizes, 'product_categories' => $product_categories, 'product_images_urls' => $colors_associated_images['urls'], 'product_images_ids' => $colors_associated_images['ids'], 'facefront_image' => $face_front_url]);
+        } else {
+            return response('Not found', 404);
         }
-        else
-        {
-            return response('Not found',404);
-        }
-       
     }
 
     /**
@@ -356,20 +530,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-       
-        //   
-        // $id = ['product_id' => $product];
-        // $validator = Validator::make($id, ['product_id' => 'required|exists:products,id']);
-        // if ($validator->fails()) {
-        // return back()->withErrors($validator);
-        // } else {
-        // $validated = $validator->validated();
-        // 
-        // $product = $this->get_product($validated['product_id']);
 
 
         if ($product) {
-         
+
 
             $product->delete();
 

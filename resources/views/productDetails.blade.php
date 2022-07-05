@@ -63,6 +63,20 @@
                             </div>
                         </div>
                     </div>
+                   
+                 
+               
+               
+               
+                 
+                 
+
+                    <div class="add-cart-button">
+                        {{-- <livewire:cart-button  wire:click="getProductId({{$product->id}})"/> --}}
+                            <livewire:cart-button :product="$product->id" :colors="$colors[0]"/>
+                    </div>
+
+                    <livewire:cart />
 
                 </div>
             </div>

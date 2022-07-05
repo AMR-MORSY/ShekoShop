@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Products;
 
+use App\Models\User;
 use App\Models\Product_Catogory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProductRequest extends FormRequest
@@ -16,16 +18,14 @@ class StoreProductRequest extends FormRequest
      */
     public function authorize()
     {
-        if(auth()->user()->hasRole('admin'))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
 
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        if ($user->hasRole('admin')) {
+            return true;
+        } else {
+            return false;
         }
-       
     }
 
 
@@ -37,21 +37,21 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            "product_SKU"=>'nullable|string|max:50',
-            'product_name'=>'required|string|max:100',
-            'product_price'=>'required|numeric',
-            'product_weight'=>'nullable|numeric',
-            'product_cartDesc'=>'required|string|max:250',
-            'product_shortDesc'=>'required|string|max:1000',
-            'product_longDesc'=>'required|string',
-            'product_thumb'=>'nullable|string|max:100',
-            'category_id'=>'required|string|exists:categories,category_name',
-            'color.*'=>'required|exists:colors,id',
-            'size.*.*'=>'required|exists:sizes,id',
-            'images.*.*.*'=>'required|image',
-            'product_live'=>'required|boolean',
-            'product_location'=>'nullable|string|max:50',
-            'facefront_image'=>'required|image'
+            "product_SKU" => 'nullable|string|max:50',
+            'product_name' => 'required|string|max:100',
+            'product_price' => 'required|numeric',
+            'product_weight' => 'nullable|numeric',
+            'product_cartDesc' => 'required|string|max:250',
+            'product_shortDesc' => 'required|string|max:1000',
+            'product_longDesc' => 'required|string',
+            'product_thumb' => 'nullable|string|max:100',
+            'category_id' => 'required|string|exists:categories,category_name',
+            'color' => 'required|exists:colors,id',
+            'size' => 'required|exists:sizes,id',
+            'images.*.*' => 'required|mimes:jpg,bmp,png',
+            'product_live' => 'required|boolean',
+            'product_location' => 'nullable|string|max:50',
+            'facefront_image' => 'required|image'
 
 
 

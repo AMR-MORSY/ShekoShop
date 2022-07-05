@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests\Products;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SearchProduct extends FormRequest
+class UpdateFacefrontImage extends FormRequest
 {
+    protected $errorBag='update_facefront';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -15,13 +14,7 @@ class SearchProduct extends FormRequest
      */
     public function authorize()
     {
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        if ($user->hasRole('admin')) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
     /**
@@ -32,7 +25,8 @@ class SearchProduct extends FormRequest
     public function rules()
     {
         return [
-            //
+            "facefront_image"=>'required|image',
+            'product'=>'required|exists:products,id'
         ];
     }
 }

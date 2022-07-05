@@ -30,62 +30,7 @@
 </div>
 @section('scripts')
     <script>
-        // MutationObserver = window.MutationObserver || window.webkitMutationobserver || window.MozMutationobserver;
-        // var x = document.getElementById('img');
-
-        // new MutationObserver(function onSrcChange() {
-        // console.log('hello');
-        // const swip = new Swiper(".mySwiper", {
-        // spaceBetween: 5,
-        // slidesPerView: 4,
-        // direction: "vertical",
-        // freeMode: true,
-        // observer: true,
-        // observeParents: true,
-        // parallax: true,
-        // mousewheel: true,
-        // watchSlidesProgress: true,
-        // grabCursor: true,
-        // });
-
-        // }).observe(x, {
-        // attributes: true,
-        // attributeFilter: ['src']
-        // });
-
-
-
-        // $('#imgo').on('load', function() {
-        // console.log('hello')
-        // const swip = new Swiper(".mySwiper", {
-        // spaceBetween: 5,
-        // slidesPerView: 4,
-        // direction: "vertical",
-        // freeMode: true,
-        // observer: true,
-        // observeParents: true,
-        // parallax: true,
-        // mousewheel: true,
-        // watchSlidesProgress: true,
-        // grabCursor: true,
-        // });
-
-        // })
-        // window.livewire.hook('afterDomUpdate', () => {
-        // const swip = new Swiper(".mySwiper", {
-        // spaceBetween: 5,
-        // slidesPerView: 4,
-        // direction: "vertical",
-        // freeMode: true,
-        // observer: true,
-        // observeParents: true,
-        // parallax: true,
-        // mousewheel: true,
-        // watchSlidesProgress: true,
-        // grabCursor: true,
-        // });
-
-        // });
+      
         window.addEventListener('contentChanged', event => {
             var swip = new Swiper(".mySwiper", {
                 spaceBetween: 5,

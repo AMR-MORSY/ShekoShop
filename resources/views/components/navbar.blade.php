@@ -272,33 +272,38 @@
                                     </form>
 
                                 </div>
+                                <div class="cart-icon">
+                                    <livewire:cart-logo />
+                                </div>
                                 @role('admin')
                                     <div class="dashboard {{ request()->is('dashboard') ? 'display_none' : '' }} ">
                                         <a href="{{ route('dashboard') }}">Dashboard</a>
                                     </div>
                                 @endrole
-                            @else
-                                <div class="icons-container ">
-                                    <div class="search-icon">
 
-                                        <span class="material-symbols-outlined">
-                                            search
-                                        </span>
-                                    </div>
+                            </div>
+                        @else
+                            <div class="icons-container ">
+                                <div class="search-icon">
 
-                                    <div class="user-icon">
-                                        <a href="{{ route('login') }}"> <i class="fa-regular fa-user"></i></a>
-                                    </div>
+                                    <span class="material-symbols-outlined">
+                                        search
+                                    </span>
+                                </div>
+
+                                <div class="user-icon">
+                                    <a href="{{ route('login') }}"> <i class="fa-regular fa-user"></i></a>
+                                </div>
 
 
-                                    <div class="cart-icon">
+                                <div class="cart-icon">
 
-                                        <span class="material-symbols-outlined">
-                                            shopping_cart
-                                        </span>
-                                    </div>
+                                    <livewire:cart-logo />
+
+
                                 </div>
                             </div>
+
                         </div>
                     @endIf
 

@@ -9,6 +9,12 @@ class Sizes extends Component
 {
     public $recievedSizes;
     public $filteredSizes;
+    public $size_name;
+
+    public function sizeNameChanged()
+    {
+        $this->emit('selectedSizeName',$this->size_name);
+    }
     public function mount($sizes)
     {
         $this->recievedSizes=$sizes;

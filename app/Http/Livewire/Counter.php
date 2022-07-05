@@ -14,12 +14,17 @@ class Counter extends Component
     }
     public function decrement()
     {
-        $this->counter--;
+        if($this->counter>0)
+        {
+            $this->counter--;
+
+        }
+        
         
     }
     
     public function render()
     {
-        return view('livewire.counter',['counter'=>$this->counter]);
+        return view('livewire.counter');
     }
 }

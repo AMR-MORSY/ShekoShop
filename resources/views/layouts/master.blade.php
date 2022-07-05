@@ -7,6 +7,7 @@
     <title>Document</title>
     {{-- <link rel="stylesheet" href="{{ asset('css/animation.css') }}"> --}}
 
+
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -17,6 +18,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     @livewireStyles
    
+    @yield('style')
 
   
 </head>
@@ -25,7 +27,10 @@
 
     <x-navbar>
     </x-navbar>
+    <x-spinner/>
     @yield('content')
+
+    <livewire:user-notification/>
 
     <x-footer></x-footer>
   

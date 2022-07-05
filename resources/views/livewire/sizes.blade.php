@@ -1,10 +1,19 @@
 <div class="row">
 
-    @foreach ($filteredSizes as $size)
-    <div class="col-1">
-        <p>{{$size}}</p>
-    </div>
+    <select wire:model="size_name" wire:change="sizeNameChanged">
+        <option ></option>
+        @foreach ($filteredSizes as $size)
+
+       <option value="{{$size}}">{{$size}}</option>
+
+        @endforeach
+
+    </select>
+  
+    {{-- <div class="col-1"> --}}
+        {{-- <p>{{$size}}</p> --}}
+    {{-- </div> --}}
         
-    @endforeach
+   
 
 </div>
