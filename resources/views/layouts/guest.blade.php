@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -10,14 +10,14 @@
         <!-- Fonts -->
         {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
 
-        <!-- Styles -->
-        {{-- <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}"> --}}
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<!-- Styles -->
+{{-- <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}"> --}}
+{{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
 
-        <!-- Scripts -->
-       
-    </head>
+<!-- Scripts -->
+
+{{-- </head>
     <body>
         <x-navbar></x-navbar>
         <div id="guest" >
@@ -29,5 +29,13 @@
         <script src="{{ asset('js/bootstrap.js') }}"></script>
         <script src="{{ asset('js/swiper.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
-    </body>
-</html>
+    </body> --}}
+{{-- </html> --}}
+
+@extends('layouts.master')
+@section('content')
+    <div id="guest">
+
+        {{ $slot }}
+    </div>
+@endsection

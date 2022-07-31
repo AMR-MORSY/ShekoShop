@@ -1,30 +1,22 @@
 @extends('layouts.master')
 @section('content')
-    {{-- <section id="product-details"> --}}
-
-    {{-- <div class="container"> --}}
-    {{-- <div class="row"> --}}
-    {{-- <div class="col-md-6"> --}}
-    {{-- <livewire:vertical-carousel :images="$images" /> --}}
-    {{-- </div> --}}
-    {{-- <div class="col-md-6"> --}}
-    {{-- <livewire:colors :colors="$colors" /> --}}
-
-    {{-- </div> --}}
-    {{-- </div> --}}
-    {{-- </div> --}}
-
-    {{--  --}}
-    {{-- </section> --}}
     <section id="vertical-carosel">
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="vertical-carosel-container">
+                    @if (isset($images))
+                        <div class="vertical-carosel-container">
 
 
-                        <livewire:vertical-carousel :images="$images" />
-                    </div>
+                            <livewire:vertical-carousel :images="$images" />
+                        </div>
+                    @else
+                        <div class="facefront-container ">
+                            <img src="{{ $facefrontImage }}" class="w-100" alt="">
+                        </div>
+                    @endif
+
                 </div>
                 <div class="col-md-6">
                     <div class="prodcut-name">
@@ -35,48 +27,58 @@
                         <p>{{ $product->product_longDesc }}</p>
 
                     </div>
-                    <div>
-                        <p>Available Colors:</p>
-                        <livewire:colors :colors="$colors" />
+                 
+                        <div>
+                            @if (isset($colors))
+                                <p>Available Colors:</p>
+                                <livewire:colors :colors="$colors" />
+                            @endif
 
-                    </div>
-                    <div>
-                        <p>Available Sizes:</p>
-                        <livewire:sizes :sizes="$sizes" />
 
-                    </div>
+                        </div>
+                        <div>
+                            @if (isset($sizes))
+                                <p>Available Sizes:</p>
+                                <livewire:sizes :sizes="$sizes" />
+                            @endif
 
-                    <div class="features">
-                        <div class="row">
-                            {{-- <div class="col-md-6"> --}}
-                                {{-- @role('admin') --}}
-                                {{-- <a href="{{route('product_delete',['product'=>$product->id])}}" class="btn btn-danger">Delete</a> --}}
-                                {{-- @endrole --}}
-                            {{-- </div> --}}
-                            <div class="col-md-6">
-                                @role('admin')
-                                <a href="{{route('product_update',['product'=>$product->id])}}" class="btn btn-primary">Update</a>
-                                
-                                @endrole
-                            
-                               
+
+                        </div>
+
+                        <div class="features">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    @role('admin')
+                                        <a href="{{ route('product_update', ['product' => $product->id]) }}"
+                                            class="btn btn-primary">Update</a>
+                                    @endrole
+
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                   
-                 
-               
-               
-               
-                 
+
+                        <div class="counter-container">
+                            <livewire:counter wire:key='productdetailscounter' counter_host="product_details" />
+                        </div>
+
+                        @if (isset($colors))
+                            <div class="add-cart-button">
+
+                                <livewire:cart-button :product="$product->id" :colors="$colors" :sizes="$sizes" />
+                            </div>
+                        @else
+                            <div class="add-cart-button">
+
+                                <livewire:cart-button :product="$product->id" />
+                            </div>
+                        @endif
                  
 
-                    <div class="add-cart-button">
-                        {{-- <livewire:cart-button  wire:click="getProductId({{$product->id}})"/> --}}
-                            <livewire:cart-button :product="$product->id" :colors="$colors[0]"/>
-                    </div>
 
-                    <livewire:cart />
+
+                    {{-- <livewire:cart /> --}}
 
                 </div>
             </div>

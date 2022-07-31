@@ -25,9 +25,14 @@ return new class extends Migration
             $table->string('product_thumb',100)->nullable();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->float('product_stock',8, 2);
+            $table->unsignedBigInteger('devision_id');
+            $table->foreign('devision_id')->references('id')->on('devisions')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade')->onUpdate('cascade');
+            $table->float('product_stock',8, 2)->nullable();
             $table->boolean('product_live')->default(0);
             $table->string('product_location',250)->nullable();
+
             $table->timestamps();
         });
     }

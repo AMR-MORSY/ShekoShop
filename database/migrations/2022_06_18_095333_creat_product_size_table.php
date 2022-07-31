@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('size_id');
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('quantity');
+            $table->boolean('size_live')->default(1);
             $table->timestamps();
         });
         

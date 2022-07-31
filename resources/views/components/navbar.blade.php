@@ -183,6 +183,24 @@
             </div>
         </div>
     </div>
+    <div id="search">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1">
+                    <div id="search-caption" class=" animate__animated ">
+                        <p>Search</p>
+                    </div>
+                </div>
+                <div class="col-lg-11 ">
+                    <div id="search-input" class=" animate__animated ">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        {{-- <input type="text" autofocus placeholder="What are you looking for?"> --}}
+                        <livewire:search-product/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <nav class="nav">
@@ -300,6 +318,8 @@
 
                                     <livewire:cart-logo />
 
+                                   
+
 
                                 </div>
                             </div>
@@ -315,22 +335,7 @@
 
             </div>
         </div>
+      
     </nav>
-    <div id="search">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-1">
-                    <div id="search-caption" class=" animate__animated ">
-                        <p>Search</p>
-                    </div>
-                </div>
-                <div class="col-lg-11 ">
-                    <div id="search-input" class=" animate__animated ">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" autofocus placeholder="What are you looking for?">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 </div>

@@ -56,11 +56,10 @@
             </div>
         </div>
     </form>
-
     @if ($searched_products != null)
 
         <div class="table-container table-responsive ">
-            <table *ngIf="isDataFound" class=" table table-warning table-hover table-bordered">
+            <table  class=" table table-warning table-hover table-bordered">
                 <thead>
                     <tr class=" table-danger align-middle text-center">
                         <th scope="col">Name</th>

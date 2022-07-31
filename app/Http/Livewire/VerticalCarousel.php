@@ -16,15 +16,15 @@ class VerticalCarousel extends Component
 
    
 
-    protected $listeners = ['colorSeletcted'=>'selectedColorName'];
+    protected $listeners = ['colorSeletcted'=>'selectedColorId'];
 
-    public function selectedColorName($colorName)
+    public function selectedColorId($colorId)
     {
        
     
         // $this->emitSelf('refresh-me');
-        $filtered=array_filter($this->recievedImages,function($key) use ($colorName){
-           return $key==$colorName;
+        $filtered=array_filter($this->recievedImages,function($key) use ($colorId){
+           return $key==$colorId;
         },ARRAY_FILTER_USE_KEY);
 
         $images=null;

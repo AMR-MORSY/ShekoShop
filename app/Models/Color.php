@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Size;
 use App\Models\Product;
+use App\Models\ColorSize;
 use App\Models\ColorProduct;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +23,7 @@ class Color extends Model
     {
       return $this->hasMany(Image::class);
     }
+   
     
 
 }

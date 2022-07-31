@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Models\Product_Catogory;
-use App\Providers\RouteServiceProvider;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Models\Product_Catogory;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -35,18 +36,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $user = auth()->user();
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        if ($user->hasRole('admin')) {
+            return redirect('dashboard');;
+        } else {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
+      
   
 
       
-        if ($user->hasRole('admin')) {
-           
-           
-           
-            return redirect('dashboard');
-        } else {
-        return redirect()->intended(RouteServiceProvider::HOME);
-        }
+       
     }
 
     /**

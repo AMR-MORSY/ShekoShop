@@ -9,11 +9,12 @@ class Sizes extends Component
 {
     public $recievedSizes;
     public $filteredSizes;
-    public $size_name;
+    public $size_id;
 
-    public function sizeNameChanged()
+    public function sizeIdChanged()
     {
-        $this->emit('selectedSizeName',$this->size_name);
+        $this->emit('selectedSizeId',$this->size_id);
+        // $this->emit('notification');
     }
     public function mount($sizes)
     {
@@ -25,29 +26,35 @@ class Sizes extends Component
         array_push($filtered,$val);
        }
        $this->filteredSizes=$filtered[0];
+    //    dd($this->filteredSizes[0]->id);
+       $this->size_id= $this->filteredSizes[0]->id;
+    //    $this->emitTo('cart-button','binded_size',$this->size_id);
        
     }
 
-    protected $listeners = ['colorSeletcted'=>'selectedColorName'];
+    protected $listeners = ['colorSeletcted'=>'selectedColorId'];
 
-    public function selectedColorName($colorName)
+    public function selectedColorId($colorId)
     {
          
-        $filtered=array_filter($this->recievedSizes,function($key) use ($colorName){
-           return $key==$colorName;
+        $filtered=array_filter($this->recievedSizes,function($key) use ($colorId){
+           return $key==$colorId;
         },ARRAY_FILTER_USE_KEY);
 
-        $images=null;
+       
+
+        $sizes=null;
 
         foreach($filtered as $key=>$val)
         {
-            $images=$val;
+            $sizes=$val;
 
         }
 
        
 
-        $this->filteredSizes=$images;
+        $this->filteredSizes=$sizes;
+       
         $this->dispatchBrowserEvent('contentChanged');
        
       
@@ -56,6 +63,8 @@ class Sizes extends Component
        
 
     }
+
+   
     public function render()
     {
         return view('livewire.sizes');

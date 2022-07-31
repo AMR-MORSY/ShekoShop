@@ -24,6 +24,7 @@ class SearchProduct extends Component
         $this->categories = $product_categ;
 
         $this->search = null;
+        $this->searched_products=[];
     }
     protected $errorBag = 'search_error';
     protected $rules = [
@@ -48,8 +49,9 @@ class SearchProduct extends Component
             if (count($products) > 0) {
                 $this->searched_products = $products;
             } else {
-                $this->searched_products = null;
+                $this->searched_products = [];
             }
+           
         } else {
             $searched = $validated["search"];
             $categ_id = Category::where('category_name', $validated['category'])->first()->id;
@@ -57,14 +59,15 @@ class SearchProduct extends Component
             if (count($products) > 0) {
                 $this->searched_products = $products;
             } else {
-                $this->searched_products = null;
+                $this->searched_products = [];
             }
+          
         }
     }
     public function render()
     {
 
 
-        return view('livewire.search-product');
+        return view('livewire.search-product',['searched_products'=>$this->searched_products]);
     }
 }

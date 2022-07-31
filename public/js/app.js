@@ -160,6 +160,22 @@ $(document).ready(function () {
 });
 $("#links").on("mouseleave", function () {
   $("#links").slideUp("slow", "linear");
+}); /////////cart icon/////////
+
+var myOffcanvas = document.getElementById('offcanvas');
+var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas); // var cartBtn=document.getElementById('cartBtn');
+// cartBtn.addEventListener('click',function(){
+//     // alert('hello');
+//     myOffcanvas.show;
+// })
+
+window.addEventListener('showCart', function (event) {
+  event.preventDefault();
+  bsOffcanvas.toggle();
+});
+window.addEventListener('hideCart', function (event) {
+  event.preventDefault();
+  bsOffcanvas.toggle();
 });
 
 /***/ }),

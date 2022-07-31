@@ -1,19 +1,18 @@
-<div class="row">
+<div class="row w-25 mb-2">
 
-    <select wire:model="size_name" wire:change="sizeNameChanged">
-        <option ></option>
+    <select wire:model="size_id" class="form-control" wire:change="sizeIdChanged">
+        {{-- <option value="select_size">--Select Size--</option> --}}
         @foreach ($filteredSizes as $size)
-
-       <option value="{{$size}}">{{$size}}</option>
-
+            <option value={{ $size['id'] }}>
+             
+              {{ $size['size_name'] }}
+               
+            </option>
         @endforeach
 
     </select>
-  
-    {{-- <div class="col-1"> --}}
-        {{-- <p>{{$size}}</p> --}}
-    {{-- </div> --}}
-        
-   
+
+    
+
 
 </div>

@@ -46,9 +46,18 @@ class StoreProductRequest extends FormRequest
             'product_longDesc' => 'required|string',
             'product_thumb' => 'nullable|string|max:100',
             'category_id' => 'required|string|exists:categories,category_name',
-            'color' => 'required|exists:colors,id',
-            'size' => 'required|exists:sizes,id',
-            'images.*.*' => 'required|mimes:jpg,bmp,png',
+            'devision_id' => 'required|string|exists:devisions,devision_name',
+            'type_id' => 'required|string|exists:types,type_name',
+            // 'color' => 'required|array',
+            // 'color.*' =>'required|exists:colors,id',
+            // 'size' => 'required|array',
+           
+            // 'size.*.*' =>'required|exists:sizes,id',
+            // 'quantity' => 'required|array',
+            // 'quantity.*.*' => 'required|numeric',
+            // 'images' => 'required|array',
+            // 'images.*' => 'required|array|min:5',
+            // 'images.*.*' => 'required|mimes:jpg,bmp,png',
             'product_live' => 'required|boolean',
             'product_location' => 'nullable|string|max:50',
             'facefront_image' => 'required|image'
@@ -57,5 +66,42 @@ class StoreProductRequest extends FormRequest
 
 
         ];
+    }
+
+  
+    // protected function prepareForValidation()
+    // {
+    //     $quantities=[];
+       
+      
+    //     foreach($this->quantity as $quant)
+    //     {
+    //         $quant_arry= explode(',',$quant,200);
+    //         array_push($quantities,$quant_arry);
+          
+    //     }
+
+       
+
+
+    //     $this->merge([
+    //         'quantity'=>$quantities
+
+    //     ]);
+
+    //     // dd($this->quantity);
+        
+      
+      
+    // }
+
+    public function messages()
+    {
+        return [
+            'color.*.required' => "please enter at least one color",
+            'size.*.*.required' =>"please enter at least one size",
+            'images.*.*.required' =>"please enter at least 5 images",
+        ];
+
     }
 }

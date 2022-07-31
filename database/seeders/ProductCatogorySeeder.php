@@ -17,8 +17,8 @@ class ProductCatogorySeeder extends Seeder
      */
     public function run()
     {
-        $options=array ('cloth','furniture','kitchen');
-        for ($i=0; $i<3;$i++)
+        $options=array ('Cloth','Bags','Shoes','Electronics','Home');
+        for ($i=0; $i<count($options);$i++)
         {
             $op=new Category();
             $op->category_name=$options[$i];

@@ -6,7 +6,7 @@
                 <div class="col-lg-6">
                     <div class="title">
                         <h3>Add Product</h3>
-                      
+
                     </div>
                     <div class="form-container">
                         <form method="POST" action="{{ route('addProduct') }}" enctype="multipart/form-data">
@@ -96,33 +96,17 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="form-group mt-2">
-                                        <label for="prouctCateg">Category:</label>
-                                        {{-- <x-sellection id='prouctCateg' class="form-control" name='category_id' :categories="$product_categories" :product="$product" /> --}}
+                                    @livewire('editproduct.categories', ['product' => $product, 'categories' => $categories])
 
-                                        <select id='prouctCateg' class="form-control" name='category_id'>
-                                            <option value></option>
-                                            @if (isset($product_categories))
-                                                {
+                                </div>
+                                <div class="col-md-6">
+                                    @livewire('editproduct.devisions', ['product' => $product])
 
 
+                                </div>
+                                <div class="col-md-6">
+                                    @livewire('editproduct.types', ['product' => $product, 'types' => $types])
 
-                                                @foreach ($product_categories as $product_category)
-                                                    {
-
-
-                                                    <option value="{{ $product_category->category_name }}"
-                                                        @if ($product_category->category_name == $product->category_id) {{ 'selected' }} @endif>
-                                                        {{ $product_category->category_name }}</option>
-
-
-
-                                                    }
-                                                @endforeach
-                                                }
-                                            @endif
-                                        </select>
-                                    </div>
 
                                 </div>
                                 <div class="col-md-6">
@@ -149,53 +133,9 @@
 
                                 </div>
 
-                                {{-- <div class="col-12"> --}}
-                                    {{-- <div class="row"> --}}
 
-                                        {{-- <div class="col-12 col-md-2"> --}}
-                                            {{-- <div class="form-group mt-2"> --}}
-                                                {{-- <label for="color">Color:</label> --}}
-                                                {{-- <select name="color[]" class="form-control" id="color"> --}}
-                                                    {{-- <option value=""></option> --}}
-                                                    {{-- @if (isset($colors)) --}}
-                                                        {{-- @foreach ($colors as $color) --}}
-                                                            {{-- <option value={{ $color->id }}>{{ $color->color_name }} --}}
-                                                            {{-- </option> --}}
-                                                        {{-- @endforeach --}}
-                                                    {{-- @endif --}}
-                                                {{-- </select> --}}
-                                            {{-- </div> --}}
-                                        {{-- </div> --}}
-                                        {{-- <div class="col-12 col-md-5"> --}}
-                                            {{-- <div class="form-group mt-4"> --}}
 
-                                                {{-- @if (isset($sizes)) --}}
-                                                    {{-- <input type="hidden" class="size-collection1" --}}
-                                                        {{-- value="{{ old('size[][]') }}" name="size[][]"> --}}
-                                                    {{-- @foreach ($sizes as $size) --}}
-                                                        {{-- <label for=''>{{ $size->size_name }}</label><input --}}
-                                                            {{-- type="checkbox" class="size1" value={{ $size->id }}> --}}
-                                                    {{-- @endforeach --}}
-                                                {{-- @endif --}}
-                                            {{-- </div> --}}
-                                        {{-- </div> --}}
-                                        {{-- <div class="col-12 col-md-5"> --}}
-                                            {{-- <div class="form-group mt-2"> --}}
-                                                {{-- <label for="image-collection0">images:</label> --}}
-
-                                                {{-- <input type="file" class="form-control image0" --}}
-                                                    {{-- value="{{ old('images[0][][]') }}" multiple='multiple' --}}
-                                                    {{-- name="images[0][][]"> --}}
-                                            {{-- </div> --}}
-                                        {{-- </div> --}}
-                                    {{-- </div> --}}
-                                {{-- </div> --}}
-                              {{--  --}}
-                              
-                              
-                              
-                              
-                                <button class="btn btn-danger mt-5"  type="submit">submit</button>
+                                <button class="btn btn-danger mt-5" type="submit">submit</button>
 
                             </div>
 
@@ -218,13 +158,12 @@
                         @if (session('sizes_updated'))
                             <div class=" alert alert-success">{{ session('sizes_updated') }}</div>
                         @endif
-                        {{-- @error('last_image') --}}
-                        {{-- <span style="color: red; font-size:0.75rem; text-align:left;">{{ $message }}</span> --}}
-{{--                              --}}
-                        {{-- @enderror --}}
+
                         @if ($errors->any())
-                        <span style="color: red; font-size:0.75rem; text-align:left;">{{ $errors->first('last_image') }}</span> 
-                        <span style="color: red; font-size:0.75rem; text-align:left;">{{ $errors->first('images') }}</span> 
+                            <span
+                                style="color: red; font-size:0.75rem; text-align:left;">{{ $errors->first('last_image') }}</span>
+                            <span
+                                style="color: red; font-size:0.75rem; text-align:left;">{{ $errors->first('images') }}</span>
                         @endif
                         @error('color', 'update_color_size')
                             <span style="color: red; font-size:0.75rem; text-align:left;">{{ $message }}</span>
@@ -280,56 +219,60 @@
                                     @for ($v = 0; $v < count($product_colors); $v++)
                                         {{ $product_colors[$v]->color_name }}
 
+                                        <div class="col-12 ">
 
-
-                                        <div class="col-12 col-md-7">
-                                            <div class="form-group mt-4">
-                                                @php
-                                                    $color = $product_colors[$v]->color_name;
-                                                    $filtered = filter_array($product_sizes, $color);
-                                                    $filtered_images_urls = filter_array($product_images_urls, $color);
-                                                    $filtered_images_ids = filter_array($product_images_ids, $color);
-                                                    $color_images_ids = null;
-                                                    foreach ($filtered_images_ids as $key => $value) {
-                                                        $color_images_ids = $value;
-                                                    }
-                                                    $images_ids = $color_images_ids;
-                                                    
-                                                    $color_images_urls = null;
-                                                    
-                                                    foreach ($filtered_images_urls as $key => $value) {
-                                                        $color_images_urls = $value;
-                                                    }
-                                                    $images_urls = $color_images_urls;
-                                                    $color_sizes = null;
-                                                    foreach ($filtered as $key => $value) {
-                                                        $color_sizes = $value;
-                                                    }
-                                                    $filtered_sizes = $color_sizes;
-                                                    
-                                                @endphp
-                                                <form action="{{ route('update_color_size') }}" method="POST">
-                                                    @csrf
-                                                    @if (isset($sizes))
-                                                        <input type="hidden"
-                                                            class="collection size-collection{{ $v }}"
-                                                            value="" name="size">
-                                                        <input type="hidden" name="color"
-                                                            value="{{ $product_colors[$v]->id }}">
-                                                        <input type="hidden" name="product"
-                                                            value="{{ $product->id }}">
-                                                        @foreach ($sizes as $size)
-                                                            <label for=''>{{ $size->size_name }}</label><input
-                                                                type="checkbox" class="sizo{{ $v }}"
-                                                                @foreach ($filtered_sizes as $item) @if ($item == $size->size_name)
-                                                    {{ 'checked' }} @endif
-                                                                @endforeach value={{ $size->id }}>
+                                            @php
+                                                $color = $product_colors[$v]->id;
+                                                $filtered = filter_array($product_sizes, $color);
+                                                $filtered_quantities = filter_array($quantities, $color);
+                                                $filtered_images_urls = filter_array($product_images_urls, $color);
+                                                $filtered_images_ids = filter_array($product_images_ids, $color);
+                                                $color_images_ids = null;
+                                                foreach ($filtered_images_ids as $key => $value) {
+                                                    $color_images_ids = $value;
+                                                }
+                                                $images_ids = $color_images_ids;
+                                                
+                                                $color_images_urls = null;
+                                                
+                                                foreach ($filtered_images_urls as $key => $value) {
+                                                    $color_images_urls = $value;
+                                                }
+                                                $images_urls = $color_images_urls;
+                                                $color_sizes = null;
+                                                foreach ($filtered as $key => $value) {
+                                                    $color_sizes = $value;
+                                                }
+                                                $filtered_sizes = $color_sizes;
+                                                $color_quantities = null;
+                                                foreach ($filtered_quantities as $key => $value) {
+                                                    $color_quantities = $value;
+                                                }
+                                                
+                                              
+                                                
+                                            @endphp
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <p>Available Sizes:</p>
+                                                        @foreach ($filtered_sizes as $size)
+                                                        <p>{{$size->size_name}}</p>
+                                                            
                                                         @endforeach
-                                                    @endif
-                                                    <button class="btn btn-primary size-update" type="submit">update
-                                                        Sizes</button>
-                                                </form>
-                                            </div>
+
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>Quantities:</p>
+                                                        @foreach ($color_quantities as $quantity)
+                                                        <p>{{$quantity}}</p>
+                                                            
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="col-4">
+                                                        @livewire('editproduct.updatesize-btn', ['color_id' => $color,'color_quantities'=>$color_quantities,'filtered_sizes'=>$filtered_sizes], key($v))
+                                                    </div>
+                                                </div>
+
 
 
                                         </div>
@@ -337,26 +280,13 @@
 
 
                                         <div class="col-12">
-                                            <div class="row">
-                                                @for ($i = 0; $i < count($images_urls); $i++)
-                                                    <div class="col-3">
-                                                        <div class="image-container">
-                                                            <img class="w-100" src={{ $images_urls[$i] }}
-                                                                alt="">
-                                                        </div>
-                                                        <div class="d-flex justify-content-center align-items-center mt-2">
-                                                            <a href="{{ route('delete_product_image', [
-                                                                'product_id' => $product->id,
-                                                                'color_id' => $product_colors[$v]->id,
-                                                                'image_id' => $images_ids[$i],
-                                                            ]) }}"
-                                                                class="btn btn-danger">Delete</a>
-                                                        </div>
-                                                    </div>
 
-                                                @endfor
 
-                                            </div>
+
+                                            @livewire('editproduct.carousel', ['product_id' => $product->id, 'color_id' => $product_colors[$v]->id, 'images_ids' => $images_ids, 'images_urls' => $images_urls], key($v))
+
+
+
                                         </div>
                                         <div class="col-12">
                                             <div class="delete-button-container">
@@ -364,8 +294,6 @@
                                                     class="btn btn-danger">Delete Color</a>
                                             </div>
                                         </div>
-
-
                                     @endfor
                                 @endif
 
@@ -374,51 +302,16 @@
 
                         </div>
                         <div class="col-12">
-                            <div class="input-group mt-2">
-                                <button id="addColor" type="button" class="btn btn-danger">Add Color</button>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                         
-                           @if (session()->has('message'))
-                           <div class="alert alert-success">
-                            {{ session('message') }}
-                            </div>
-                           @endif
-                         
-                           @error('exist_color')
-                           <span style="color: red; font-size:0.75rem; text-align:left;">{{ $message }}</span>
-                           @enderror
-                            @error('color', 'add_color')
-                            <span style="color: red; font-size:0.75rem; text-align:left;">{{ $message }}</span>
-                            @enderror
-                            @error('size', 'add_color')
-                            <span style="color: red; font-size:0.75rem; text-align:left;">{{ $message }}</span>
-                            @enderror
-                            @error('images.*.*', 'add_color')
-                            <span style="color: red; font-size:0.75rem; text-align:left;">{{ $message }}</span>
-                            @enderror
-                            @error('images')
-                              <span style="color: red; font-size:0.75rem; text-align:left;">{{ $message }}</span>
-                             @enderror
-                        </div>
-                                                        
-                        <div class="col-12">
-                            <form method="POST" action="{{ route('add_product_color') }}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{$product->id}}">
-                                <div class="color-size">
-                                    <div class="row">
-                                        
-                                    </div>
-                                  
-                                  
-                                  
-                                </div>
+                            @livewire('editproduct.addcolorbtn')
 
-                                <button class="btn btn-danger mt-5" id='form-submit' type="submit">Add </button>
-                               
-                            </form>
+                        </div>
+                        @livewire('editproduct.add-product-color', ['colors' => $colors, 'sizes' => $sizes, 'product_id' => $product->id])
+                        @livewire('editproduct.updatesize', ['sizes' => $sizes,'product_id' => $product->id])
+                        @livewire('editproduct.color-delete-confirmation')
+
+
+                        <div class="col-12">
+
                         </div>
                     </div>
                 </div>
@@ -432,103 +325,38 @@
 
 @section('scripts')
     <script>
-        var i = -1;
-        var counter = 0;
-        $('#addColor').on('click', function() {
+        // var Collection = document.querySelectorAll('.collection');
 
-            i++;
-            $('.color-size >.row').append('<div class="col-12 col-md-2"><div class="form-group mt-2"><label for="color">Color:</label><select name="color[]" class="form-control" id="color"><option value=""></option>@if(isset($colors))@foreach($colors as $color)<option value={{$color->id}}>{{$color->color_name}}</option>@endforeach @endif</select></div></div><div class="col-12 col-md-5"><div class="form-group mt-4"><input type="hidden" class="size-collection'+i+'" value name="size[]">@if (isset($sizes))@foreach ($sizes as $size)<label for="">{{$size->size_name}}</label><input type="checkbox" id="" value="{{$size->id}}" class="size'+i+'"> @endforeach @endif </div></div><div class="col-12 col-md-5"><div class="form-group mt-2"><label for="">images:</label><input type="file"class="form-control" multiple="multiple" name="images['+i+'][]"></div></div>');
-           counter++;
+        // $('.size-update').each(function() {
+        //     $(this).on('click', function() {
 
 
 
+        //         for (var i = 0; i < Collection.length; i++) {
+        //             var collections = [];
+        //             $(`.sizo${i}`).each(function() {
 
-        })
+        //                 if (this.checked) {
+        //                     collections.push($(this).val());
 
-        $(document).ready(function() {
-            $('#form-submit').on('click', function() {
-                $.ajax('/product/addColor',{beforeSend:function(){
-    $('.spinner').css('display','flex');
-},success:function(){
-    $('.spinner').css('display','none');
-}});
+        //                 }
 
 
-                for (var x = 0; x <= counter; x++) {
-                    var sizes_collection = [];
-                    $(`.size${x}`).each(function() {
 
-                        if (this.checked) {
-                            sizes_collection.push($(this).val());
+        //             })
 
-                        }
 
-                    })
-                    $(`.size-collection${x}`).val(sizes_collection);
+        //             $(`.size-collection${i}`).val(collections);
 
 
 
 
-
-                }
-
-
-
-            });
+        //         }
 
 
 
 
-        });
-
-        var Collection = document.querySelectorAll('.collection');
-
-        $('.size-update').each(function() {
-            $(this).on('click', function() {
-               
-
-               
-                for (var i = 0; i < Collection.length; i++) {
-                    var collections = [];
-                    $(`.sizo${i}`).each(function() {
-
-                        if (this.checked) {
-                            collections.push($(this).val());
-                           
-                        }
-
-
-
-                    })
-
-                   
-                    $(`.size-collection${i}`).val(collections);
-
-
-                    
-
-                }
-
-
-
-
-            });
-        });
-        
-
-
-
-
-
-
-
-
-     
-     
-
-     
-     
-
-     
+        //     });
+        // });
     </script>
 @endsection

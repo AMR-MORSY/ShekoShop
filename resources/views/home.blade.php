@@ -1,8 +1,6 @@
 @extends('layouts.master')
 @section('content')
     <section id="intro">
-
-
         <div class="intro-background ">
             <div class="intro-image">
                 <picture>
