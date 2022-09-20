@@ -37,7 +37,7 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            "product_SKU" => 'nullable|string|max:50',
+            // "product_SKU" => 'nullable|string|max:50',
             'product_name' => 'required|string|max:100',
             'product_price' => 'required|numeric',
             'product_weight' => 'nullable|numeric',
@@ -48,17 +48,7 @@ class StoreProductRequest extends FormRequest
             'category_id' => 'required|string|exists:categories,category_name',
             'devision_id' => 'required|string|exists:devisions,devision_name',
             'type_id' => 'required|string|exists:types,type_name',
-            // 'color' => 'required|array',
-            // 'color.*' =>'required|exists:colors,id',
-            // 'size' => 'required|array',
-           
-            // 'size.*.*' =>'required|exists:sizes,id',
-            // 'quantity' => 'required|array',
-            // 'quantity.*.*' => 'required|numeric',
-            // 'images' => 'required|array',
-            // 'images.*' => 'required|array|min:5',
-            // 'images.*.*' => 'required|mimes:jpg,bmp,png',
-            'product_live' => 'required|boolean',
+            // 'product_live' => 'required|boolean',
             'product_location' => 'nullable|string|max:50',
             'facefront_image' => 'required|image'
 

@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('payment_method',['cash_on_delivery','visa'])->default('cash_on_delivery');
             $table->enum('shipping_method',['pickup','delivery'])->default('pickup');
             $table->float('subtotal', 8, 2);
             $table->enum('status',['processing','on_hold','shipping','completed'])->default('processing');
-            $table->unsignedBigInteger('shipping_id');
-            $table->foreign('shipping_id')->references('id')->on('states')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('state_id');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade')->onUpdate('cascade');
             $table->float('total_price', 8, 2);
             $table->timestamps();
         });

@@ -7,6 +7,7 @@ use App\Models\Type;
 
 use App\Models\Color;
 use App\Models\Image;
+use App\Models\Order;
 use App\Models\Category;
 use App\Models\Devision;
 use App\Models\ColorProduct;
@@ -68,6 +69,12 @@ class Product extends Model
     {
         $type = Type::find($value);
         return  $type-> type_name;
+    }
+
+    public function orders()
+    {
+        return   $this->belongsToMany(Order::class)->withTimestamps()->withPivot("quantity","size_id","color_id","price");
+
     }
 
 

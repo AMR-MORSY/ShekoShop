@@ -1,0 +1,30 @@
+.gradiant-square {
+    border-radius: 10px;
+    color: white;
+    width: 150px !important;
+    height: 110px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+        text-align: center;
+    }
+    .icon {
+        margin-bottom: 1rem;
+        margin-right: 0.5rem;
+    }
+}
+.green-gradiant {
+    
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+        94deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 121, 12, 1) 35%,
+        rgba(0, 212, 255, 1) 100%
+    );
+}
+.orange-gradiant {
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+}

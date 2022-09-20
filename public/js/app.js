@@ -161,21 +161,54 @@ $(document).ready(function () {
 $("#links").on("mouseleave", function () {
   $("#links").slideUp("slow", "linear");
 }); /////////cart icon/////////
-
-var myOffcanvas = document.getElementById('offcanvas');
-var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas); // var cartBtn=document.getElementById('cartBtn');
+// var myOffcanvas = document.getElementById("offcanvas");
+// var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+// var cartBtn=document.getElementById('cartBtn');
 // cartBtn.addEventListener('click',function(){
 //     // alert('hello');
 //     myOffcanvas.show;
 // })
+// window.addEventListener("showCart", (event) => {
+//     event.preventDefault();
+//     bsOffcanvas.show();
+// });
+// window.addEventListener('hideCart', event => {
+//     event.preventDefault();
+//     bsOffcanvas.toggle();
+//   })
+// var myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+//     keyboard: false,
+// });
+// window.addEventListener("showModal", (event) => {
+//     // event.preventDefault();
+//      bsOffcanvas.hide();
+//     alert('hello');
+//     //  myModal.show();
+// });
 
-window.addEventListener('showCart', function (event) {
-  event.preventDefault();
-  bsOffcanvas.toggle();
+Livewire.on("CartShow", function () {
+  $("#canvas").removeClass("display_none");
+  $("#canvas").addClass("display_flex");
+  $(".canvos").animate({
+    marginRight: "350px"
+  });
 });
-window.addEventListener('hideCart', function (event) {
-  event.preventDefault();
-  bsOffcanvas.toggle();
+Livewire.on("carthide", function () {
+  $(".canvos").animate({
+    marginRight: "0"
+  }, function () {
+    $("#canvas").removeClass("display_flex");
+    $("#canvas").addClass("display_none");
+  });
+});
+Livewire.on("showModal", function () {
+  $("#store-address-form").removeClass("display_none");
+  $("#store-address-form").addClass("display_block");
+});
+var myOffcanvas = document.getElementById("offcanvas");
+var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+$("#show-side-cart").on("click", function () {
+  bsOffcanvas.show();
 });
 
 /***/ }),

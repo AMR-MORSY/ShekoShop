@@ -2,9 +2,9 @@
     <div class="col-3">
         <div thumbsSlider="" class="swiper mySwiper">
             <div class="swiper-wrapper">
-                @foreach ($filteredImages as $image)
+                @foreach ($filteredImages as $key=>$image)
                     <div class="swiper-slide">
-                        <img src="{{ $image }}" id="imgo" alt="">
+                        <img src="{{ $image }}" alt="">
                         <div class="after"> </div>
                     </div>
                 @endforeach
@@ -17,7 +17,7 @@
 
         <div class="swiper mySwiper2">
             <div class="swiper-wrapper">
-                @foreach ($filteredImages as $image)
+                @foreach ($filteredImages as $key=>$image)
                     <div class="swiper-slide">
                         <img src="{{ $image }}" alt="">
                         <div class="after"> </div>
@@ -28,7 +28,7 @@
         </div>
     </div>
 </div>
-@section('scripts')
+@section('livewire-vertical-carousel-scripts')
     <script>
       
         window.addEventListener('contentChanged', event => {

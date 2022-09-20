@@ -1,14 +1,11 @@
-
 ////////////////////////////////////////////////////////////////
 let x = document.querySelectorAll(".nav-item");
 
 for (let i = 0; i < x.length; i++) {
     x[i].addEventListener("mouseover", function () {
         let linko = $(".nav-item > a").eq(i).text();
-       
 
         if (linko == "+ Hambozo") {
-            
             $("#links").slideDown("slow", "linear");
             $("#Profile").css("display", "none");
             $("#search").css("display", "none");
@@ -17,7 +14,6 @@ for (let i = 0; i < x.length; i++) {
         }
 
         if (linko == "+ Profile") {
-         
             $("#Hambozo").css("display", "none");
             $("#links").slideDown("slow", "linear");
             $("#search").css("display", "none");
@@ -136,36 +132,58 @@ $("#links").on("mouseleave", function () {
 });
 
 /////////cart icon/////////
-var myOffcanvas = document.getElementById('offcanvas');
-var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas)
+// var myOffcanvas = document.getElementById("offcanvas");
+// var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
 // var cartBtn=document.getElementById('cartBtn');
 // cartBtn.addEventListener('click',function(){
 //     // alert('hello');
 //     myOffcanvas.show;
 // })
 
-window.addEventListener('showCart', event => {
-    event.preventDefault();
-    bsOffcanvas.toggle();
-})
+// window.addEventListener("showCart", (event) => {
+//     event.preventDefault();
+//     bsOffcanvas.show();
+// });
 
+// window.addEventListener('hideCart', event => {
+//     event.preventDefault();
+//     bsOffcanvas.toggle();
+//   })
 
-window.addEventListener('hideCart', event => {
-    event.preventDefault();
-    bsOffcanvas.toggle();
-  })
-  
+// var myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+//     keyboard: false,
+// });
 
+// window.addEventListener("showModal", (event) => {
+//     // event.preventDefault();
+//      bsOffcanvas.hide();
+//     alert('hello');
+//     //  myModal.show();
+// });
 
+Livewire.on("CartShow", function () {
+    $("#canvas").removeClass("display_none");
+    $("#canvas").addClass("display_flex");
+    $(".canvos").animate({ marginRight: "350px" });
+});
+Livewire.on("carthide", function () {
+    $(".canvos").animate({ marginRight: "0" }, function () {
+        $("#canvas").removeClass("display_flex");
+        $("#canvas").addClass("display_none");
+    });
+});
 
+Livewire.on("showModal", function () {
+    $("#store-address-form").removeClass("display_none");
+    $("#store-address-form").addClass("display_block");
+});
 
+var myOffcanvas = document.getElementById("offcanvas");
+var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+$("#show-side-cart").on("click", function () {
+    bsOffcanvas.show();
 
-
-
-
-
-
-
-
-
-
+   
+    
+    
+});

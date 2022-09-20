@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\users_addresses;
-use App\Http\Requests\Storeusers_addressesRequest;
-use App\Http\Requests\Updateusers_addressesRequest;
+use App\Http\Requests\UserAddress\Storeusers_addressesRequest;
+use App\Http\Requests\UserAddress\Updateusers_addressesRequest;
 
 class UsersAddressesController extends Controller
 {
@@ -45,10 +45,12 @@ class UsersAddressesController extends Controller
      * @param  \App\Models\users_addresses  $users_addresses
      * @return \Illuminate\Http\Response
      */
-    public function show(users_addresses $users_addresses)
+    public function show()
     {
-        //
+
     }
+        //
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -56,7 +58,7 @@ class UsersAddressesController extends Controller
      * @param  \App\Models\users_addresses  $users_addresses
      * @return \Illuminate\Http\Response
      */
-    public function edit(users_addresses $users_addresses)
+    public function edit()
     {
         //
     }
@@ -68,7 +70,7 @@ class UsersAddressesController extends Controller
      * @param  \App\Models\users_addresses  $users_addresses
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateusers_addressesRequest $request, users_addresses $users_addresses)
+    public function update()
     {
         //
     }
@@ -79,7 +81,7 @@ class UsersAddressesController extends Controller
      * @param  \App\Models\users_addresses  $users_addresses
      * @return \Illuminate\Http\Response
      */
-    public function destroy(users_addresses $users_addresses)
+    public function destroy()
     {
         //
     }

@@ -13,6 +13,10 @@ class Government extends Model
 
     public function states()
     {
-        return $this->hasMany(State::class);
+        return $this->hasMany(State::class,"govern_id");
+    }
+    public function users_addresses()
+    {
+        return $this->hasMany(User_Address::class,"government_id");
     }
 }

@@ -1,3 +1,15 @@
+#loading-screen{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba($color: white, $alpha: 0);
+}
+
+
 .la-ball-fall,
 .la-ball-fall>div {
     position: relative;

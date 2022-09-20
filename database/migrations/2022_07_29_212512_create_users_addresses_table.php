@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('users_addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('address_line1');
-            $table->string('address_line2');
-            $table->string('city');
-            $table->string('country');
+            $table->text('address');
+            $table->foreignId('government_id')->constrained('governments')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('state_id')->constrained('states')->onDelete('cascade')->onUpdate('cascade');
             $table->string('mobile')->unique();
             $table->timestamps();
         });

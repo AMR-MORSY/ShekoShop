@@ -39,6 +39,8 @@
 
         </div>
 
+       
+
     </section>
 
     <section id='shop'>
@@ -58,7 +60,7 @@
 
 
     </section>
-
+ 
     <section id="nice-girl">
         <div class="container-fluid">
             <div class="after"></div>
@@ -118,7 +120,7 @@
     </section>
 @endsection
 
-@section('scripts')
+@section('home-scripts')
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const swiper = new Swiper(".swiper", {

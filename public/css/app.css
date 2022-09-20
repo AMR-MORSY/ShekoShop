@@ -14351,6 +14351,17 @@ readers do not read off random characters that represent icons */
   content: "\f63f";
 }
 
+#loading-screen {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0);
+}
+
 .la-ball-fall,
 .la-ball-fall > div {
   position: relative;
@@ -14560,40 +14571,6 @@ Animation
   margin-right: 1rem;
 }
 
-#add-color-notification {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 99999999999999990000000000000000;
-}
-#add-color-notification .confirmation {
-  position: relative;
-  width: 50%;
-  margin: 4em auto;
-  background-color: white;
-  box-shadow: 3px 3px 5px black;
-  border-radius: 3px;
-  padding: 3rem 3rem;
-}
-#add-color-notification .confirmation i {
-  cursor: pointer;
-}
-#add-color-notification .confirmation .question {
-  padding-bottom: 1rem;
-  border-bottom: solid 2px red;
-}
-#add-color-notification .confirmation .buttons-container {
-  justify-content: flex-end;
-  align-items: center;
-  display: flex;
-}
-#add-color-notification .confirmation .buttons-container button {
-  margin-right: 1rem;
-}
-
 #add-stock {
   position: fixed;
   top: 0;
@@ -14635,6 +14612,278 @@ Animation
   bottom: 0;
   background-color: white;
   z-index: 100;
+}
+
+#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: stretch;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000000000000002000000;
+}
+#canvas .canvos {
+  width: 350px;
+  transform: translateX(350px);
+  overflow-y: scroll;
+  height: 100%;
+  background-color: white;
+}
+
+#store-address-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99999999999999990000000000000000;
+}
+#store-address-form .model {
+  position: relative;
+  width: 50%;
+  margin: 4em auto;
+  background-color: white;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  padding: 1rem 1rem;
+}
+#store-address-form .model i {
+  cursor: pointer;
+}
+#store-address-form .model .buttons-container {
+  border-top: solid 2px red;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+#store-address-form .model .buttons-container button {
+  margin-right: 1rem;
+}
+
+.your-order {
+  position: relative;
+  width: 100%;
+  background-color: #E6E6E6;
+  padding: 1rem 1rem;
+}
+.your-order #loading-screen {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.your-order h5 {
+  text-align: center;
+  font-weight: 900;
+}
+.your-order .product-form {
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+}
+.your-order .product-form .product-subtotal {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-bottom: 2px solid #E6E6E6;
+}
+.your-order .product-form .product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #E6E6E6;
+  padding: 0 1rem;
+}
+.your-order .product-form .product p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.your-order .product-form .product span {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.your-order .product-form .product .product-data p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.your-order .product-form .product .product-data span {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.your-order .product-form .shipping, .your-order .product-form .payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #E6E6E6;
+  padding: 2rem 1rem;
+}
+.your-order .product-form .shipping .shipping-options, .your-order .product-form .shipping .payment-options, .your-order .product-form .payment .shipping-options, .your-order .product-form .payment .payment-options {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.your-order .product-form .shipping .shipping-options .group, .your-order .product-form .shipping .payment-options .group, .your-order .product-form .payment .shipping-options .group, .your-order .product-form .payment .payment-options .group {
+  margin-bottom: 0.5rem;
+}
+.your-order .product-form .shipping-rate {
+  align-items: center;
+  justify-content: flex-end;
+  border-bottom: 2px solid #E6E6E6;
+  padding: 0 1rem;
+}
+.your-order .product-form .subtotal {
+  border-bottom: 2px solid #E6E6E6;
+}
+.your-order .product-form .total-order, .your-order .product-form .subtotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+}
+.your-order .product-form .total-order #total-price, .your-order .product-form .total-order #subtotal, .your-order .product-form .subtotal #total-price, .your-order .product-form .subtotal #subtotal {
+  position: relative;
+}
+.your-order .product-form .total-order #total-price::after, .your-order .product-form .total-order #subtotal::after, .your-order .product-form .subtotal #total-price::after, .your-order .product-form .subtotal #subtotal::after {
+  content: "LE";
+  position: absolute;
+  top: 0;
+  right: -50%;
+}
+
+svg {
+  -webkit-animation: 2s linear infinite svg-animation;
+          animation: 2s linear infinite svg-animation;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  z-index: 2;
+}
+
+.add-color {
+  width: 120px;
+  margin-top: 3rem;
+}
+
+.cart-delete-product, .add-new-size, .delete-size {
+  width: 90px;
+}
+
+.delete_color_btn {
+  width: 80px;
+}
+
+#spinner-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #261d09;
+  position: relative;
+}
+#spinner-btn span {
+  color: white;
+  display: block !important;
+  transition: all 0.5s ease;
+}
+
+@-webkit-keyframes svg-animation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes svg-animation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+circle {
+  -webkit-animation: 1.4s ease-in-out infinite both circle-animation;
+          animation: 1.4s ease-in-out infinite both circle-animation;
+  display: block;
+  fill: transparent;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 280;
+  stroke-width: 10px;
+  transform-origin: 50% 50%;
+}
+
+@-webkit-keyframes circle-animation {
+  0%, 25% {
+    stroke-dashoffset: 280;
+    transform: rotate(0);
+  }
+  50%, 75% {
+    stroke-dashoffset: 75;
+    transform: rotate(45deg);
+  }
+  100% {
+    stroke-dashoffset: 280;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circle-animation {
+  0%, 25% {
+    stroke-dashoffset: 280;
+    transform: rotate(0);
+  }
+  50%, 75% {
+    stroke-dashoffset: 75;
+    transform: rotate(45deg);
+  }
+  100% {
+    stroke-dashoffset: 280;
+    transform: rotate(360deg);
+  }
+}
+.gradiant-square {
+  border-radius: 10px;
+  color: white;
+  width: 150px !important;
+  height: 110px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gradiant-square p {
+  text-align: center;
+}
+.gradiant-square .icon {
+  margin-bottom: 1rem;
+  margin-right: 0.5rem;
+}
+
+.green-gradiant {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(94deg, rgb(2, 0, 36) 0%, rgb(9, 121, 12) 35%, rgb(0, 212, 255) 100%);
+}
+
+.orange-gradiant {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(90deg, rgb(131, 58, 180) 0%, rgb(253, 29, 29) 50%, rgb(252, 176, 69) 100%);
 }
 
 * {
@@ -15036,6 +15285,21 @@ body {
 
 .display_block {
   display: block;
+}
+
+.display_flex {
+  display: flex;
+}
+
+input,
+select {
+  border-radius: 50px !important;
+  border: 2px solid #e6e6e6 !important;
+}
+
+label {
+  display: inline-block !important;
+  padding-left: 1rem !important;
 }
 
 #dashboard {
@@ -15454,7 +15718,7 @@ body {
 
 #vertical-carosel {
   margin-top: 3em;
-  height: 100vh;
+  margin-bottom: 3rem;
   width: 100%;
 }
 #vertical-carosel .colors {

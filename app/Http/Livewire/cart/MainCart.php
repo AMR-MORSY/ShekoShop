@@ -11,7 +11,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 
-class UsersCart extends Component
+class MainCart extends Component
 {
     public $products = [];
     public $colors = [];
@@ -101,7 +101,7 @@ class UsersCart extends Component
          
             $this->emit('productAdded');
             $this->emitTo('cart-total-price', 'update_total_price_delete', $this->prices, $this->quantities);
-            $this->dispatchBrowserEvent('hideCart');
+            // $this->dispatchBrowserEvent('hideCart');
           
         } else {
             $Db_products = Cookie::get('product');
@@ -131,7 +131,7 @@ class UsersCart extends Component
           
             $this->emit('productAdded');
             $this->emitTo('cart-total-price', 'update_total_price_delete', $this->prices, $this->quantities);
-            $this->dispatchBrowserEvent('hideCart');
+            // $this->dispatchBrowserEvent('hideCart');
         }
     }
 
@@ -224,6 +224,12 @@ public function submitOrder()
 
     public function render()
     {
-        return view('livewire.cart.users-cart');
+      
+        
+            return view('livewire.cart.main-cart');
+
+        
+       
+       
     }
 }

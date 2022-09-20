@@ -19,7 +19,7 @@ class User_AddressFactory extends Factory
         return [
             'user_id'=>$this->faker->numberBetween(1,100),
             "address_line1" => $this->faker->address(),
-            "address_line2" => $this->faker->address(),
+           
             'city' => $this->faker->city(),
             'country' => $this->faker->country(),
             'mobile' => $this->faker->phoneNumber()

@@ -1,0 +1,122 @@
+.your-order{
+    position: relative;
+    #loading-screen{
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: rgba($color: white, $alpha: 0.9);
+    }
+    width: 100%;
+    background-color:#E6E6E6 ;
+    padding: 1rem 1rem;
+    h5{
+        text-align: center;
+        font-weight: 900;
+
+    }
+    .product-form{
+        background-color: white;
+        padding: 1rem 2rem;
+        box-shadow: 2px 2px 5px 2px rgba($color: #000000, $alpha: 0.2) ;
+        .product-subtotal{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            border-bottom: 2px solid #E6E6E6;
+
+        }
+        .product{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #E6E6E6;
+            padding: 0 1rem;
+            p{
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            span{
+                margin: 0 !important;
+                padding: 0 !important;
+
+            }
+            .product-data{
+
+                
+              
+                p{
+                    margin: 0 !important;
+                    padding: 0 !important;
+                }
+                span{
+                    margin: 0 !important;
+                    padding: 0 !important;
+    
+                }
+
+            }
+          
+        }
+
+        .shipping,.payment{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom:2px solid #E6E6E6; 
+           
+            padding: 2rem 1rem;
+        
+    
+    
+            .shipping-options,.payment-options{
+                display:flex;
+                justify-content: center;
+                align-items: flex-end;
+                flex-direction: column;
+
+                .group{
+                    margin-bottom: 0.5rem;
+                }
+             
+            }
+    
+        }
+        .shipping-rate
+        {
+       
+            align-items: center;
+            justify-content: flex-end;
+            border-bottom: 2px solid #E6E6E6;
+            padding: 0 1rem;
+          
+        }
+        .subtotal{
+            border-bottom: 2px solid #E6E6E6;
+
+        }
+
+        .total-order,.subtotal{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1rem;
+            #total-price,#subtotal{
+                position: relative;
+            }
+            #total-price::after,#subtotal::after{
+                content: "LE";
+                position: absolute;
+                top: 0;
+                right: -50%;
+            }
+            
+        }
+    }
+  
+}

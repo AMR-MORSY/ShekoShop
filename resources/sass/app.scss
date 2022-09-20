@@ -14,6 +14,11 @@
 @import "livewire/dashboard/addColorNotification";
 @import "livewire/dashboard/addStock";
 @import "livewire/cart/usercart";
+@import "livewire/cart/side-cart";
+@import "livewire/user/storeUserAddressForm";
+@import "orders/checkout";
+@import "components/spinnerButton";
+@import "components/gradiant-square";
 * {
     margin: 0;
     padding: 0;
@@ -434,6 +439,20 @@ body {
 .display_block {
     display: block;
 }
+.display_flex {
+    display: flex;
+}
+input,
+select {
+    border-radius: 50px !important;
+
+    border: 2px solid #e6e6e6 !important;
+}
+
+label {
+    display: inline-block !important;
+    padding-left: 1rem !important;
+}
 
 #dashboard {
     padding-bottom: 3rem;
@@ -449,6 +468,8 @@ body {
             text-align: left;
         }
     }
+
+    
 }
 #intro,
 #guest {
@@ -653,10 +674,7 @@ body {
     .carosel-container {
         width: 90%;
         margin: auto;
-
-       
     }
-    
 }
 
 .swiper {
@@ -881,9 +899,9 @@ body {
 }
 
 #vertical-carosel {
-    // margin: 1rem 0;
     margin-top: 3em;
-    height: 100vh;
+    margin-bottom: 3rem;
+    // height: 100vh;
     width: 100%;
     .colors {
         width: 30px;
@@ -892,7 +910,6 @@ body {
         margin: 0.5rem 0.5rem;
     }
 
-   
     .swiper {
         width: 100%;
         height: 500px;

@@ -13,10 +13,12 @@ class CartLogo extends Component
     {
         if(Auth()->user())
         {
-            $products=Cart::where('user_id',Auth()->user()->id)->get();
-            if(count($products)>0)
+            $products=Cart::where('user_id',Auth()->user()->id)->where('product_live',1)->get();
+
+            $count=count($products);
+            if($count>0)
             {
-                $this->counter=count($products);
+                $this->counter=$count;
 
             }
             else
@@ -43,16 +45,27 @@ class CartLogo extends Component
 
     }
 
-    protected $listeners=['productAdded'=>'productAdded'];
+    protected $listeners=['productAdded'=>'productAdded','productDeleted'];
 
+    // public function CartShow()
+    // {
+    //     $this->emit('CartShow');
+    // }
+
+    public function productDeleted()
+    {
+        $this->productAdded();
+    }
     public function productAdded()
     {
         if(Auth()->user())
         {
-            $products=Cart::where('user_id',Auth()->user()->id)->get();
-            if(count($products)>0)
+            $products=Cart::where('user_id',Auth()->user()->id)->where('product_live',1)->get();
+
+            $count=count($products);
+            if($count>0)
             {
-                $this->counter=count($products);
+                $this->counter=$count;
 
             }
             else

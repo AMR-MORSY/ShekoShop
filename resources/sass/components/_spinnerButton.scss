@@ -1,0 +1,85 @@
+svg {
+    animation: 2s linear infinite svg-animation;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    z-index: 2;
+   
+}
+
+.add-color{
+    width: 120px;
+    margin-top: 3rem;
+}
+.cart-delete-product,.add-new-size,.delete-size
+{
+    width: 90px;
+}
+.delete_color_btn
+{
+    width: 80px;
+}
+
+#spinner-btn{
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // width: 90px;
+    background-color: #261d09;
+    position: relative;
+   
+    span{
+        
+        color: white;
+        display: block !important;
+        transition: all 0.5s ease;
+       
+
+    }
+}
+
+// SVG animation.
+@keyframes svg-animation {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+// Circle styles.
+circle {
+    animation: 1.4s ease-in-out infinite both circle-animation;
+    display: block;
+    fill: transparent;
+    stroke: white;
+    stroke-linecap: round;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 280;
+    stroke-width: 10px;
+    transform-origin: 50% 50%;
+}
+
+// Circle animation.
+@keyframes circle-animation {
+    0%,
+    25% {
+        stroke-dashoffset: 280;
+        transform: rotate(0);
+    }
+
+    50%,
+    75% {
+        stroke-dashoffset: 75;
+        transform: rotate(45deg);
+    }
+
+    100% {
+        stroke-dashoffset: 280;
+        transform: rotate(360deg);
+    }
+}

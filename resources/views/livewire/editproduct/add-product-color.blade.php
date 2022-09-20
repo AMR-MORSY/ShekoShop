@@ -81,17 +81,15 @@
                         @foreach ($sizes as $index => $size)
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex justify-content-between align-items-center w-25">
-                                    <label for=''
-                                        style="display: inline-block">{{ $size->size_name }}</label>
+                                    <label for='' style="display: inline-block">{{ $size->size_name }}</label>
                                     <input type="checkbox" class="size" wire:model="size.{{ $index }}"
-                                        style="display: inline-block"value={{ $size->id }}
-                                        wire:key="size.{{ $size->id }}">
+                                        style="display: inline-block"value={{ $size->id }}>
                                 </div>
 
                                 <div class="quantity" style="margin-bottom: 3px">
                                 
                                     <input type="number" min=0 wire:model="quantity.{{ $index }}"
-                                        value="0" wire:key="{{ $index }}">
+                                        value="0" >
 
                                 </div>
                             </div>

@@ -27,7 +27,13 @@ class VerticalCarousel extends Component
            return $key==$colorId;
         },ARRAY_FILTER_USE_KEY);
 
+
+      
+
+        
+
         $images=null;
+        $this->filteredImages=[];
 
         foreach($filtered as $key=>$val)
         {
@@ -35,9 +41,12 @@ class VerticalCarousel extends Component
 
         }
 
-        //  dd($images);
+        
 
         $this->filteredImages=$images;
+        //  dd($this->filteredImages);
+
+       
         $this->dispatchBrowserEvent('contentChanged');
        
       
@@ -48,15 +57,15 @@ class VerticalCarousel extends Component
     }
     public function mount($images)
     {
-        $filtered=[];
+    //     $filtered=[];
         $this->recievedImages=$images;
-       foreach($images as $key=>$val)
-       {
-        array_push($filtered,$val);
+    //    foreach($images as $key=>$val)
+    //    {
+    //     array_push($filtered,$val);
 
-       }
-     
-       $this->filteredImages=$filtered[0];
+    //    }
+      
+       $this->filteredImages=$images;
 
     }
     public function render()

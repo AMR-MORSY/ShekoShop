@@ -20,10 +20,7 @@ class CartCounter extends Component
     public function increment($index)
     {
         $this->counter++;
-
-        // $this->counter_index=$index;
-
-        $this->emit('cartCounterIncremented', $index);
+        $this->emit('cartCounterIncremented', $index,$this->counter);
 
 
 
@@ -38,7 +35,7 @@ class CartCounter extends Component
     {
         if ($this->counter > 1) {
             $this->counter--;
-            $this->emit('cartCounterDecremented', $index);
+            $this->emit('cartCounterDecremented', $index,$this->counter);
             // $this->emit('counter_index', $index);
 
 

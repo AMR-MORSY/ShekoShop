@@ -1,1 +1,0 @@
-<button class="btn btn-info"   wire:click="selectProduct">ADD To CART</button>
