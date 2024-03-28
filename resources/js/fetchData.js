@@ -15,8 +15,17 @@ export const fetchData=()=>{
     Api.defaults.baseURL = basUrl;
 
 
+    const uploadApi = axios.create({
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      uploadApi.defaults.withCredentials=true;
+      uploadApi.defaults.baseURL=basUrl;
     return{
-        Api
+        Api,
+        uploadApi
     }
 
 }

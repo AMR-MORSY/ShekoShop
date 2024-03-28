@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DevisionRequest;
 use Illuminate\Support\Facades\Config;
+use App\Http\Requests\ImagesUploadRequest;
 
 class AdminDevisionController extends Controller
 {
@@ -75,6 +76,17 @@ class AdminDevisionController extends Controller
        $devision->update($validated);
        $devision->save();
         return redirect()->route('devision.show', ["devision" =>$devision->id])->with('status', 'Updated Succefully');
+    }
+    public function images(ImagesUploadRequest $request, Devision $devision)
+    {
+        $devision->images()->delete();
+        $storeImage= new StoreImage($request,$devision,'App\Models\Devision');
+        $storeImage->storeImage();
+
+        return response()->json([
+            'redirect'=>route('devision.show',["devision" => $devision])
+        ]);
+
     }
 
     /**

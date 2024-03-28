@@ -29,8 +29,6 @@ return new class extends Migration
             $table->text('product_longDesc');
             $table->unsignedBigInteger('discount_id')->nullable();
             $table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('devision_id');
-            $table->foreign('devision_id')->references('id')->on('devisions')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->float('product_stock',8, 2)->default(0);

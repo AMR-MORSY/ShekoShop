@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Devision;
+use App\Models\Option;
+use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class UsersProductController extends Controller
@@ -12,7 +17,10 @@ class UsersProductController extends Controller
      */
     public function index()
     {
-        //
+        $devisions=Devision::all();
+        $categories=Category::All();
+       
+        return view("welcome",['categories'=>$categories,'devisions'=>$devisions]);
     }
 
     /**
@@ -34,9 +42,12 @@ class UsersProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Devision $devision ,Category $category,Product $product)
     {
-        //
+        $sizes=Size::all();
+        $options=Option::all();
+       
+        return view('pages.users.Product',['product'=>$product,'sizes'=>$sizes,'options'=>$options]);
     }
 
     /**

@@ -2,6 +2,8 @@ export default {
     root: ({ props, context, parent }) => ({
         class: [
             'relative',
+            'px-5',
+            'py-2.5',
 
             // Alignments
             'items-center inline-flex text-center align-bottom justify-center',
@@ -11,10 +13,10 @@ export default {
             {
                 'px-4 py-3': props.size === null && props.label !== null,
                 'text-sm py-2 px-3': props.size === 'small',
-                'text-xl py-3 px-4': props.size === 'large'
+                'text-xl py-3 px-4': props.size === 'large',
             },
             {
-                'w-12 p-0 py-3': props.label == null
+                'w-20 p-0 py-3': props.label == null
             },
 
             // Shapes

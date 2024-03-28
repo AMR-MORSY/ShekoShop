@@ -18,6 +18,8 @@
     <body class="font-sans antialiased">
         <div id="app" class="min-h-screen bg-gray-100">
             {{-- @include('layouts.navigation') --}}
+           
+
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -31,10 +33,12 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+
+                
             </main>
         </div>
        
-      
         @stack('script')
+      
     </body>
 </html>

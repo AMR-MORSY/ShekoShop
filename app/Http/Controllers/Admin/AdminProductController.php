@@ -12,6 +12,8 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Cookie;
 use App\Http\Resources\ProductResource;
+use App\Models\Devision;
+use App\Services\StoreImage;
 use Illuminate\Support\Facades\Session;
 
 class AdminProductController extends Controller
@@ -24,14 +26,7 @@ class AdminProductController extends Controller
     {
 
         $products = Product::all();
-        // if(Cookie::get('cartCount'))
-        // {
-        //       $cartCount=Cookie::get('cartCount');
-
-        // }
-        // else{
-        //     $cartCount=0;
-        // }
+      
 
         return view('pages.admin.viewProducts')->with(["products" => $products]);
     }
@@ -46,25 +41,6 @@ class AdminProductController extends Controller
         return view("pages.admin.createProduct", ["categories" => $categories]);
     }
 
-    private function storeImage($request, $product)
-    {
-        foreach ($request->file('images') as $image) {
-            $imageName = $image->getClientOriginalName();
-            $path = $image->storeAs(
-                'public/images',
-                $imageName,
-                'local'
-
-            );
-
-            $image = Image::create([
-                "name" => $imageName,
-                "path" => Config::get("app.url") . "/" . "storage/images/$imageName",
-                "product_id" => $product->id,
-
-            ]);
-        }
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -75,8 +51,8 @@ class AdminProductController extends Controller
 
         $validated = $request->safe()->except(['images']);
         $product = Product::create($validated);
-        $this->storeImage($request, $product);
-
+      $storeImage=new StoreImage($request,$product,'App\Models\Product');
+      $storeImage->storeImage();
         return redirect()->route('product.show', ['product' => $product->id]);
     }
 
@@ -89,40 +65,20 @@ class AdminProductController extends Controller
         return view('pages.admin.viewProduct')->with(["product" => $product]);
     }
 
-
-    public function cart(Request $request)
-    {
-        Session::put('id',$request->input('id'));
-        return back();
-        // $data = [
-        //     "name" => "amr",
-        //     "age" => "40"
-        // ];
-
-        // $value = Cookie::get('cartCount');
-        // if ($value) {
-        //     json_decode($value);
-
-            
-        //     foreach ($data as $item) {
-        //         array_push($value, $item);
-        //     }
-        //     $cookie =  Cookie::make('cartCount',json_encode( $value), time() * 360 * 60);
-        // } else {
-        //     $cookie =  Cookie::make('cartCount',json_encode($data) , time() * 360 * 60);
-        // }
-
-
-
-        // return back()->cookie($cookie);
-    }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('pages.admin.createProduct')->with(['product' => $product, "categories" => $categories]);
+       $devisions=Devision::all();
+       $displayAttribute=false;
+       if($product->category->devision->id==1)
+       {
+        $displayAttribute=true;
+       }
+
+        return view('pages.admin.createProduct')->with(["displayAttribute"=>$displayAttribute,'product' => $product, "categories" => $categories,'devisions'=>$devisions]);
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Services\StoreImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\ImagesUploadRequest;
 
 class AdminCategoryController extends Controller
 {
@@ -64,6 +65,18 @@ class AdminCategoryController extends Controller
     {
         $devisions=Devision::all();
         return view('pages.admin.createDevisionCategoryForm',['category'=>$category,'devisions'=>$devisions]);
+    }
+
+    public function images(ImagesUploadRequest $request, Category $category)
+    {
+        $category->images()->delete();
+        $storeImage= new StoreImage($request,$category,'App\Models\Category');
+        $storeImage->storeImage();
+
+        return response()->json([
+            'redirect'=>route('category.show',["category" => $category])
+        ]);
+
     }
 
     /**

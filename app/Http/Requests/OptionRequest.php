@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PermissionRequest extends FormRequest
+class OptionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,7 +22,7 @@ class PermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => ["required", "regex:/^[a-zA-Z]{3,}[a-zA-Z_-]*$/", "min:3", "max:30", "unique:permissions"],
+            //
         ];
     }
 }

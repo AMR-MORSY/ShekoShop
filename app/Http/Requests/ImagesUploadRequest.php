@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rules\File;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PermissionRequest extends FormRequest
+class ImagesUploadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +23,8 @@ class PermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => ["required", "regex:/^[a-zA-Z]{3,}[a-zA-Z_-]*$/", "min:3", "max:30", "unique:permissions"],
+            "images" => ["required","array"],
+            "images.*" => [File::image()->max(12 * 1024)]
         ];
     }
 }

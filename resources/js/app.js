@@ -17,7 +17,8 @@ import 'primeicons/primeicons.css'
 import DialogService from 'primevue/dialogservice';
 
 
-import ImagesUploadingFormDialog from './Components/ImagesUploadingFormDialog.vue';
+import ImagesUploadigForm from "./Components/ImagesUploadingForm.vue";
+import ImageContainer from './Components/ImageContainer.vue';
 import ServerToast from './Components/ServerToast.vue';
 import Button from 'primevue/button';
 import DataTable from 'primevue/datatable';
@@ -25,7 +26,9 @@ import Column from 'primevue/column';
 import ChipComponent from './Components/ChipComponent.vue';
 import Chip from 'primevue/chip';
 import EditRole from './Components/EditRole.vue';
-
+import DynamicDialog from 'primevue/dynamicdialog';
+import ProductCartForm from './Components/ProductCartForm.vue';
+import SideCart from './Components/SideCart.vue';
 const app=createApp({});
 
 app.component("RolesTable",RolesTable)
@@ -36,6 +39,11 @@ app.component("RolesTable",RolesTable)
 .component('ChipComponent',ChipComponent)
 .component("Chip",Chip)
 .component('EditRole',EditRole)
+.component('ImageContainer',ImageContainer)
+.component ('ImagesUploadingForm',ImagesUploadigForm)
+.component('DynamicDialog',DynamicDialog)
+.component('ProductCartForm',ProductCartForm)
+.component('SideCart',SideCart)
 .use(PrimeVue,{
     unstyled:true,
     pt:Lara

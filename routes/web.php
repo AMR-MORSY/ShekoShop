@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Users\UsersProductController;
+use App\Http\Controllers\Users\UsersCategoryController;
+use App\Http\Controllers\Users\UsersDevisionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,22 +16,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',function(){
-return view('welcome');
-});
+Route::get('/',[UsersProductController::class,'index']);
 
-// Route::get('/admin', function () {
-//     return view('auth.login');
-// });
+///////////////////////////Devisions Routes//////////////////////
 
-// Route::get('/user/dashboard', function () {
-//     return view('pages.user.dashboard');
-// })->middleware(['auth'])->name('user.dashboard');
-
-
-// Route::get('/admin/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth:admin'])->name('admin.dashboard');
+Route::get('/{devision:slug}',[UsersDevisionController::class,'show'])->name('usersDevision.show');
+Route::get('/{devision:slug}/{category:slug}',[UsersCategoryController::class,'show'])->name('usersCategory.show');
+Route::get('{devision:slug}/{category:slug}/{product:slug}',[UsersProductController::class,'show'])->name('usersProduct.show');
 
 
 Route::middleware('auth')->group(function () {

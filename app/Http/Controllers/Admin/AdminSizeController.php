@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Devision;
 use Illuminate\Http\Request;
 
-class UsersCategoryController extends Controller
+class AdminSizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,13 +34,9 @@ class UsersCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show (Devision $devision, Category $category)
+    public function show(string $id)
     {
-        $products=$category->products;
-      
-        return view('pages.users.Category',['category'=>$category,'products'=>$products]);
-
-        
+        //
     }
 
     /**

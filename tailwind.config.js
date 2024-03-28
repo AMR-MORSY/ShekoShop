@@ -17,6 +17,17 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            container: {
+                padding: {
+                //   DEFAULT: '1rem',
+                  sm: '2rem',
+                  lg: '4rem',
+                  xl: '5rem',
+                  '2xl': '6rem',
+                },
+              },
+
+        
             colors: {
                 'primary-50': 'rgb(var(--primary-50))',
                 'primary-100': 'rgb(var(--primary-100))',
@@ -40,7 +51,8 @@ export default {
                 'surface-700': 'rgb(var(--surface-700))',
                 'surface-800': 'rgb(var(--surface-800))',
                 'surface-900': 'rgb(var(--surface-900))',
-                'surface-950': 'rgb(var(--surface-950))'
+                'surface-950': 'rgb(var(--surface-950))',
+                'Purple':'#310237',
             }
         },
     },

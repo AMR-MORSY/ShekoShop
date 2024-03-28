@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDevisionController;
+use App\Http\Controllers\Admin\ManipulatingProductCreationFormController;
 
 ///////////////////products routes///////////////////////////////
 
@@ -20,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('permission:update_product')->post('/products/{product}',[AdminProductController::class,'update'])->name('product.update');
     Route::middleware('permission:store_product')->post('/products',[AdminProductController::class,'store'])->name('product.store');
     Route::middleware('permission:delete_product')->delete('/products/{product}',[AdminProductController::class,'destroy'])->name('product.destroy');
-     Route::middleware('permission:delete_product')->post('/product/cart',[AdminProductController::class,'cart'])->name('product.cart');
+     Route::middleware('permission:update_product')->post('/product/formManipulate',[ManipulatingProductCreationFormController::class,'manipulateForm'])->name('product.manipulateForm');
 })->prefix('admin'); 
 
 ///////////////////Roles and Permissions///////////////////////
@@ -57,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('permission:update_category')->post('/categories/{category}',[AdminCategoryController::class,'update'])->name('category.update');
     Route::middleware('permission:store_category')->post('/categories',[AdminCategoryController::class,'store'])->name('category.store');
     Route::middleware('permission:delete_category')->delete('/categories/{category}',[AdminCategoryController::class,'destroy'])->name('category.destroy');
+    Route::middleware('permission:update_category')->post('/categories/images/{category}',[AdminCategoryController::class,'images'])->name('category.images');
    
 })->prefix('admin'); 
 
@@ -71,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('permission:update_devision')->post('/devisions/{devision}',[AdminDevisionController::class,'update'])->name('devision.update');
     Route::middleware('permission:store_devision')->post('/devisions',[AdminDevisionController::class,'store'])->name('devision.store');
     Route::middleware('permission:delete_devision')->delete('/devisions/{devision}',[AdminDevisionController::class,'destroy'])->name('devision.destroy');
+    Route::middleware('permission:update_devision')->post('/devisions/images/{devision}',[AdminDevisionController::class,'images'])->name('devision.images');
    
 })->prefix('admin'); 
 

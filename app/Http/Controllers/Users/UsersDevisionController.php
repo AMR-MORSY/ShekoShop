@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Devision;
 use Illuminate\Http\Request;
 
-class UsersCategoryController extends Controller
+class UsersDevisionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,12 +35,9 @@ class UsersCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show (Devision $devision, Category $category)
+    public function show(Devision $devision)
     {
-        $products=$category->products;
-      
-        return view('pages.users.Category',['category'=>$category,'products'=>$products]);
-
+        return view('pages.users.Devision',['devision'=>$devision]);
         
     }
 

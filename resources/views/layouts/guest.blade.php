@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="@yield('description')">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}:: @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -17,14 +18,18 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    <div id="app" class=" bg-gray-100 h-screen">
-        <x-navbar></x-navbar>
+    <div id="app" >
+        <x-navbar :categories="$categories" :devisions="$devisions"></x-navbar>
+       
+      
 
-        <div class=" p-5">
+
+        <div>
+           
             {{ $slot }}
         </div>
 
-     
+      
 
     </div>
 </body>

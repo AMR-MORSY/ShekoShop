@@ -36,12 +36,9 @@
                         @endforeach
 
                     </div>
-                    <div class=" w-48 flex-1 text-start p-3">
-
-                        <div class=" w-full flex justify-center items-center">
-                            <img src="{{ $devision->images[0]->path }}" class=" h-40 w-40" alt="">
-                        </div>
-
+                    <div class=" w-48 flex-1 shrink-0 text-start p-3">
+                        <image-container path="{{ $devision->images[0]->path }}" id="{{$category->id}}" property="devision" />
+                      
 
 
 
@@ -70,21 +67,9 @@
 
                     </div>
                     <div class=" w-48 flex-1 text-start p-5 ">
+                        <image-container path="{{ $category->images[0]->path }}" id="{{$category->id}}" property='category' />
 
-                        <div class=" w-full flex-column justify-center  items-center " >
-                            <div class=" w-41 h-41 flex justify-center items-center hover:border hover:border-red-400 ">
-                                <img src="{{ $category->images[0]->path }}" class=" h-40 w-40" alt="">
-
-                            </div>
-                            <p class=" text-center text-black">Click to Update</p>
-
-                        </div>
-
-
-
-
-
-
+                    
                     </div>
                 </div>
 
