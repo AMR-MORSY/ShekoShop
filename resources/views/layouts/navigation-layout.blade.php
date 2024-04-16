@@ -36,7 +36,7 @@
     <section id="sideBar" class=" relative">
         <button data-drawer-target="devisions-sidebar" data-drawer-toggle="devisions-sidebar"
             aria-controls="devisions-sidebar" type="button"
-            class="inline-flex items-center mt-2 p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+            class="inline-flex items-center mt-2 p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
             <span class="sr-only">Open sidebar</span>
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
@@ -47,20 +47,20 @@
         </button>
 
         <aside id="devisions-sidebar"
-            class=" absolute top-0 left-0 w-64 z-50 h-screen pt-20 transition-transform -translate-x-full bg-white  sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+            class=" absolute top-0 left-0 w-64 z-50 h-screen pt-20 transition-transform -translate-x-full bg-white  sm:translate-x-0"
             aria-label="Sidebar">
-            <div class=" px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <div class=" px-3 pb-4 overflow-y-auto bg-white">
                 <ul class="space-y-2 font-medium">
 
                     @foreach ($devisions as $dev)
                         <li>
                             <button type="button"
-                                class="flex items-center w-full text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                class="flex items-center w-full text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
                                 aria-controls="dropdown-example" data-collapse-toggle="{{ $dev->devision_name }}">
 
                                 <a href="{{ route('usersDevision.show', ['devision' => $dev->slug]) }}"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                         viewBox="0 0 18 18">
                                         <path
@@ -80,7 +80,7 @@
                                 @foreach ($dev->categories as $category)
                                     <li>
                                         <a href="{{ route('usersCategory.show', ["devision"=>$dev->slug,'category' => $category->slug]) }}"
-                                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
 
                                             <span
                                                 class="flex-1 ms-3 whitespace-nowrap">{{ $category->category_name }}</span>

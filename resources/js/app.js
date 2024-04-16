@@ -1,10 +1,12 @@
-import './bootstrap';
 
-import Alpine from 'alpinejs';
 
-window.Alpine = Alpine;
 
-Alpine.start();
+
+
+// import './bootstrap';
+
+import '../css/app.css';
+
 
 import Lara from "./presets/lara";
 import RolesTable from './Components/RolesTable.vue';
@@ -29,7 +31,15 @@ import EditRole from './Components/EditRole.vue';
 import DynamicDialog from 'primevue/dynamicdialog';
 import ProductCartForm from './Components/ProductCartForm.vue';
 import SideCart from './Components/SideCart.vue';
+import CartIcon from './Components/CartIcon.vue';
+import CartProductsCount from './Components/CartProductsCount.vue';
+import { createPinia } from 'pinia'
+import CartOutline from 'vue-material-design-icons/CartOutline.vue';
+import SpinnerButton from './Components/SpinnerButton.vue';
+import SpinnerTag from './Components/SpinnerTag.vue';
+
 const app=createApp({});
+const pinia = createPinia()
 
 app.component("RolesTable",RolesTable)
 .component('ServerToast',ServerToast)
@@ -44,11 +54,17 @@ app.component("RolesTable",RolesTable)
 .component('DynamicDialog',DynamicDialog)
 .component('ProductCartForm',ProductCartForm)
 .component('SideCart',SideCart)
+.component('CartIcon',CartIcon)
+.component('CartProductsCount',CartProductsCount)
+.component ("CartOutline",CartOutline)
+.component('SpinnerButton',SpinnerButton)
+.component("SpinnerTag",SpinnerTag)
 .use(PrimeVue,{
     unstyled:true,
     pt:Lara
 })
 .use(ToastService)
 .use(DialogService)
+.use(pinia)
 .mount('#app');
 

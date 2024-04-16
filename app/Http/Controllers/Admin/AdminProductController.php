@@ -36,9 +36,10 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+       
+        $displayAttribute=true;
 
-        return view("pages.admin.createProduct", ["categories" => $categories]);
+        return view("pages.admin.createProduct", ["displayAttribute"=>$displayAttribute]);
     }
 
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Users\OrderController;
 use App\Http\Controllers\Users\UsersProductController;
 use App\Http\Controllers\Users\UsersCategoryController;
 use App\Http\Controllers\Users\UsersDevisionController;
@@ -15,10 +16,15 @@ use App\Http\Controllers\Users\UsersDevisionController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+// */
 Route::get('/',[UsersProductController::class,'index']);
+Route::get('/checkout',[OrderController::class,'index'])->name('checkout');
+require __DIR__.'/admin.php';
 
-///////////////////////////Devisions Routes//////////////////////
+require __DIR__.'/auth.php';
+
+
+// ///////////////////////////Devisions Routes//////////////////////
 
 Route::get('/{devision:slug}',[UsersDevisionController::class,'show'])->name('usersDevision.show');
 Route::get('/{devision:slug}/{category:slug}',[UsersCategoryController::class,'show'])->name('usersCategory.show');
@@ -31,6 +37,3 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-
-require __DIR__. '/admin.php';

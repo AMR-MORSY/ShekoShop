@@ -1,8 +1,8 @@
 <template>
     <div>
 
-        <Button @click="show">Show</Button>
-        <div  id="drawer-right-example"
+
+        <div id="drawer-right-example"
             class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800"
             tabindex="-1" aria-labelledby="drawer-right-label">
             <h5 id="drawer-right-label"
@@ -21,25 +21,62 @@
                 </svg>
                 <span class="sr-only">Close menu</span>
             </button>
-            <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Supercharge your hiring by taking advantage of our
-                <a href="#"
-                    class="text-blue-600 underline font-medium dark:text-blue-500 hover:no-underline">limited-time
-                    sale</a> for Flowbite Docs + Job Board. Unlimited access to over 190K top-ranked candidates and the
-                #1 design job board.
-            </p>
-            <div class="grid grid-cols-2 gap-4">
-                <a href="#"
-                    class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Learn
-                    more</a>
-                <a href="#"
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Get
-                    access <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg></a>
+            <div v-if="cartItems">
+
+                <div v-for="( item, index) in cartItems" :key="item.product.id"
+                    class=" relative border border-1 rounded-xl p-1 mb-3">
+                    <button type="button" @click.prevent="deleteCartItem(index)"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close menu</span>
+                    </button>
+                    <div class=" flex justify-center items-center pt-8">
+                        <div class=" h-16 w-16">
+                            <img :src="item.product.images[0].path" alt="" class=" w-full" />
+
+                        </div>
+                        <p class=" text-xs text-left font-medium mt-4">
+                            {{ item.product.product_name }}
+                        </p>
+                    </div>
+                    <div class=" flex items-center justify-center">
+                        <p class=" text-xs text-center">{{ item.quantity }}</p>
+                        <p class=" text-xs text-center">X</p>
+                        <p class=" text-xs text-center">{{ item.size }}</p>
+                    </div>
+                    <div class=" flex  items-center justify-center" v-if="item.options.length > 0">
+                        <p class=" text-xs text-center mr-1">Extra:</p>
+                        <div class=" mt-4">
+                            <p class=" text-xs text-center" v-for="option in item.options" :key="option">EGP {{
+                option.price }} {{ option.name }}</p>
+
+                        </div>
+
+
+                    </div>
+                    <div class=" flex justify-center items-center">
+                        <p class=" text-xs text-center">Price:{{ (item.product_price) }} EGP</p>
+                    </div>
+
+
+
+
+                </div>
+                <p class=" text-base font-normal">Total Cart Price:{{ totalCartPrice }}EGP</p>
+
+
+            </div>
+            <div class=" w-full flex justify-center items-center">
+                <SpinnerTag  label="CHECKOUT" class=" w-full block " @click="goToCheckOut"/>
+
             </div>
         </div>
+
+
 
     </div>
 </template>
@@ -47,36 +84,80 @@
 <script setup>
 import { Drawer, initDrawers, initFlowbite } from 'flowbite';
 
-import { onMounted, watchEffect, ref,reactive,onBeforeMount,watch } from 'vue';
+
+import { onMounted, watchEffect, ref, reactive, onBeforeMount, watch } from 'vue';
+import useCartStore from '../stores/cart';
+import { storeToRefs } from 'pinia';
+const cartStore = useCartStore();
+
+const { sideCartVisible } = storeToRefs(cartStore);
+
+
 
 onBeforeMount(() => {
-  
+
 
     initFlowbite();
-   
+
+
     initialzeDrawer()
 
-  
+    getCartItems();
+
+
 
 })
 
-const initialzeDrawer=()=>{
-     $triggerEl= document.querySelector("#drawer-right-example");
-    drawer = new Drawer( $triggerEl, options, instanceOptions);
+const initialzeDrawer = () => {
+    $triggerEl = document.querySelector("#drawer-right-example");
+    drawer = new Drawer($triggerEl, options, instanceOptions);
 
-  
+
 
 }
 
-const props = defineProps({
-    draw: Boolean | false,
-})
+const getStorageItemsArray = () => {
+    let storageItems = localStorage.getItem('cartProducts');
+    storageItems = JSON.parse(storageItems);
+
+    return storageItems;
+
+}
+ const goToCheckOut=()=>{
+    console.log(cartItems.value)
+ }
+
+const cartItems = ref();
+const totalCartPrice = ref();
+const getCartItems = () => {
+
+    cartItems.value = getStorageItemsArray();
+    if (cartItems.value != null) {
+        cartItems.value.forEach((element) => {
+            element.product_price = element.price * element.quantity
+            element.product_price = element.product_price + (element.options.reduce((n, { price }) => n + price, 0))
+
+
+        })
+
+        totalCartPrice.value = cartItems.value.reduce((n, { product_price }) => n + product_price, 0)
+
+    }
+
+
+
+
+
+
+
+}
+
 // set the drawer menu element
 
- let  $triggerEl =document.querySelector("#drawer-right-example");
+let $triggerEl = document.querySelector("#drawer-right-example");
 // options with default values
 const options = {
-    
+
     placement: 'right',
     backdrop: true,
     bodyScrolling: false,
@@ -85,40 +166,49 @@ const options = {
     backdropClasses:
         'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30',
     onHide: () => {
-        emits('drawerHidden');
-       
+
+        cartStore.hideSideCart();
+
     },
     onShow: () => {
-        emits('drawerShown');
+
+        getCartItems();
     },
-    // onToggle: () => {
-    //     console.log('drawer has been toggled');
-    // },
-} ;
+
+};
 
 // instance options object
 const instanceOptions = {
     id: 'drawer-right-example',
     override: true
 };
-let drawer = new Drawer( $triggerEl, options, instanceOptions) ;
+let drawer = new Drawer($triggerEl, options, instanceOptions);
 
-const emits=defineEmits(['drawerHidden','drawerShown']);
+
 
 const manipultateDrawer = (status) => {
     initialzeDrawer()
+
+
     if (status == true) {
         return drawer.show();
     }
     return drawer.hide()
- 
+
 }
 
-const show = () => {
-    initialzeDrawer()
-   drawer.show()
-}
-watch(()=>props.draw,(newValue,oldValue)=>manipultateDrawer(newValue))
+const deleteCartItem = (index) => {
+    let storageItems = [];
+    storageItems = getStorageItemsArray();
+    storageItems.splice(index, 1);
+    localStorage.setItem('cartProducts', JSON.stringify(storageItems))
+    cartStore.getCartProductsFromStorage();
+    getCartItems();
+
+
+};
+
+watch(() => sideCartVisible.value, (newValue, oldValue) => manipultateDrawer(newValue))
 
 </script>
 

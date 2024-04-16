@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -29,37 +28,24 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-   
-    private function creationAtrritbutes($validated)
-    {
-        return
-            [
-                'user_name' => $validated['user_name'],
-                'email' => $validated['email'],
-                'password' => Hash::make($validated['password']),
-            ];
-    }
     public function store(Request $request): RedirectResponse
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
 
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-        $validated =   $request->validate(
-            [
-                'user_name' => ['required', 'string', 'max:255', 'unique:' . User::class],
-                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-
-            ]
-        );
-      
-
-        $user = User::create(
-            $this->creationAtrritbutes($validated)
-        );
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect('/');
+        return redirect(RouteServiceProvider::HOME);
     }
 }

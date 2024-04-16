@@ -29,9 +29,10 @@
             {{ $slot }}
         </div>
 
-      
+      <side-cart/>
 
     </div>
 </body>
 
 </html>
+

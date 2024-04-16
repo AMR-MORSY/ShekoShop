@@ -11,13 +11,7 @@ class navbar extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(
-      public  $categories,public $devisions
-    )
-    {
-        //
-    }
-
+   
     /**
      * Get the view / contents that represent the component.
      */

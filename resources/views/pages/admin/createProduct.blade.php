@@ -61,10 +61,10 @@
                 ])>
                     <x-input-label for="notes" :value="__('Notes')" />
                     @if (isset($product))
-                        <x-text-input id="notes" class="block mt-1 w-full" type="number" name="notes"
+                        <x-text-input id="notes" class="block mt-1 w-full" type="text" name="notes"
                             autocomplete="notes" :value="old('notes', $product->notes)" />
                     @else
-                        <x-text-input id="notes" class="block mt-1 w-full" type="number" name="notes"
+                        <x-text-input id="notes" class="block mt-1 w-full" type="text" name="notes"
                             autocomplete="notes" :value="old('notes')" />
                     @endif
 
@@ -95,10 +95,10 @@
                 ])>
                     <x-input-label for="processing" :value="__('Processing')" />
                     @if (isset($product))
-                        <x-text-input id="processing" class="block mt-1 w-full" type="number" name="processing"
+                        <x-text-input id="processing" class="block mt-1 w-full" type="text" name="processing"
                             autocomplete="processing" :value="old('processing', $product->processing)" />
                     @else
-                        <x-text-input id="processing" class="block mt-1 w-full" type="number" name="processing"
+                        <x-text-input id="processing" class="block mt-1 w-full" type="text" name="processing"
                             autocomplete="processing" :value="old('processing')" />
                     @endif
 
@@ -112,10 +112,10 @@
                 ])>
                     <x-input-label for="body" :value="__('Body')" />
                     @if (isset($product))
-                        <x-text-input id="body" class="block mt-1 w-full" type="number" name="body"
+                        <x-text-input id="body" class="block mt-1 w-full" type="text" name="body"
                             autocomplete="body" :value="old('body', $product->body)" />
                     @else
-                        <x-text-input id="body" class="block mt-1 w-full" type="number" name="body"
+                        <x-text-input id="body" class="block mt-1 w-full" type="text" name="body"
                             autocomplete="body" :value="old('body')" />
                     @endif
 
@@ -125,10 +125,10 @@
                 <div @class(['hidden' => $displayAttribute, 'col-span-2', 'md:col-span-1'])>
                     <x-input-label for="region" :value="__('Region')" />
                     @if (isset($product))
-                        <x-text-input id="region" class="block mt-1 w-full" type="number" name="region"
+                        <x-text-input id="region" class="block mt-1 w-full" type="text" name="region"
                             autocomplete="region" :value="old('region', $product->region)" />
                     @else
-                        <x-text-input id="region" class="block mt-1 w-full" type="number" name="region"
+                        <x-text-input id="region" class="block mt-1 w-full" type="text" name="region"
                             autocomplete="region" :value="old('region')" />
                     @endif
 
@@ -142,10 +142,10 @@
                 ])>
                     <x-input-label for="subregion" :value="__('Subregion')" />
                     @if (isset($product))
-                        <x-text-input id="subregion" class="block mt-1 w-full" type="number" name="subregion"
+                        <x-text-input id="subregion" class="block mt-1 w-full" type="text" name="subregion"
                             autocomplete="subregion" :value="old('subregion', $product->subregion)" />
                     @else
-                        <x-text-input id="subregion" class="block mt-1 w-full" type="number" name="subregion"
+                        <x-text-input id="subregion" class="block mt-1 w-full" type="text" name="subregion"
                             autocomplete="subregion" :value="old('subregion')" />
                     @endif
 
@@ -155,10 +155,10 @@
                 <div @class(['hidden' => $displayAttribute, 'col-span-2', 'md:col-span-1'])>
                     <x-input-label for="farm_owner" :value="__('Farm Owner')" />
                     @if (isset($product))
-                        <x-text-input id="farm_owner" class="block mt-1 w-full" type="number" name="farm_owner"
+                        <x-text-input id="farm_owner" class="block mt-1 w-full" type="text" name="farm_owner"
                             autocomplete="farm_owner" :value="old('farm_owner', $product->farm_owner)" />
                     @else
-                        <x-text-input id="farm_owner" class="block mt-1 w-full" type="number" name="farm_owner"
+                        <x-text-input id="farm_owner" class="block mt-1 w-full" type="text" name="farm_owner"
                             autocomplete="farm_owner" :value="old('farm_owner')" />
                     @endif
 
@@ -172,10 +172,10 @@
                 ])>
                     <x-input-label for="altitude" :value="__('Altitude')" />
                     @if (isset($product))
-                        <x-text-input id="altitude" class="block mt-1 w-full" type="number" name="altitude"
+                        <x-text-input id="altitude" class="block mt-1 w-full" type="text" name="altitude"
                             autocomplete="altitude" :value="old('altitude', $product->altitude)" />
                     @else
-                        <x-text-input id="altitude" class="block mt-1 w-full" type="number" name="altitude"
+                        <x-text-input id="altitude" class="block mt-1 w-full" type="text" name="altitude"
                             autocomplete="altitude" :value="old('altitude')" />
                     @endif
 
@@ -189,10 +189,10 @@
                 ])>
                     <x-input-label for="varietal" :value="__('Varietal')" />
                     @if (isset($product))
-                        <x-text-input id="varietal" class="block mt-1 w-full" type="number" name="varietal"
+                        <x-text-input id="varietal" class="block mt-1 w-full" type="text" name="varietal"
                             autocomplete="varietal" :value="old('varietal', $product->varietal)" />
                     @else
-                        <x-text-input id="varietal" class="block mt-1 w-full" type="number" name="varietal"
+                        <x-text-input id="varietal" class="block mt-1 w-full" type="text" name="varietal"
                             autocomplete="varietal" :value="old('varietal')" />
                     @endif
 
@@ -278,13 +278,14 @@
 
                         </select>
                     @elseif (Session::has('devision'))
-                    <select name="devision_id" id="devision_id" onchange="getCategory()">
-                        @foreach ($devisions as $dev)
-                            <option :value="{{ $dev->id }}" @selected($dev->id==Session::get('devision')->id)>{{ $dev->devision_name }}</option>
-                        @endforeach
+                        <select name="devision_id" id="devision_id" onchange="getCategory()">
+                            @foreach ($devisions as $dev)
+                                <option :value="{{ $dev->id }}" @selected($dev->id == Session::get('devision')->id)>
+                                    {{ $dev->devision_name }}</option>
+                            @endforeach
 
 
-                    </select>
+                        </select>
                     @else
                         <select name="devision_id" id="devision_id" onchange="getCategory()">
                             @foreach ($devisions as $devision)
@@ -302,7 +303,7 @@
 
                     @if (isset($product) && !Session::has('devision'))
                         <select name="category_id" id="category_id">
-                            @foreach ($categories as $category)
+                            @foreach ($product->category->devision->categories as $category)
                                 <option :value="{{ $category->id }}" @selected($product->category_id == $category->id)>
                                     {{ $category->category_name }}</option>
                             @endforeach
@@ -312,16 +313,16 @@
                     @elseif (Session::has('categories'))
                         <select name="category_id" id="category_id">
                             @foreach (Session::get('categories') as $category)
-                                <option :value="{{ $category->id }}" @selected($product->category_id == $category->id)>
+                                <option :value="{{ $category->id }}" >
                                     {{ $category->category_name }}</option>
                             @endforeach
 
 
                         </select>
-                    @else
+                    @elseif (!Session::has('categories'))
                         <select name="category_id" id="category_id">
-                            @foreach ($categories as $category)
-                                <option :value="{{ $category->id }}">{{ $category->category_name }}</option>
+                            @foreach ($devisions[0]->categories as $category)
+                                <option :value="{{ $category->id }}" >{{ $category->category_name }}</option>
                             @endforeach
 
 
