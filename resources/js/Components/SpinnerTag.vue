@@ -16,7 +16,8 @@
 const props = defineProps({
   
     label: String | undefined,
-    spine: Boolean | false
+    spine: Boolean | false,
+    href:String|undefined
 })
 
 </script>

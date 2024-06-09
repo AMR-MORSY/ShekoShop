@@ -37,12 +37,17 @@ import { createPinia } from 'pinia'
 import CartOutline from 'vue-material-design-icons/CartOutline.vue';
 import SpinnerButton from './Components/SpinnerButton.vue';
 import SpinnerTag from './Components/SpinnerTag.vue';
+import Notification from './Components/Notification.vue';
+import CheckoutForm from './Components/CheckoutForm.vue';
+import ProductFrom from './Components/ProductForm.vue';
 
 const app=createApp({});
 const pinia = createPinia()
 
 app.component("RolesTable",RolesTable)
 .component('ServerToast',ServerToast)
+.component('CheckoutForm',CheckoutForm)
+.component('ProductForm',ProductFrom)
 .component('Button',Button)
 .component("DataTable",DataTable)
 .component("Column",Column)
@@ -59,6 +64,7 @@ app.component("RolesTable",RolesTable)
 .component ("CartOutline",CartOutline)
 .component('SpinnerButton',SpinnerButton)
 .component("SpinnerTag",SpinnerTag)
+.component('Notification',Notification)
 .use(PrimeVue,{
     unstyled:true,
     pt:Lara

@@ -18,21 +18,26 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    <div id="app" >
+    <div id="app">
         <x-navbar :categories="$categories" :devisions="$devisions"></x-navbar>
-       
-      
-
-
         <div>
-           
             {{ $slot }}
         </div>
 
-      <side-cart/>
+        <div>
+            <notification />
+        </div>
+        <div>
+
+            <side-cart />
+        </div>
+
+
 
     </div>
+
+
+
 </body>
 
 </html>
-

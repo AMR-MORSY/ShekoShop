@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\ManipulatingProductCreationFormController;
 
 ///////////////////products routes///////////////////////////////
 
-Route::middleware(['auth'])->group(function () {
+Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::middleware('permission:store_product')->get('/products/create',[AdminProductController::class,'create'])->name('product.create');
     Route::middleware('permission:view_product')->get('/products',[AdminProductController::class,'index'])->name('product.index');
@@ -22,7 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('permission:store_product')->post('/products',[AdminProductController::class,'store'])->name('product.store');
     Route::middleware('permission:delete_product')->delete('/products/{product}',[AdminProductController::class,'destroy'])->name('product.destroy');
      Route::middleware('permission:update_product')->post('/product/formManipulate',[ManipulatingProductCreationFormController::class,'manipulateForm'])->name('product.manipulateForm');
-})->prefix('admin'); 
+}); 
 
 ///////////////////Roles and Permissions///////////////////////
 
