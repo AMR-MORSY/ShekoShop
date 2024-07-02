@@ -38,7 +38,7 @@
             </main>
         </div>
        
-        @stack('script')
+        {{-- @stack('script') --}}
       
     </body>
 </html>

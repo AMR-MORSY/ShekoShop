@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\CartProduct;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -47,8 +48,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function products()
+    public function cart_products()
     {
-        return $this->belongsToMany(Product::class,'cart_products')->withPivot('quantity')->withTimestamps();;
+        return $this->hasMany(CartProduct::class);
+        
     }
 }

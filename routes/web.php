@@ -26,8 +26,21 @@ require __DIR__.'/admin.php';
 
 require __DIR__.'/auth.php';
 
+
+
 /////////////////////////////Cart Controller/////////////////////////////
 Route::get ('cart',[CartController::class,'index']);
+Route::post('addCartProduct',[CartController::class,'addCartProduct']);
+
+
+// ///////////////////////////Devisions Routes//////////////////////
+
+Route::get('{devision:slug}',[UsersDevisionController::class,'show'])->name('usersDevision.show');
+
+Route::get('{devision:slug}/{category:slug}',[UsersCategoryController::class,'show'])->name('usersCategory.show');
+Route::get('{devision:slug}/{category:slug}/{product:slug}',[UsersProductController::class,'show'])->name('usersProduct.show');
+
+
 
 /////////////////////////////////////////checkout controller ///////////////////
 
@@ -38,14 +51,6 @@ Route::get('{product:slug}/{index}/{target}',[UsersProductController::class,'edi
 
 Route::post('checkProductAvailability',[CheckProductAvailabiltyController::class,'checkProductAvailability']);
 Route::post('checkProductsAvailability',[CheckProductAvailabiltyController::class,'checkProductsAvailability']);
-
-// ///////////////////////////Devisions Routes//////////////////////
-
-Route::get('{devision:slug}',[UsersDevisionController::class,'show'])->name('usersDevision.show');
-
-Route::get('{devision:slug}/{category:slug}',[UsersCategoryController::class,'show'])->name('usersCategory.show');
-Route::get('{devision:slug}/{category:slug}/{product:slug}',[UsersProductController::class,'show'])->name('usersProduct.show');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

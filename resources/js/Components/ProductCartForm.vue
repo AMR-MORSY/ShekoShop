@@ -9,8 +9,7 @@
         </div>
 
         <div v-for="(extra, index) in extras" :key="extra.id">
-            <input type="checkbox" v-model="extraOptions" :id="extra.name"
-                :value="{ 'price': extra.price, 'name': extra.name }">
+            <input type="checkbox" v-model="extraOptions" :id="extra.name" :value="extra.id">
             <span class=" mx-4">{{ extra.price }} EGP</span>
             <label :for="extra.name">{{ extra.name }}</label>
 
@@ -66,6 +65,7 @@ import { storeToRefs } from 'pinia';
 
 const cartStore = useCartStore();
 const notificationStore = useNotificationStore();
+const { Api } = fetchData();
 
 const { cartProducts } = storeToRefs(cartStore);
 const { notificationMessage, notificationVisible } = storeToRefs(notificationStore)
@@ -73,10 +73,6 @@ const props = defineProps({
     sizes: Array | undefined,
     extras: Array | undefined,
     product: Object | undefined,
-    // size: String | undefined,
-    // quantity: Number | undefined,
-    // price: Number | undefined,
-    // prodoptions: Array | undefined, 
     prodindex: Number | undefined, //////////props of two names like product index can not be written as camelCase so it must be prodindex
     target: String | undefined
 })
@@ -94,43 +90,18 @@ onMounted(() => {
     getProductSizeAndQuantity();
 })
 const getProductSizeAndQuantity = () => {
-    let products = cartProducts.value;
-    products = JSON.parse(products);
-    let selectedProduct = products[props.prodindex];
-    quantity.value = selectedProduct.quantity;
-    size.value = selectedProduct.size;
-    price.value = selectedProduct.price;
-    extraOptions.value = selectedProduct.options
-
-    // if (props.size) {
-    //     console.log(props.prodindex)
-
-    //     let products = cartProducts.value;
-    //     products = JSON.parse(products);
-    //     let prod = products.filter((element) => {
-
-    //         return element.product.id == props.product.id && element.quantity == props.quantity && element.size == props.size && element.price == props.price
-
-    //     })
-    //     if (props.prodoptions.length == 0) {
-    //         quantity.value = prod[0].quantity;
-    //         size.value = prod[0].size;
-    //         price.value = prod[0].price;
-    //         extraOptions.value=props.prodoptions
-
-    //     }
-    //     else{
-    //         quantity.value = prod[0].quantity;
-    //         size.value = prod[0].size;
-    //         price.value = prod[0].price;
-    //         extraOptions.value=props.prodoptions
-    //     }
+    if (props.prodindex) {
+        let products = cartProducts.value;
+        products = JSON.parse(products);
+        let selectedProduct = products[props.prodindex];
+        quantity.value = selectedProduct.quantity;
+        size.value = selectedProduct.size;
+        price.value = selectedProduct.price;
+        extraOptions.value = selectedProduct.options
 
 
+    }
 
-    //     console.log(prod);
-
-    // }
 }
 
 const modifyPriceWithSize = () => {
@@ -168,7 +139,7 @@ const decrement = () => {
 
 const checkProductAvailability = () => {
     spin.value = true;
-    const { Api } = fetchData();
+
     let cartProduct = {
         'id': props.product.id,
         'quantity': quantity.value,
@@ -199,51 +170,57 @@ const addProductToCart = () => {
         'options': extraOptions.value,
         'price': price.value
     }
-    let products = cartProducts.value;
 
-    if (props.prodindex)///////// this prop will be defined if the action is updating cart product
-    {
-        products = JSON.parse(products);
-        let filteredArray = products.filter(function (value, arrIndex) {
-            return props.prodindex != arrIndex;
+    Api.post('/addCartProduct', cartProduct).then((response) => {
+        console.log(response)
+    }).catch((error)=>{
+        console.log(error)
+    })
+    // let products = cartProducts.value;
 
-        })
+    // if (props.prodindex)///////// this prop will be defined if the action is updating cart product
+    // {
+    //     products = JSON.parse(products);
+    //     let filteredArray = products.filter(function (value, arrIndex) {
+    //         return props.prodindex != arrIndex;
 
-        products = filteredArray;
-        products.push(cartProduct);
-     
+    //     })
 
-
-    }
-    else {
-        if (products) {
-            products = JSON.parse(products);
-            products.push(cartProduct);
+    //     products = filteredArray;
+    //     products.push(cartProduct);
 
 
 
-
-        }
-        else {
-            products = [];
-            products.push(cartProduct);
-        }
-
-
-    }
+    // }
+    // else {
+    //     if (products) {
+    //         products = JSON.parse(products);
+    //         products.push(cartProduct);
 
 
-    localStorage.setItem('cartProducts', JSON.stringify(products))
-    cartStore.getCartProductsFromStorage();
-    if(props.prodindex)
-    {
-        window.location.replace('/cart');
-    }
-    else{
-        cartStore.showSideCart();
 
-    }
-    
+
+    //     }
+    //     else {
+    //         products = [];
+    //         products.push(cartProduct);
+    //     }
+
+
+    // }
+
+
+    // localStorage.setItem('cartProducts', JSON.stringify(products))
+    // cartStore.getCartProductsFromStorage();
+    // if(props.prodindex)
+    // {
+    //     window.location.replace('/cart');
+    // }
+    // else{
+    //     cartStore.showSideCart();
+
+    // }
+
     spin.value = false;
 
 }

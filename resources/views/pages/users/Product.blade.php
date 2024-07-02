@@ -34,10 +34,7 @@
         @else
             <div class=" col-span-2 mx-auto  lg:col-span-1">
                 <p class=" text-2xl text-center text-black">{{ $product->product_name }}</p>
-                {{-- <product-cart-form  :prodoptions="{{json_encode($prodOptions)}}" :extras="{{ json_encode($options) }}" :sizes="{{ json_encode($sizes) }}"
-                    :size="{{ json_encode($size) }}" :quantity="{{ json_encode($quantity) }}"
-                    :product="{{ $product }}" :price="{{json_encode($price)}}" :prodindex="{{json_encode($index)}}" :target="{{json_encode($target)}}"/> --}}
-
+             
                 <product-cart-form :extras="{{ json_encode($options) }}"
                     :sizes="{{ json_encode($sizes) }}":product="{{ $product }}"
                     :prodindex="{{ json_encode($index) }}" :target="{{ json_encode($target) }}" />

@@ -1,33 +1,47 @@
-import { defineStore } from 'pinia';
-import { ref,computed } from 'vue';
- const useCartStore = defineStore('cart',()=> {
-    const cartProducts=ref(localStorage.getItem('cartProducts'))
-    const sideCartVisible=ref(false)
+import { defineStore } from "pinia";
+import { ref, computed } from "vue";
+import { fetchData } from "../fetchData";
+const useCartStore = defineStore("cart", () => {
+    let cartProducts = ref();
+    let {Api}=fetchData();
+    if (localStorage.getItem("user_id")) {
+        Api.get('').then((response)=>{
+            console.log(response)
+        })
 
-    const cartProductsCount=computed(()=>{
-        if(cartProducts.value)
-        {
-            return JSON.parse(cartProducts.value).length; 
+
+    } else {
+        cartProducts = ref(localStorage.getItem("cartProducts"));
+    }
+
+    const sideCartVisible = ref(false);
+
+    const cartProductsCount = computed(() => {
+        if (cartProducts.value) {
+            return JSON.parse(cartProducts.value).length;
         }
         return 0;
-    })
+    });
 
     function getCartProductsFromStorage() {
-
-        cartProducts.value=localStorage.getItem('cartProducts')
-        
+        cartProducts.value = localStorage.getItem("cartProducts");
     }
 
-    function showSideCart(){
-        sideCartVisible.value=true;
+    function showSideCart() {
+        sideCartVisible.value = true;
     }
-    function hideSideCart(){
-        sideCartVisible.value=false;
+    function hideSideCart() {
+        sideCartVisible.value = false;
     }
 
     return {
-        cartProducts,cartProductsCount,getCartProductsFromStorage,sideCartVisible,showSideCart,hideSideCart
-    }
-  })
+        cartProducts,
+        cartProductsCount,
+        getCartProductsFromStorage,
+        sideCartVisible,
+        showSideCart,
+        hideSideCart,
+    };
+});
 
-  export default useCartStore;
+export default useCartStore;

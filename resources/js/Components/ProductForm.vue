@@ -128,9 +128,9 @@ const getCartItems = () => {
 
     if (props.target == 'sideCart') /////////check if the parent component is the side Card component
     {
-        getItemsPrice();
+        getItemsPrice();/////////retrieving the cart items from the local storage and calculate the price of each item based on its quantity and calculate total cart price
     }
-    else {
+    else {/////////////here the parent is checkout page. we will check the availability of each cart item (in local storage)as maybe after long time the prodcut becomes unavailable
 
         let newItemsArray = [];
 

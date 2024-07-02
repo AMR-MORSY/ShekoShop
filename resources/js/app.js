@@ -40,7 +40,7 @@ import SpinnerTag from './Components/SpinnerTag.vue';
 import Notification from './Components/Notification.vue';
 import CheckoutForm from './Components/CheckoutForm.vue';
 import ProductFrom from './Components/ProductForm.vue';
-
+import Logging from './Components/Logging.vue';
 const app=createApp({});
 const pinia = createPinia()
 
@@ -65,6 +65,7 @@ app.component("RolesTable",RolesTable)
 .component('SpinnerButton',SpinnerButton)
 .component("SpinnerTag",SpinnerTag)
 .component('Notification',Notification)
+.component('Logging',Logging)
 .use(PrimeVue,{
     unstyled:true,
     pt:Lara

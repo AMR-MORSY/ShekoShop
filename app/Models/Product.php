@@ -6,11 +6,12 @@ namespace App\Models;
 use App\Models\Image;
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\CartProduct;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -19,9 +20,10 @@ class Product extends Model
     protected $table='products';
     protected $guarded=[];
 
-    public function users()
+    public function cart_products()
     {
-        return $this->belongsToMany(User::class,'cart_products');
+        return $this->hasMany(CartProduct::class);
+        
     }
 
     public function discount()
