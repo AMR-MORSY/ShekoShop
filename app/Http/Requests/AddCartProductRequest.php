@@ -26,7 +26,11 @@ class AddCartProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'product.id'=>['exists:products,id'],
+            'price'=>["required", 'integer'],
+            'size'=>['exists:sizes,id'],
+            'quantity'=>['required','integer','min:1'],
+            "options.*"=>['nullable','exists:options,id']
         ];
     }
 }

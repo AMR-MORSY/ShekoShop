@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CartProduct extends Model
@@ -11,6 +12,7 @@ class CartProduct extends Model
     use HasFactory;
 
     protected $table="cart_products";
+    protected $guarded=[];
 
     public function user()
     {
@@ -23,5 +25,20 @@ class CartProduct extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    protected function options():Attribute
+    {
+        return Attribute::make(
+            set:function($value)
+            {
+                return json_encode($value);
+            },
+            get:function($value)
+            {
+                return json_decode($value);
+            }
+        );
+
     }
 }

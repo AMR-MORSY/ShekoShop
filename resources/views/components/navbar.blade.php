@@ -43,12 +43,6 @@
 
 
                 @if (Auth::check())
-                    @session('logout')
-                    <div>
-                        <logging />
-                    </div>
-                        
-                    @endsession
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
@@ -63,12 +57,12 @@
                     <div>
                         <logging user={{ Auth::user() }} />
                     </div>
+                @else
+                    <div>
 
-              
+                        <logging />
+                    </div>
 
-
-                @endif
-                @if (!Auth::check())
                     <li>
                         <a href="{{ route('register') }}"
                             class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent">Register</a>
@@ -80,6 +74,7 @@
                             class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent">Login</a>
                     </li>
                 @endif
+            
                 <div>
                     <cart-icon />
                 </div>
@@ -97,7 +92,7 @@
 
 
             </ul>
-          
+
 
 
 

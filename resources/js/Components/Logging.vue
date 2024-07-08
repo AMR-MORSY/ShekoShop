@@ -8,29 +8,40 @@
 
 import { onMounted } from 'vue';
 
-const props=defineProps({
-    user:String|undefined
+ import useCartStore from '../stores/cart';
+
+const cartStore = useCartStore();
+
+const props = defineProps({
+    user: String | undefined
 })
 
-const storeUser=()=>{
-    if(props.user)
-    {
-        localStorage.setItem('user',props.user);
+
+
+const storeUser = () => {
+    if (props.user) {
+        localStorage.setItem('user', props.user);
        
+         cartStore.getCartProductsFromDatabase();
+
 
     }
-    else{
-        localStorage.removeItem('user')
+    else {
+        if (localStorage.getItem('user')) {
+            localStorage.removeItem("user");
+
+        }
+
+        
+         cartStore.getCartProductsFromStorage();
 
     }
-   
+
 
 }
-onMounted(()=>{
+onMounted(() => {
     storeUser()
 })
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

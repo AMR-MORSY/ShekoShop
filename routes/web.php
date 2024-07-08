@@ -31,6 +31,7 @@ require __DIR__.'/auth.php';
 /////////////////////////////Cart Controller/////////////////////////////
 Route::get ('cart',[CartController::class,'index']);
 Route::post('addCartProduct',[CartController::class,'addCartProduct']);
+Route::get('getAuthUserCartProducts',[CartController::class,'getAuthUserCartProducts']);
 
 
 // ///////////////////////////Devisions Routes//////////////////////

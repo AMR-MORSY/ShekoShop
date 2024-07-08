@@ -10,13 +10,16 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CheckingProductAvailabilityRequest;
 use App\Http\Requests\CheckingProductsAvailabilityRequest;
+use App\Models\Size;
 
 class CheckProductAvailabiltyController extends Controller
 {
     public function checkProductAvailability(CheckingProductAvailabilityRequest $request)
     {
-        $size = (string)Str::of($request->input('size'))->before('gm'); /////////// (string) casting the output of Str class to be string instade of stringuble
+        $size=Size::find($request->input('size'));
+        $size = (string)Str::of($size->name)->before('gm'); /////////// (string) casting the output of Str class to be string instade of stringuble
         $size = intval($size); /////// converting the string to integer number
+       
         $product_stock = Product::find($request->input('id'))->product_stock; /////getting product stock attribute
         if ($product_stock >= $request->input('quantity')*$size) {///////////////////checking if product stock covers the needed quantity or not
             return response()->json( 'success', 200);

@@ -1,30 +1,38 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 import { fetchData } from "../fetchData";
+
+
 const useCartStore = defineStore("cart", () => {
-    let cartProducts = ref();
-    let {Api}=fetchData();
-    if (localStorage.getItem("user_id")) {
-        Api.get('').then((response)=>{
-            console.log(response)
-        })
-
-
-    } else {
-        cartProducts = ref(localStorage.getItem("cartProducts"));
-    }
+  
+    const { Api } = fetchData();
+    const cartProducts = ref();
+   
+    
 
     const sideCartVisible = ref(false);
 
     const cartProductsCount = computed(() => {
         if (cartProducts.value) {
-            return JSON.parse(cartProducts.value).length;
+            return cartProducts.value.length;
         }
         return 0;
     });
+    function getCartProductsFromDatabase()
+    {
+        console.log('database')
+        Api.get("/getAuthUserCartProducts").then((response) => {
+         
+            cartProducts.value = response.data.products;
+        });
+
+    }
 
     function getCartProductsFromStorage() {
-        cartProducts.value = localStorage.getItem("cartProducts");
+        console.log('storage')
+        let products=localStorage.getItem("cartProducts");
+        cartProducts.value = JSON.parse(products);
+       
     }
 
     function showSideCart() {
@@ -38,6 +46,7 @@ const useCartStore = defineStore("cart", () => {
         cartProducts,
         cartProductsCount,
         getCartProductsFromStorage,
+        getCartProductsFromDatabase,
         sideCartVisible,
         showSideCart,
         hideSideCart,

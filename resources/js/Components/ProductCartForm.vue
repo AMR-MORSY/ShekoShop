@@ -3,7 +3,7 @@
         <div>
             <select v-model="size" @change="modifyPriceWithSize()">
                 <option :value="null">select bag size</option>
-                <option :value="siz.name" v-for="siz in sizes" :key="siz.id" :selected="size == siz.name">{{ siz.name }}
+                <option :value="siz.id" v-for="siz in sizes" :key="siz.id" :selected="size == siz.name">{{ siz.name }}
                 </option>
             </select>
         </div>
@@ -60,11 +60,13 @@ import SpinnerButton from './SpinnerButton.vue';
 import { fetchData } from '../fetchData';
 
 import useCartStore from '../stores/cart';
+
 import useNotificationStore from '../stores/notificationStore';
 import { storeToRefs } from 'pinia';
 
 const cartStore = useCartStore();
 const notificationStore = useNotificationStore();
+
 const { Api } = fetchData();
 
 const { cartProducts } = storeToRefs(cartStore);
@@ -170,12 +172,16 @@ const addProductToCart = () => {
         'options': extraOptions.value,
         'price': price.value
     }
+    if (localStorage.getItem('user')) {
+        Api.post('/addCartProduct', cartProduct).then((response) => {
+            console.log(response)
+        }).catch((error) => {
+            console.log(error)
+        })
 
-    Api.post('/addCartProduct', cartProduct).then((response) => {
-        console.log(response)
-    }).catch((error)=>{
-        console.log(error)
-    })
+    }
+
+
     // let products = cartProducts.value;
 
     // if (props.prodindex)///////// this prop will be defined if the action is updating cart product
