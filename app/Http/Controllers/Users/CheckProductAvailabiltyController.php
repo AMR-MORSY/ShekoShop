@@ -31,28 +31,28 @@ class CheckProductAvailabiltyController extends Controller
     public function checkProductsAvailability(CheckingProductsAvailabilityRequest $request)
     {
         $products=$request->input('products');
-        $products=collect($products)->groupBy('id')->all();
+        $products=collect($products)->groupBy('id')->all();//////as the products might be repeated,so we have to acummulate the needed quantity from each product
         $newProducts=[];
         foreach($products as $key=>$items)
         {
             $prodTotalQunt=0;
             $newProduct=[];
-            foreach($items as $item)
+            foreach($items as $item) ///////iterate on each product id to gather the quantities based on requested bag size
             {
                 $itemQuant=$item['quantity']*$item['size'];
                 $prodTotalQunt=$prodTotalQunt+$itemQuant;
 
             }
             $prodStock=Product::find($key)->product_stock;
-            if($prodStock>=$prodTotalQunt)
+            if($prodStock>=$prodTotalQunt)//////after collecting all the needed qunatity from the product will compare wit the product available stock
             {
-                $newProduct[$key]='ok';
+                $newProduct[$key]='ok'; //////return product id=>'ok' pair in case of stock availabity
                 array_push($newProducts,$newProduct);
 
 
             }
             else{
-                $newProduct[$key]=$prodStock;
+                $newProduct[$key]=$prodStock; //////return product id=>'available stock' pair in case of stock unavailabity
                 array_push($newProducts,$newProduct);
 
             }

@@ -22,7 +22,7 @@ const storeUser = () => {
     if (props.user) {
         localStorage.setItem('user', props.user);
        
-         cartStore.getCartProductsFromDatabase();
+        cartStore.getCartProductsFromDatabase();
 
 
     }
@@ -33,7 +33,7 @@ const storeUser = () => {
         }
 
         
-         cartStore.getCartProductsFromStorage();
+          cartStore.getCartProductsFromStorage();
 
     }
 

@@ -18,7 +18,7 @@ import { createApp } from 'vue';
 import 'primeicons/primeicons.css'
 import DialogService from 'primevue/dialogservice';
 
-
+import { createPinia } from 'pinia'
 import ImagesUploadigForm from "./Components/ImagesUploadingForm.vue";
 import ImageContainer from './Components/ImageContainer.vue';
 import ServerToast from './Components/ServerToast.vue';
@@ -33,7 +33,7 @@ import ProductCartForm from './Components/ProductCartForm.vue';
 import SideCart from './Components/SideCart.vue';
 import CartIcon from './Components/CartIcon.vue';
 import CartProductsCount from './Components/CartProductsCount.vue';
-import { createPinia } from 'pinia'
+
 import CartOutline from 'vue-material-design-icons/CartOutline.vue';
 import SpinnerButton from './Components/SpinnerButton.vue';
 import SpinnerTag from './Components/SpinnerTag.vue';
@@ -41,8 +41,12 @@ import Notification from './Components/Notification.vue';
 import CheckoutForm from './Components/CheckoutForm.vue';
 import ProductFrom from './Components/ProductForm.vue';
 import Logging from './Components/Logging.vue';
+import Loading from './Components/Loading.vue';
+
 const app=createApp({});
 const pinia = createPinia()
+
+
 
 app.component("RolesTable",RolesTable)
 .component('ServerToast',ServerToast)
@@ -66,6 +70,7 @@ app.component("RolesTable",RolesTable)
 .component("SpinnerTag",SpinnerTag)
 .component('Notification',Notification)
 .component('Logging',Logging)
+.component('Loading',Loading)
 .use(PrimeVue,{
     unstyled:true,
     pt:Lara
@@ -73,5 +78,8 @@ app.component("RolesTable",RolesTable)
 .use(ToastService)
 .use(DialogService)
 .use(pinia)
+
+
 .mount('#app');
+
 

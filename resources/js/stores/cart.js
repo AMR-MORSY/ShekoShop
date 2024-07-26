@@ -20,16 +20,17 @@ const useCartStore = defineStore("cart", () => {
     });
     function getCartProductsFromDatabase()
     {
-        console.log('database')
+       
         Api.get("/getAuthUserCartProducts").then((response) => {
          
             cartProducts.value = response.data.products;
+            console.log(cartProducts.value)
         });
 
     }
 
     function getCartProductsFromStorage() {
-        console.log('storage')
+    
         let products=localStorage.getItem("cartProducts");
         cartProducts.value = JSON.parse(products);
        

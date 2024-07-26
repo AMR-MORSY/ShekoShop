@@ -10,7 +10,7 @@
 
         <div class=" md:col-span-1 col-span-2">
           
-                <product-form target="chekout" />
+                <product-cart-form target="chekout" />
               
             
 

@@ -73,7 +73,7 @@ class UsersProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product,$index,$target)
+    public function edit(Product $product,$index)//// this route is used to show the cart product in localstorage that is need to be eideted
     {
 
         //   $prodOptions = json_decode($prodOptions); ///////as the product options comes from json.stringfy so i decode it to chnage it to an array of objects
@@ -82,7 +82,7 @@ class UsersProductController extends Controller
  
 
         // return view('pages.users.Product', ['product' => $product, 'sizes' => $sizes, 'options' => $options, 'size' => $size, "quantity" => $quntity, "price"=>$price,"prodOptions" => $prodOptions,"index"=>$index,"target"=>$target]);
-        return view('pages.users.Product', ['product' => $product, 'sizes' => $sizes, 'options' => $options, "index"=>$index,"target"=>$target]);
+        return view('pages.users.Product', ['product' => $product, 'sizes' => $sizes, 'options' => $options, "index"=>$index,'target'=>'cart']);
     }
 
     /**

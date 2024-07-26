@@ -30,13 +30,41 @@ class CartProduct extends Model
     protected function options():Attribute
     {
         return Attribute::make(
-            set:function($value)
+            set:function($values)
             {
-                return json_encode($value);
+                if($values)
+                {
+                   $options=[];
+                    foreach($values as $value)
+                    {
+                        array_push($options,$value['id']);
+
+                    }
+                    return json_encode($options);
+                }
+            
             },
             get:function($value)
             {
-                return json_decode($value);
+                $optionsArray=json_decode($value);
+                $options=[];
+                if($optionsArray)
+                {
+                    foreach($optionsArray as $option)
+                    {
+                        $opt=Option::find($option);
+                        array_push($options,$opt);
+                    }
+
+                    return $options;
+    
+
+                }
+               
+
+
+
+                return json_decode($optionsArray);
             }
         );
 

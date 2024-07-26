@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model
 {
     use HasFactory;
+
+    protected $table="options";
+
+    protected $hidden=[
+        "updated_at","created_at"
+    ];
+
+
 }

@@ -28,12 +28,20 @@ require __DIR__.'/auth.php';
 
 
 
+/////////////////////////////////////////checkout controller ///////////////////
+
+Route::get ('checkout',[CheckoutController::class,'index'])->name('checkout.index');
+Route::get('{product:slug}/{index}/edit',[UsersProductController::class,'edit'])->name('usersProduct.edit');////////this route is used to show the cart product in localstorage that is need to be eideted
+
+
 /////////////////////////////Cart Controller/////////////////////////////
+
 Route::get ('cart',[CartController::class,'index']);
 Route::post('addCartProduct',[CartController::class,'addCartProduct']);
 Route::get('getAuthUserCartProducts',[CartController::class,'getAuthUserCartProducts']);
 
-
+Route::delete('deleteCartProduct/{cartProduct}',[CartController::class,'delete']);////////this route is used to show the cart product in database that is need to be eideted
+Route::put('updateCartProduct/{cartProduct}',[CartController::class,'updateCartProduct']);
 // ///////////////////////////Devisions Routes//////////////////////
 
 Route::get('{devision:slug}',[UsersDevisionController::class,'show'])->name('usersDevision.show');
@@ -42,11 +50,6 @@ Route::get('{devision:slug}/{category:slug}',[UsersCategoryController::class,'sh
 Route::get('{devision:slug}/{category:slug}/{product:slug}',[UsersProductController::class,'show'])->name('usersProduct.show');
 
 
-
-/////////////////////////////////////////checkout controller ///////////////////
-
-Route::get ('checkout',[CheckoutController::class,'index'])->name('checkout.index');
-Route::get('{product:slug}/{index}/{target}',[UsersProductController::class,'edit'])->name('usersProduct.edit');
 
 //////////////////////////////checking product availability//////////////////
 
@@ -58,4 +61,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
