@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string("middle_name",50)->nullable();
             $table->string("user_name",50)->unique();
             $table->string("last_name",50)->nullable();
-            $table->string("mobile",15)->unique()->nullable();
+            $table->unsignedInteger("mobile",15)->unique()->nullable();
+            $table->string('shipping_address',500)->nullable();
+            $table->string('billing_address',500)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -29,6 +29,17 @@
     --surface-950: 3 6 23;
 }
 
+.product-text-input{
+    @apply block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm;
+}
+
+.label{
+    @apply block font-medium text-sm text-gray-700;
+}
+body{
+    background-color:white;
+}
+
 
 #intro{
    

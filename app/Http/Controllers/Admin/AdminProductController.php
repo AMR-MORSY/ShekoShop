@@ -71,15 +71,15 @@ class AdminProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::all();
-       $devisions=Devision::all();
+    //     $categories = Category::all();
+    //    $devisions=Devision::all();
        $displayAttribute=false;
        if($product->category->devision->id==1)
        {
         $displayAttribute=true;
        }
 
-        return view('pages.admin.createProduct')->with(["displayAttribute"=>$displayAttribute,'product' => $product, "categories" => $categories,'devisions'=>$devisions]);
+        return view('pages.admin.editProduct')->with(["displayAttribute"=>$displayAttribute,'product' => $product]);
     }
 
     /**

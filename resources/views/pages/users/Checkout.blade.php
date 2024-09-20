@@ -1,26 +1,19 @@
-@extends('layouts.intro-layout')
-@section('desc')
-    checkout
-@endsection
-@section('title')
-    checkout
-@endsection
-@section('content')
-    <div class=" grid grid-cols-2 gap-4">
+<x-intro-layout>
+    <x-slot name='description'>
+        checkout
+    </x-slot>
+    <x-slot name='title'>
+        checkout
+    </x-slot>  
 
-        <div class=" md:col-span-1 col-span-2">
-          
-                <product-cart-form target="chekout" />
-              
-            
+    <checkout-form :user="{{json_encode($user)}}" :payment_methods="{{json_encode($payment_methods)}}" :states="{{json_encode($states)}}" :governments="{{json_encode($governments)}}"/>
 
-        </div>
+</x-intro-layout>
 
 
-
-    </div>
+   
 
     
 
  
-@endsection
+

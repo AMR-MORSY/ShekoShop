@@ -26,12 +26,15 @@ class UpdatCartProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product.id'=>['exists:products,id'],
-            'price'=>["required", 'integer'],
-            'size.id'=>['exists:sizes,id'],
-            'quantity'=>['required','integer','min:1'],
-            "options"=>['array'],
-            "options.id*"=>['nullable','exists:options,id']
+            'product.id' => ['exists:products,id'],
+            'size_price' => ["required", 'integer'],
+            'size.id' => ['exists:sizes,id'],
+            'quantity' => ['required', 'integer', 'min:1'],
+            "options" => ['array'],
+            "options.id*" => ['nullable', 'exists:options,id'],
+            'extra_quantity_prices' => ["required", 'integer'],
+            'product_final_price' => ["required", 'integer']
+
         ];
     }
 }

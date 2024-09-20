@@ -37,6 +37,7 @@ class UsersDevisionController extends Controller
      */
     public function show(Devision $devision)
     {
+     
         return view('pages.users.Devision',['devision'=>$devision]);
         
     }

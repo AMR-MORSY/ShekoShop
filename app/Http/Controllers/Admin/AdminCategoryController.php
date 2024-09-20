@@ -29,7 +29,7 @@ class AdminCategoryController extends Controller
     public function create()
     {
         $devisions=Devision::all();
-        return view('pages.admin.createDevisionCategoryForm',['devisions'=>$devisions]);
+        return view('pages.admin.createCategory',['devisions'=>$devisions]);
     }
 
     /**

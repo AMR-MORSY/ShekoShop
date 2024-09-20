@@ -14,10 +14,12 @@ class GovernmentSeeder extends Seeder
     public function run(): void
     {
         $governs=['Alexandria','Cairo','Giza'];
-        foreach($governs as $govern)
+        $shipping_rate=[150,75,75];
+        for($i=0;$i<count($governs);$i++)
         {
             Government::create([
-                'govern_name'=>$govern
+                'govern_name'=>$governs[$i],
+                'shipping_rate'=>$shipping_rate[$i]
             ]);
         }
     }

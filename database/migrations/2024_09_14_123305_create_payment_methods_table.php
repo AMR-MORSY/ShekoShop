@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('states', function (Blueprint $table) {
+        Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
-            $table->string('state_name',50);
-            $table->unsignedBigInteger('govern_id');
-            $table->foreign('govern_id')->references('id')->on('governments')->onDelete('cascade')->onUpdate('cascade'); 
-         
+            $table->enum('name',['cash on delivery','visa','instapay','VF cash','OEG cash','ET cash','WE cash']);
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('states');
+        Schema::dropIfExists('payment_methods');
     }
 };

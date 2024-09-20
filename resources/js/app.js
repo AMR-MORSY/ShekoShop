@@ -29,7 +29,7 @@ import ChipComponent from './Components/ChipComponent.vue';
 import Chip from 'primevue/chip';
 import EditRole from './Components/EditRole.vue';
 import DynamicDialog from 'primevue/dynamicdialog';
-import ProductCartForm from './Components/ProductCartForm.vue';
+import CartProducts from './Components/CartProducts.vue';
 import SideCart from './Components/SideCart.vue';
 import CartIcon from './Components/CartIcon.vue';
 import CartProductsCount from './Components/CartProductsCount.vue';
@@ -61,7 +61,7 @@ app.component("RolesTable",RolesTable)
 .component('ImageContainer',ImageContainer)
 .component ('ImagesUploadingForm',ImagesUploadigForm)
 .component('DynamicDialog',DynamicDialog)
-.component('ProductCartForm',ProductCartForm)
+.component('CartProducts',CartProducts)
 .component('SideCart',SideCart)
 .component('CartIcon',CartIcon)
 .component('CartProductsCount',CartProductsCount)

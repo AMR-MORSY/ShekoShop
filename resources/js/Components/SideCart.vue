@@ -24,7 +24,7 @@
             </button>
 
 
-            <ProductCartForm target="cart" />
+            <CartProducts target="cart" />
 
 
         </div>

@@ -36,6 +36,8 @@ class Product extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -50,6 +52,11 @@ class Product extends Model
             }
         );
 
+    }
+
+    public function scopeFilter($query,string $search)
+    {
+        return $query->where('product_name','like','%'.$search.'%')->orWhere('product_shortDesc','like','%'.$search.'%');
     }
 
 

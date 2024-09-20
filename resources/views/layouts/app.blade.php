@@ -17,7 +17,7 @@
     </head>
     <body class="font-sans antialiased">
         <div id="app" class="min-h-screen bg-gray-100">
-            {{-- @include('layouts.navigation') --}}
+          
            
 
 
@@ -38,7 +38,7 @@
             </main>
         </div>
        
-        {{-- @stack('script') --}}
+        @stack('script')
       
     </body>
 </html>

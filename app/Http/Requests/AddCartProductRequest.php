@@ -11,8 +11,7 @@ class AddCartProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if(auth()->user())
-        {
+        if (auth()->user()) {
             return true;
         }
         return false;
@@ -23,15 +22,23 @@ class AddCartProductRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+
+    protected function prepareForValidation(): void
+    {
+      
+    }
     public function rules(): array
     {
         return [
-            'product.id'=>['exists:products,id'],
-            'price'=>["required", 'integer'],
-            'size.id'=>['exists:sizes,id'],
-            'quantity'=>['required','integer','min:1'],
-            "options"=>['array'],
-            "options.id*"=>['nullable','exists:options,id']
+            'product.id' => ['exists:products,id'],
+            'size_price' => ["required", 'integer'],
+            'size.id' => ['exists:sizes,id'],
+            'quantity' => ['required', 'integer', 'min:1'],
+            "options" => ['array'],
+            "options.id*" => ['nullable', 'exists:options,id'],
+            'extra_quantity_prices' => ["required", 'integer'],
+            'product_final_price' => ["required", 'integer']
+
         ];
     }
 }

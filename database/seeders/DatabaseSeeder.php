@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             OptionSeeder::class,
             SizeSeeder::class,
             GovernmentSeeder::class,
-            StateSeeder::class
+            StateSeeder::class,
+            PaymentMethodsSeeder::class
         ]);
        
     }

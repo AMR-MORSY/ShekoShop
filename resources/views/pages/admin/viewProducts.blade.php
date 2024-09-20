@@ -29,7 +29,7 @@
                         {{ $product->product_name }}</h3>
                     <h3><span class=" text-2xl text-red-400 ">Category:</span>{{ $product->category->category_name }}
                     </h3>
-                    <p><span class=" text-2xl text-red-400 ">Cart Desc:</span>{{ $product->product_cartDesc }}</p>
+                    
                     <p><span class=" text-2xl text-red-400 ">Short Desc:</span>{{ $product->product_shortDesc }}</p>
                     <p><span class=" text-2xl text-red-400 ">Stock:</span>{{ $product->product_stock }}</p>
                     <p><span class=" text-2xl text-red-400 ">Live:</span>

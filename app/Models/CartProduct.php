@@ -69,4 +69,10 @@ class CartProduct extends Model
         );
 
     }
+
+
+    public function scopeRelations($query,$user)
+    {
+        return $query->where('user_id',$user)->with(['product','size','product.images']);
+    }
 }

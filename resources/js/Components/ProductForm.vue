@@ -44,7 +44,7 @@
 
         </div>
 
-        <div class=" mt-10" v-if="size">{{ price }} EGP</div>
+        <div class=" mt-10" v-if="size">{{ sizePrice }} EGP</div>
 
 
 
@@ -83,7 +83,7 @@ const props = defineProps({
 const spin = ref(false);
 
 
-const price = ref(props.product.product_price);
+const sizePrice = ref(props.product.product_price);
 const size = ref(null);
 const extraOptions = ref([]);
 const quantity = ref(1);
@@ -97,18 +97,20 @@ const showProductDataForEditing = () => {
 
         let selectedProduct = cartProducts.value[props.prodindex];
 
+        console.log(selectedProduct)
+
 
 
         quantity.value = selectedProduct.quantity;
         size.value = selectedProduct.size;
-        price.value = selectedProduct.price;
+        sizePrice.value = selectedProduct.size_price;
         if (selectedProduct.options) {
             extraOptions.value = selectedProduct.options;
 
         }
 
 
-        console.log(extraOptions.value);
+
 
 
 
@@ -121,18 +123,21 @@ const showProductDataForEditing = () => {
 
 const modifyPriceWithSize = () => {
 
-    if (size) {
-        if (size.value == "250gm") {
-            price.value = props.product.product_price
+
+    if (size.value.name) {
+        if (size.value.name == "250gm") {
+            sizePrice.value = props.product.product_price
 
         }
-        else if (size.value == "500gm") {
-            price.value = props.product.product_price * 2
+        else if (size.value.name == "500gm") {
+            sizePrice.value = props.product.product_price * 2
 
         }
-        else if (size.value == "1000gm") {
-            price.value = props.product.product_price * 4;
+        else if (size.value.name == "1000gm") {
+            sizePrice.value = props.product.product_price * 4;
         }
+
+
     }
 
 }
@@ -179,14 +184,35 @@ const checkProductAvailability = () => {
     })
 }
 
+const calculateExtraOptionsQuantityPrices=()=>{
+
+    let extraOptionsQuantityPrice=0;
+    if (extraOptions.value.length > 0) {
+
+        extraOptions.value.forEach((element)=>{
+            extraOptionsQuantityPrice=extraOptionsQuantityPrice+(quantity.value*element.price)
+        })
+
+    }
+    return extraOptionsQuantityPrice;
+
+}
 const addProductToCart = () => {
+   
+    
+
     let cartProduct = {
         'product': props.product,
         'quantity': quantity.value,
         'size': size.value,
         'options': extraOptions.value,
-        'price': price.value
+        'size_price': sizePrice.value,
+        'extra_quantity_prices':calculateExtraOptionsQuantityPrices(),
+        'product_final_price':calculateExtraOptionsQuantityPrices()+(sizePrice.value*quantity.value)
+
+
     }
+   
 
     if (props.prodindex)///////// this prop will be defined if the action is updating cart product
     {
@@ -205,13 +231,8 @@ const addProductToCart = () => {
         else {
             let products = cartProducts.value;
 
-            let filteredArray = products.filter(function (value, arrIndex) {
-                return props.prodindex != arrIndex;
-
-            })
-
-            products = filteredArray;
-            products.push(cartProduct);
+          
+            products[props.prodindex]=cartProduct;
             localStorage.setItem('cartProducts',JSON.stringify(products));
             cartStore.getCartProductsFromStorage();
 
@@ -229,6 +250,8 @@ const addProductToCart = () => {
         if (localStorage.getItem('user')) {
 
             Api.post('/addCartProduct', cartProduct).then((response) => {
+              
+
 
                 cartStore.getCartProductsFromDatabase();
                 cartStore.showSideCart();
@@ -260,12 +283,7 @@ const addProductToCart = () => {
 
     }
 
-    // if (props.prodindex) {
-    //     window.location.replace('/cart');
-    // }
-    // else {
-
-    // }
+    
 
 
 

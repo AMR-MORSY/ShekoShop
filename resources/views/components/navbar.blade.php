@@ -18,9 +18,10 @@
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
 
             <ul
-                class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  md:dark:bg-gray-900">
+                class="font-medium md:text-xs lg:text-sm flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  lg:dark:bg-gray-900">
                 <li>
-                    <a href="/"
+                  
+                    <a href="{{route('home')}}"
                         class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 md:dark:text-blue-500"
                         aria-current="page">Home</a>
                 </li>
@@ -56,11 +57,16 @@
                     </li>
                     <div>
                         <logging user={{ Auth::user() }} />
+                       
+
+                         
+                        
                     </div>
                 @else
                     <div>
 
                         <logging />
+                       
                     </div>
 
                     <li>

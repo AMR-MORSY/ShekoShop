@@ -3,16 +3,39 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Government;
+use App\Models\Payment;
+use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(CartController $cart)
+    {   $payments=Payment::all();
+        $states=State::all();
+        $governments=Government::all();
+        $user=null;
+      
+        if (Auth()->user()) {
+            $user=Auth()->user();
+          
+          
+        }
+        return view('pages.users.Checkout',["user"=>$user,"payment_methods"=>$payments,"governments"=>$governments,"states"=>$states]);
+       
+    }
+
+
+    public function getStatesAndShipping(Government $government)
     {
-        return view('pages.users.Checkout');
+        $states=$government->states;
+        return response()->json([
+            'states'=>$states
+        ]);
     }
 
     /**

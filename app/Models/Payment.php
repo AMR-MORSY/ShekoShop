@@ -3,22 +3,20 @@
 namespace App\Models;
 
 use App\Models\Order;
-use App\Models\Government;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class State extends Model
+class Payment extends Model
 {
     use HasFactory;
-    protected $table="states";
 
-    public function government()
-    {
-        $this->belongsTo(Government::class);
-    }
+    protected $guarded=[];
+    protected $hidden=['created_at','updated_at'];
+    protected $table='payment_methods';
 
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
+
 }

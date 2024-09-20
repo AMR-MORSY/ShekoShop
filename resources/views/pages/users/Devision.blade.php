@@ -1,14 +1,15 @@
-@extends("layouts.navigation-layout")
-@section('desc')
-{{$devision->description}}
-    
-@endsection
-@section('title')
-{{$devision->devision_name}}
-    
-@endsection
-@section('content')
 
+
+<x-navigation-layout>
+    <x-slot name='description'>
+        {{$devision->description}}
+    </x-slot>
+    <x-slot name='title'>
+        {{$devision->devision_name}}
+    </x-slot>
+
+    
+        
 <div class=" grid grid-cols-3 gap-4">
     @foreach ($devision->categories as $category)
     <div class=" col-span-3 mx-auto  lg:col-span-1">
@@ -26,7 +27,5 @@
     @endforeach
     
 </div>
-
-
-    
-@endsection
+  
+</x-navigation-layout>

@@ -16,13 +16,23 @@ class UsersProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $devisions=Devision::all();
-        // $categories=Category::All();
-
+        
+       
+       
         return view("welcome");
     }
+
+    public function search(Request $request)
+    {
+        if ($request->input('search')) {
+            return view('pages.admin.viewProducts',['products'=>Product::filter($request->input('search'))->get()]);
+         }
+
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -73,16 +83,16 @@ class UsersProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product,$index)//// this route is used to show the cart product in localstorage that is need to be eideted
+    public function edit(Product $product, $index) //// this route is used to show the cart product in localstorage that is need to be eideted
     {
 
         //   $prodOptions = json_decode($prodOptions); ///////as the product options comes from json.stringfy so i decode it to chnage it to an array of objects
         $sizes = Size::all();
         $options = Option::all();
- 
+
 
         // return view('pages.users.Product', ['product' => $product, 'sizes' => $sizes, 'options' => $options, 'size' => $size, "quantity" => $quntity, "price"=>$price,"prodOptions" => $prodOptions,"index"=>$index,"target"=>$target]);
-        return view('pages.users.Product', ['product' => $product, 'sizes' => $sizes, 'options' => $options, "index"=>$index,'target'=>'cart']);
+        return view('pages.users.Product', ['product' => $product, 'sizes' => $sizes, 'options' => $options, "index" => $index, 'target' => 'cart']);
     }
 
     /**

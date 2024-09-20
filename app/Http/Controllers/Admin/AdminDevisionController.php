@@ -31,7 +31,7 @@ class AdminDevisionController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.createDevisionCategoryForm');
+        return view('pages.admin.createDevision');
     }
 
     

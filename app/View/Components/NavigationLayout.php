@@ -21,6 +21,6 @@ class NavigationLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.navigation-layout');
+        return view('layouts.navigation-layout');
     }
 }

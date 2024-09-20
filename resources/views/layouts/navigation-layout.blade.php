@@ -1,38 +1,17 @@
 <x-guest-layout>
-    @section('title')
-    @yield('title')
-    @endsection
-
-    @section('description')
-        @yield('desc')
-    @endsection
-
+    <x-slot name='description'>
+        {{ $description }}
+    </x-slot>
+    <x-slot name='title'>
+        {{ $title }}
+    </x-slot>
 
 
-    <section id="devisions-intro" style="background-image: url('{{ asset('assets/nas1.png') }}');"
-        class=" h-screen max-h-[50vh] bg-cover bg-center">
-        <div class=" w-full  h-full flex flex-col justify-center items-center">
-            <p class=" text-white text-6xl text-center">@yield('title') </p>
 
-            <div class="  w-full  flex justify-center mt-7 items-center">
-                @foreach ($devisions as $dev)
-                    <div class=" mx-2">
-                        <p class=" text-center text-2xl text-center text-white">
-                            {{ $dev->devision_name }}
-                        </p>
-                        <p class=" text-center text-2xl text-center text-white"><span
-                                class=" text-center  text-center text-white mr-1">{{ $dev->products->count() }}</span><span
-                                class=" text-center  text-center text-white">products</span></p>
-                    </div>
-                @endforeach
-            </div>
 
-        </div>
+    <x-intro-section title="{{$title}}"></x-intro-section>
 
-    </section>
 
-    <section id="content-sidebar" class=" container">
-        
     <section id="sideBar" class=" relative">
         <button data-drawer-target="devisions-sidebar" data-drawer-toggle="devisions-sidebar"
             aria-controls="devisions-sidebar" type="button"
@@ -47,10 +26,10 @@
         </button>
 
         <aside id="devisions-sidebar"
-            class=" absolute top-0 left-0 w-64 z-50 h-screen pt-20 transition-transform -translate-x-full bg-white  sm:translate-x-0"
+            class=" border-l-0 border-2 border-t-0  absolute top-0 left-0 w-64 z-50 h-screen pt-20 transition-transform -translate-x-full bg-white sm:translate-x-0"
             aria-label="Sidebar">
             <div class=" px-3 pb-4 overflow-y-auto bg-white">
-                <ul class="space-y-2 font-medium">
+                <ul class=" font-bold text-xs">
 
                     @foreach ($devisions as $dev)
                         <li>
@@ -79,7 +58,7 @@
                             <ul id="{{ $dev->devision_name }}" class="hidden py-2 space-y-2">
                                 @foreach ($dev->categories as $category)
                                     <li>
-                                        <a href="{{ route('usersCategory.show', ["devision"=>$dev->slug,'category' => $category->slug]) }}"
+                                        <a href="{{ route('usersCategory.show', ['devision' => $dev->slug, 'category' => $category->slug]) }}"
                                             class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
 
                                             <span
@@ -102,9 +81,10 @@
         </aside>
     </section>
     <section class="p-4  sm:ml-64 ">
-        @yield('content')
+
+        {{ $slot }}
     </section>
 
-    </section>
+
 
 </x-guest-layout>
