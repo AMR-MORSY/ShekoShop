@@ -23,7 +23,7 @@ import ImagesUploadigForm from "./Components/ImagesUploadingForm.vue";
 import ImageContainer from './Components/ImageContainer.vue';
 import ServerToast from './Components/ServerToast.vue';
 import Button from 'primevue/button';
-import DataTable from 'primevue/datatable';
+ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ChipComponent from './Components/ChipComponent.vue';
 import Chip from 'primevue/chip';

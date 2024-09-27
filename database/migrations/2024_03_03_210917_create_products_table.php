@@ -24,14 +24,14 @@ return new class extends Migration
             $table->string('altitude',100)->nullable();
             $table->string('varietal',100)->nullable();
             $table->string('slug',100)->unique();
-            $table->float('product_price',8, 2);
+            $table->unsignedDouble('product_price',8, 2);
             $table->string('product_shortDesc',300);
             $table->text('product_longDesc');
             $table->unsignedBigInteger('discount_id')->nullable();
             $table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->float('product_stock',8, 2)->default(0);
+            $table->unsignedDouble('product_stock',8, 2)->default(0);
             $table->boolean('product_live')->default(0);
             $table->integer("rating")->default(0);
             $table->timestamps();

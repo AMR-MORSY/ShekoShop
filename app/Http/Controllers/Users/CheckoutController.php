@@ -15,26 +15,34 @@ class CheckoutController extends Controller
      * Display a listing of the resource.
      */
     public function index(CartController $cart)
-    {   $payments=Payment::all();
-        $states=State::all();
-        $governments=Government::all();
-        $user=null;
-      
-        if (Auth()->user()) {
-            $user=Auth()->user();
-          
-          
+    {
+        $payments = Payment::all();
+        $states = State::all();
+        $governments = Government::all();
+
+        if (!isset($_COOKIE['products']) and !Auth()->user()) {
+            return redirect()->route('cart.index');
+        } elseif (auth()->user()) {
+            $user = Auth()->user();
+
+
+            if (count($user->cart_products) > 0 or isset($_COOKIE['products'])) {
+
+                return view('pages.users.Checkout', ["user" => $user, "payment_methods" => $payments, "governments" => $governments, "states" => $states]);
+            } else {
+                return redirect()->route('cart.index');
+            }
+        } elseif (isset($_COOKIE['products']) and !Auth()->user()) {
+            return view('pages.users.Checkout', [ "payment_methods" => $payments, "governments" => $governments, "states" => $states]);
         }
-        return view('pages.users.Checkout',["user"=>$user,"payment_methods"=>$payments,"governments"=>$governments,"states"=>$states]);
-       
     }
 
 
     public function getStatesAndShipping(Government $government)
     {
-        $states=$government->states;
+        $states = $government->states;
         return response()->json([
-            'states'=>$states
+            'states' => $states
         ]);
     }
 

@@ -20,9 +20,10 @@ return new class extends Migration
             $table->unsignedBigInteger('size_id');
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('quantity');
-             $table->float('size_price',8, 2);
-             $table->float('product_final_price',8, 2);
-             $table->float('extra_quantity_prices',8, 2);
+             $table->unsignedDouble('size_price',8, 2);
+             $table->unsignedDouble('product_final_price',8, 2);
+             $table->unsignedDouble('extra_quantity_prices',8, 2);
+             $table->json('options')->nullable();
             $table->timestamps();
         });
     }

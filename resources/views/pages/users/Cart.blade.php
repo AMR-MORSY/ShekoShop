@@ -1,26 +1,18 @@
-@extends('layouts.intro-layout')
-@section('desc')
-    cart
-@endsection
-@section('title')
-    cart
-@endsection
-@section('content')
-    <div class=" grid grid-cols-2 gap-4">
+<x-intro-layout>
+<x-slot name='description'>
+   CART
+</x-slot>
+<x-slot name='title'>
+   CART
+</x-slot>  
 
-        <div class=" md:col-span-1 col-span-2">
+    
           
-            <product-cart-form target="cart"/>
+            <cart-products target="cart"/>
               
             
-
-        </div>
-
-
-
-    </div>
 
     
 
  
-@endsection
+</x-intro-layout>

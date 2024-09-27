@@ -20,12 +20,13 @@ return new class extends Migration
             $table->unsignedBigInteger('state_id');
             $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade')->onUpdate('cascade');
             $table->string('shipping_address',500);
+            $table->unsignedDoubledouble('shipping_rate',8,2);
             $table->string('billing_address',500)->nullable();
             $table->string('email');
             $table->string('first_name',50);
             $table->string('last_name',50);
             $table->unsignedInteger('mobile');
-            $table->unsignedDecimal('total_order_price',8,2);
+            $table->unsignedDoubledouble('total_order_price',8,2);
             $table->tinyText('notes')->nullable();
             $table->enum('status',['processing','delivery','delivered'])->default('processing');
             $table->timestamps();

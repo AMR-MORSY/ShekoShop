@@ -20,8 +20,8 @@
             <ul
                 class="font-medium md:text-xs lg:text-sm flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  lg:dark:bg-gray-900">
                 <li>
-                  
-                    <a href="{{route('home')}}"
+
+                    <a href="{{ route('home') }}"
                         class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 md:dark:text-blue-500"
                         aria-current="page">Home</a>
                 </li>
@@ -56,17 +56,17 @@
                         welcome! {{ Auth::user()->first_name }}
                     </li>
                     <div>
-                        <logging user={{ Auth::user() }} />
-                       
+                        <logging :user="{{json_encode( Auth::user())}}"  />
 
-                         
-                        
+
+
+
                     </div>
                 @else
                     <div>
 
                         <logging />
-                       
+
                     </div>
 
                     <li>
@@ -80,10 +80,17 @@
                             class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent">Login</a>
                     </li>
                 @endif
-            
-                <div>
-                    <cart-icon />
-                </div>
+
+                @if (Route::is('checkout.index') || Route::is('cart.index'))
+                    <a href="{{ route('cart.index') }}">CART</a>
+                @else
+                    <div>
+                        <cart-icon />
+                    </div>
+                @endif
+
+
+
                 <div>
                     <cart-products-count />
                 </div>

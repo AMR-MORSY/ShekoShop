@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->id();
             $table->string('name',50)->unique();
-            $table->float('price',8,2);
+            $table->unsignedDouble('price',8,2);
             $table->timestamps();
         });
     }

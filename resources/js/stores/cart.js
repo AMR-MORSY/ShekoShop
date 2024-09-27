@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 import { fetchData } from "../fetchData";
+import useCookiesStore from "./cookies";
 
 const useCartStore = defineStore("cart", () => {
+    const cookiesStore=useCookiesStore();
     const { Api } = fetchData();
     const cartProducts = ref();
 
@@ -27,8 +29,9 @@ const useCartStore = defineStore("cart", () => {
                 (response) => {
                     if (response.data.message == "success") {
                         localStorage.removeItem("cartProducts");
+                        deleteProductsCookie()
                         Api.get("/getAuthUserCartProducts").then((response) => {
-                            console.log(response);
+                           
                             cartProducts.value = response.data.products;
                         });
                     }
@@ -37,17 +40,34 @@ const useCartStore = defineStore("cart", () => {
         } else {
             Api.get("/getAuthUserCartProducts").then((response) => {
                 cartProducts.value = response.data.products;
-                console.log(cartProducts.value);
+               
             });
         }
     }
 
+    function deleteProductsCookie()
+    {
+        let cookie_products=cookiesStore.getCookie('products')
+          
+        if(cookie_products)
+        {
+            
+            cookiesStore.eraseCookie('products')
+        }
+
+    }
+
     function getCartProductsFromStorage() {
+       
         if (localStorage.getItem("cartProducts")) {
             let products = localStorage.getItem("cartProducts");
             cartProducts.value = JSON.parse(products);
+            cookiesStore.setCookie('products',true,1000 )
+            
         } else {
             cartProducts.value = null;
+            deleteProductsCookie()
+          
         }
     }
 
@@ -125,12 +145,22 @@ const useCartStore = defineStore("cart", () => {
             });
         } else {
             cartProducts.value.splice(index, 1);
-            localStorage.setItem(
-                "cartProducts",
-                JSON.stringify(cartProducts.value)
-            );
-            getCartProductsFromStorage();
-            getItemsPrice();
+            if(cartProducts.value.length>0)
+            {
+                localStorage.setItem(
+                    "cartProducts",
+                    JSON.stringify(cartProducts.value)
+                );
+                getCartProductsFromStorage();
+                getItemsPrice();
+
+            }
+            else{
+                totalCartPrice.value=0;
+                localStorage.removeItem("cartProducts")
+                getCartProductsFromStorage();
+            }
+          
         }
     };
 

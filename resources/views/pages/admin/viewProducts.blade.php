@@ -1,18 +1,6 @@
 <x-dashboard-layout>
     <h1 class="text-5xl m-3">Products</h1>
-{{-- 
-    @php
-        if (Cookie::get('cartCount')) {
-            $cartCount =Cookie::get('cartCount') ;
-            $cartCount=json_decode( $cartCount);
-           
-        } else {
-            $cartCount = null;
-        }
 
-    @endphp
-
-    <x-cart :cart-count="$cartCount->name"></x-cart> --}}
 
 
 

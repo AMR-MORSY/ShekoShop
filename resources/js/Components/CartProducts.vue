@@ -5,9 +5,9 @@
     <div>
 
 
-        <div v-if="totalCartPrice == 0">
+        <div v-if="totalCartPrice == 0" class=" w-full flex justify-center items-center">
 
-            <p>CART IS EMPTY</p>
+            <p class=" font-Signika text-5xl font-extrabold text-center">Your cart is currently empty</p>
 
         </div>
         <div v-else id="form-container" class=" position-relative w-full h-full">
@@ -130,112 +130,10 @@ const goToCheckOut = () => {
     window.location.assign('/checkout');
 }
 
-// const reformingCartProductsBasedOnAvailability = (products) => {
-//     cartProducts.value.forEach((element) => {
-
-//         products.forEach((obj) => {/////response.data is an array of objects, each object consist of {productid:value,availability:value}
-//             for (const [key, value] of Object.entries(obj)) {/// Object.entries makes each object's key:value pair as an array then gather them all in one array
-//                 if (element.product.id == key) {
-//                     if (value != 'ok') {
-//                         element.availability = value////adding availability:value element to cartItem showing the available quantity in case of the required quantity less the available
-//                     }
-//                     else {
-//                         element.availability = 'ok';
-//                     }
-//                 }
-//             }
-
-//         })
-
-
-//     })
-//     displayLoading.value = false;
-
-
-// }
-
-// const checkProductsAvailabilityStock = () => {
-//     let newItemsArray = [];
-//     cartProducts.value.forEach((element) => {
-//         let newItem = {
-//             id: element.product.id,
-//             quantity: element.quantity,
-//             size: Number(element.size.name.substr(0, element.size.name.indexOf('g')))////removing the letters starts from g and convert the string to number
-//         }
-//         newItemsArray.push(newItem)
-//     })
-
-
-
-//     Api.post('/checkProductsAvailability', { products: newItemsArray }).then((response) => {
-//         let products = response.data;
-
-//         reformingCartProductsBasedOnAvailability(products)
-
-
-
-
-
-//     })
-
-
-// }
-// const getItemsPrice = () => {////////////from database/localstorage based on user authentication will be called as long as cart products updated
-
-
-//     displayLoading.value = true;
-//     if (cartProducts.value != null) {
-
-       
-
-
-//         totalCartPrice.value = cartProducts.value.reduce((n, { product_final_price }) => n + product_final_price, 0)
-
-
-//         checkProductsAvailabilityStock()
-//     }
-//     else {
-//         totalCartPrice.value = 0;
-//     }
-
-
-
-
-
-
-// }
 
 const deleteCartItem= (index)=>{
     cartStore.deleteCartItem(index);
 }
-// const deleteCartItem = (index) => {
-
-//     if (localStorage.getItem('user')) {
-//         Api.delete(`/deleteCartProduct/${cartProducts.value[index].id}`).then((response) => {
-
-//             cartStore.getCartProductsFromDatabase();
-//             getItemsPrice();
-
-
-//         })
-
-//     }
-//     else {
-
-//         cartProducts.value.splice(index, 1);
-//         localStorage.setItem('cartProducts', JSON.stringify(cartProducts.value))
-//         cartStore.getCartProductsFromStorage();
-//         getItemsPrice();
-
-
-//     }
-
-
-
-
-
-
-// };
 
 </script>
 

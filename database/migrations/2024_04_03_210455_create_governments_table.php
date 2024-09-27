@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('governments', function (Blueprint $table) {
             $table->id();
             $table->string('govern_name',50);
-            $table->float('shipping_rate',8,2);
+            $table->unsignedDouble('shipping_rate',8,2);
             $table->timestamps();
         });
     }
